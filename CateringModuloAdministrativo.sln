@@ -29,6 +29,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio.Core.MainModule", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestructura.Data.MySql", "Infraestructura.Data.MySql\Infraestructura.Data.MySql.csproj", "{10607254-168F-403F-BAD0-1F0881B8DA3D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{6750E0EB-F884-4698-BBDD-6B0C2637064A}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\BD_CATERING.sql = ..\..\..\Downloads\BD_CATERING.sql
+		..\..\..\Downloads\Triggers y Sps de BD_Catering.sql = ..\..\..\Downloads\Triggers y Sps de BD_Catering.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +71,7 @@ Global
 		{9E304784-5740-4EC4-9C26-A336D1719CEA} = {3129C519-6B7C-4FBA-B883-6A9BDB7C995C}
 		{F3789AE2-EA80-432F-838D-ABA3D9DFE648} = {7487EAB2-1114-49A9-B3AD-6E0716876303}
 		{10607254-168F-403F-BAD0-1F0881B8DA3D} = {E6F8B440-2DB8-422D-B009-540E92ADC029}
+		{6750E0EB-F884-4698-BBDD-6B0C2637064A} = {47F840CB-7543-474A-A634-214549FC6EE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32B4CC73-F263-478B-A1CC-5DF3E5D59591}
