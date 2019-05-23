@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexioncs.cs" />
+    <Compile Include="MenuNavegacion_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuario_DAL.cs" />
   </ItemGroup>
