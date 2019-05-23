@@ -150,12 +150,15 @@
     <Compile Include="Controllers\CateringController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ComidaController.cs" />
+    <Compile Include="Controllers\GrupoTrabajoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InsumoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuComidaController.cs" />
     <Compile Include="Controllers\MenuNaveacionController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Controllers\RecetaController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -438,10 +441,13 @@
     <Folder Include="Views\Catering\" />
     <Folder Include="Views\Cliente\" />
     <Folder Include="Views\Comida\" />
+    <Folder Include="Views\GrupoTrabajo\" />
     <Folder Include="Views\Insumo\" />
     <Folder Include="Views\MenuComida\" />
     <Folder Include="Views\MenuNaveacion\" />
     <Folder Include="Views\Pago\" />
+    <Folder Include="Views\Proveedor\" />
+    <Folder Include="Views\Receta\" />
     <Folder Include="Views\Reporte\" />
   </ItemGroup>
   <ItemGroup>
