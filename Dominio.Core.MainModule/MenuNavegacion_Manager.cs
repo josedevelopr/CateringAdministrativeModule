@@ -18,5 +18,10 @@ namespace Dominio.Core.MainModule
         {
             return objMenuNav_DAL.lista_menu_navegacion_usuario(correo);
         }
+
+        public List<string> lista_menu_navegacion_usuario_cabecera(string correo)
+        {
+            return objMenuNav_DAL.lista_menu_navegacion_usuario_cabecera(correo);
+        }
     }
 }

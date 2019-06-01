@@ -19,6 +19,7 @@ namespace Infraestructura.Data.MySql
         public List<MenuNavegacion> lista_menu_navegacion_usuario(string correo)
         {
             List<MenuNavegacion> lstMenuNavegacion = new List<MenuNavegacion>() ;
+            MenuNavegacion obMenunav;
             cn = cnx.conectar();
             cn.Open();
             
@@ -32,7 +33,7 @@ namespace Infraestructura.Data.MySql
             while (dr.Read())
             {
 
-                MenuNavegacion obMenunav =  new MenuNavegacion()
+                obMenunav =  new MenuNavegacion()
                 {
                     am_int_idarchivo = dr.GetInt32(0),
                     am_vchar_descr  = dr.GetString(1),
@@ -48,6 +49,31 @@ namespace Infraestructura.Data.MySql
             cn.Close();
 
             return lstMenuNavegacion;
+        }
+
+        public List<string> lista_menu_navegacion_usuario_cabecera(string correo)
+        {
+            var lstMenuCabecera = new List<string>();
+
+            cn = cnx.conectar();
+            cn.Open();
+
+            MySqlCommand cmd = new MySqlCommand("SP_USU_MENACCCAB", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("us_correo", DbType.String).Value = correo;
+
+            MySqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                lstMenuCabecera.Add(dr.GetString(0));
+            }
+
+            dr.Close();
+            cn.Close();
+
+            return lstMenuCabecera;
         }
     }
 }

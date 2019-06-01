@@ -434,6 +434,7 @@
     <Content Include="vendor\slick\slick.scss" />
     <Content Include="Views\Login\IniciarSesion.cshtml" />
     <Content Include="Views\Shared\_principalLinksSharedView.cshtml" />
+    <Content Include="Views\Shared\_MenuNavegacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

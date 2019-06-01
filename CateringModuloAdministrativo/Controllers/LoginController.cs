@@ -12,6 +12,7 @@ namespace CateringModuloAdministrativo.Controllers
     public class LoginController : Controller
     {
         private Usuario_Manager objUsuarioManager = new Usuario_Manager();
+        private MenuNavegacion_Manager objMenuNavegacion = new MenuNavegacion_Manager();
         // GET: Login
         public ActionResult Index()
         {
@@ -24,6 +25,8 @@ namespace CateringModuloAdministrativo.Controllers
         [HttpPost]
         public ActionResult IniciarSesion(string us_vchar_correo, string us_vchar_password)
         {
+            List<MenuNavegacion> lstMenuNavegacion = new List<MenuNavegacion>();
+            List<string> lstCabMenuNavegacion = new List<string>();
             try
             {
                 Session["messageUser"] = "";
@@ -33,7 +36,12 @@ namespace CateringModuloAdministrativo.Controllers
                 {
                     if (objUsuario.us_vchar_password == us_vchar_password)
                     {
+                        lstMenuNavegacion = objMenuNavegacion.lista_menu_navegacion_usuario(us_vchar_correo);
+                        lstCabMenuNavegacion = objMenuNavegacion.lista_menu_navegacion_usuario_cabecera(us_vchar_correo);
+
                         Session["userSession"] = objUsuario;
+                        Session["navigateMenuCabecera"] = lstCabMenuNavegacion;
+                        //Session["navigateMenu"] = lstMenuNavegacion;
                         return RedirectToAction("Index","Home");
                     }
                     else
@@ -61,6 +69,43 @@ namespace CateringModuloAdministrativo.Controllers
             return RedirectToAction("IniciarSesion");
             Session.Abandon();
         }
+        public ActionResult evitarSesion()
+        {
+            Session["messageUser"] = "No puede acceder de esta forma, debe iniciar sesión";
+            return RedirectToAction("IniciarSesion");
+            Session.Abandon();
+        }
 
+        public List<MenuNavegacion> listarMenuNavegacionLogeado(string correo)
+        {
+            List<MenuNavegacion> lstMenuNavegacion = new List<MenuNavegacion>();
+
+            try
+            {
+                lstMenuNavegacion = objMenuNavegacion.lista_menu_navegacion_usuario(correo);
+            }
+            catch (Exception e)
+            {
+                lstMenuNavegacion = new List<MenuNavegacion>();
+            }
+
+            return lstMenuNavegacion;
+        }
+
+        public List<string> listarMenuCabeceraNavegacionLogeado(string correo)
+        {
+            var lstMenuCabecera = new List<string>();
+
+            try
+            {
+                lstMenuCabecera = objMenuNavegacion.lista_menu_navegacion_usuario_cabecera(correo);
+            }
+            catch (Exception e)
+            {
+                lstMenuCabecera = new List<string>();
+            }
+
+            return lstMenuCabecera;
+        }
     }
 }
