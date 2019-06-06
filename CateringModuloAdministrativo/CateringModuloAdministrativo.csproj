@@ -435,6 +435,11 @@
     <Content Include="Views\Login\IniciarSesion.cshtml" />
     <Content Include="Views\Shared\_principalLinksSharedView.cshtml" />
     <Content Include="Views\Shared\_MenuNavegacion.cshtml" />
+    <Content Include="Views\Proveedor\Index.cshtml" />
+    <Content Include="Views\Proveedor\listarProveedor.cshtml" />
+    <Content Include="Views\Proveedor\agregarProveedor.cshtml" />
+    <Content Include="Views\Proveedor\verProveedor.cshtml" />
+    <Content Include="Views\Proveedor\editarProveedor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -447,7 +452,6 @@
     <Folder Include="Views\MenuComida\" />
     <Folder Include="Views\MenuNaveacion\" />
     <Folder Include="Views\Pago\" />
-    <Folder Include="Views\Proveedor\" />
     <Folder Include="Views\Receta\" />
     <Folder Include="Views\Reporte\" />
   </ItemGroup>

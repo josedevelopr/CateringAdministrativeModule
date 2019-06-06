@@ -1,0 +1,60 @@
+﻿@model Dominio.Core.Entities.Proveedor
+
+@{
+    ViewBag.Title = "verProveedor";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+
+<h2>verProveedor</h2>
+
+<div>
+    <h4>Proveedor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pr_int_idprove)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pr_int_idprove)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pr_vchar_nomprove)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pr_vchar_nomprove)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pr_char_ruc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pr_char_ruc)
+        </dd>
+        @{
+            string estadoProv = "";
+            var estado = @Html.DisplayFor(@model => model.pr_int_estado);
+        }
+        @if (estado.ToString() == "1")
+        {
+            estadoProv = "Activo";
+        }
+        else
+        {
+            estadoProv = "Anactivo";
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.pr_int_estado)
+        </dt>
+        <dd>
+            @estadoProv
+        </dd>
+    </dl>
+</div>
+<p>    
+    @Html.ActionLink("Editar", "editarProveedor", new { idProveedor = Model.pr_int_idprove }) |
+    @Html.ActionLink("Retroceder a la lista", "listarProveedor")
+</p>

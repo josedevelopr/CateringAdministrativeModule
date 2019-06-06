@@ -65,15 +65,22 @@ namespace CateringModuloAdministrativo.Controllers
 
         public ActionResult CerrarSesion()
         {
-            Session["messageUser"] = "Sesion cerrada, inicie de nuevo su cuenta de nuevo, por favor.";
-            return RedirectToAction("IniciarSesion");
+            //Session["messageUser"] = "Sesion cerrada, inicie de nuevo su cuenta de nuevo, por favor.";            
             Session.Abandon();
+            return RedirectToAction("IniciarSesion");
+            
         }
         public ActionResult evitarSesion()
         {
-            Session["messageUser"] = "No puede acceder de esta forma, debe iniciar sesión";
-            return RedirectToAction("IniciarSesion");
+            //Session["messageUser"] = "No puede acceder de esta forma, debe iniciar sesión";
             Session.Abandon();
+            return RedirectToAction("IniciarSesion");
+            
+        }
+        public ActionResult killSession()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
         }
 
         public List<MenuNavegacion> listarMenuNavegacionLogeado(string correo)

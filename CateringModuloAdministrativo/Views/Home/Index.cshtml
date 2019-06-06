@@ -1,7 +1,7 @@
 ﻿@{
-        ViewBag.Title = "Home module";
-        Layout = "~/Views/Shared/_principalSharedView.cshtml";
-        var userInfo = (Dominio.Core.Entities.Usuario)Session["userSession"];
+    ViewBag.Title = "Home module";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+    var userInfo = (Dominio.Core.Entities.Usuario)Session["userSession"];
 }
 
 <h2>@ViewBag.Title</h2>
@@ -18,5 +18,5 @@ else
     <h4>Correo del usuario :  @userInfo.us_vchar_correo</h4>
 
     @Html.ActionLink("Cerrar sesion", "CerrarSesion", "Login")
-
+    @Html.ActionLink("Matar sesion", "killSession", "Login")
 }

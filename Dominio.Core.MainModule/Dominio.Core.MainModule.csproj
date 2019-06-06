@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="MenuNavegacion_Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedor_Manager.cs" />
     <Compile Include="Usuario_Manager.cs" />
   </ItemGroup>
   <ItemGroup>
