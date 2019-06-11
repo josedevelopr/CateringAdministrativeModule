@@ -36,7 +36,7 @@ namespace Infraestructura.Data.MySql
                         in_vchar_descr = dr.GetString(1),
                         in_int_stock = dr.GetInt32(2),
                         in_int_minstock = dr.GetInt32(3),
-                        in_dec_precio = dr.GetDouble(4)
+                        in_dec_precio = double.Parse(dr.GetDecimal(4).ToString())
                     };
                     lstInsumo.Add(objIsumo);
                 }
@@ -54,10 +54,9 @@ namespace Infraestructura.Data.MySql
             return lstInsumo;
         }
 
-        public List<Insumos> ver_insumo(int codigo)
+        public Insumos ver_insumo(int codigo)
         {
-            List<Insumos> lstInsumo = new List<Insumos>();
-
+            Insumos objIsumo = null;
             cn = cnx.conectar();
             cn.Open();
 
@@ -71,15 +70,14 @@ namespace Infraestructura.Data.MySql
             {
                 while (dr.Read())
                 {
-                    Insumos objIsumo = new Insumos()
+                    objIsumo = new Insumos()
                     {
                         in_int_idinsum = dr.GetInt32(0),
                         in_vchar_descr = dr.GetString(1),
                         in_int_stock = dr.GetInt32(2),
                         in_int_minstock = dr.GetInt32(3),
-                        in_dec_precio = dr.GetDouble(4)
-                    };
-                    lstInsumo.Add(objIsumo);
+                        in_dec_precio = double.Parse(dr.GetDecimal(4).ToString())
+                    };                    
                 }
             }
             catch (Exception e)
@@ -92,7 +90,7 @@ namespace Infraestructura.Data.MySql
                 cn.Close();
             }
 
-            return lstInsumo;
+            return objIsumo;
         }
 
 

@@ -27,7 +27,7 @@ namespace Dominio.Core.Entities
         public int in_int_minstock { get; set; }
         [Display(Name = "Precio del insumo", Order = 4)]
         [Required(ErrorMessage = "El precio del insumo es necesario")]
-        [RegularExpression(@"^\d{1,3}(\.\d{3})*(,\d+)?$/", ErrorMessage = "El precio debe ser valor numerico")]
+        //[RegularExpression(@"^\d{1,3}(\.\d{3})*(,\d+)?$/", ErrorMessage = "El precio debe ser valor numerico")]
         public double in_dec_precio { get; set; }
     }
 }

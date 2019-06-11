@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Dominio.Core.Entities.Insumos>
+
+@{
+    ViewBag.Title = "Listar Insumos";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<div class="table-data__tool">
+    <div class="table-data__tool-left">
+        <div class="rs-select2--light rs-select2--md">
+            <select class="js-select2" name="property">
+                <option selected="selected">Tipo de insumos</option>
+                <option value="">Insumos 1</option>
+                <option value="">Insumos 1</option>
+            </select>
+            <div class="dropDownSelect2"></div>
+        </div>
+        <div class="rs-select2--light rs-select2--sm">
+            <select class="js-select2" name="time">
+                <option selected="selected">Estado</option>
+                <option value="">Activos</option>
+                <option value="">Inactivo</option>
+            </select>
+            <div class="dropDownSelect2"></div>
+        </div>
+        <button class="au-btn-filter">
+            <i class="zmdi zmdi-filter-list"></i>filtros
+        </button>
+    </div>
+    <div class="table-data__tool-right">
+        <a class="au-btn au-btn-icon au-btn--green au-btn--small" href="@Url.Action("agregarInsumo", "Insumo", new { /* id=item.PrimaryKey */ })">
+            <i class="zmdi zmdi-plus"></i>añadir elemento
+        </a>
+        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+            <select class="js-select2" name="type">
+                <option selected="selected">Exportar</option>
+                <option value="">Pdf</option>
+                <option value="">Excel</option>
+            </select>
+            <div class="dropDownSelect2"></div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-data2">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.in_int_idinsum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.in_vchar_descr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.in_int_stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.in_int_minstock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.in_dec_precio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.in_int_idinsum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.in_vchar_descr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.in_int_stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.in_int_minstock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.in_dec_precio)
+            </td>
+            <td>
+                <div class="table-data-feature">
+                    <a class="item" data-toggle="tooltip" data-placement="top" title="Editar" href="@Url.Action("editarInsumo","Insumo", new {  idInsumo=item.in_int_idinsum })">
+                        <i class="zmdi zmdi-edit"></i>
+                    </a>
+                    <a class="item" data-toggle="tooltip" data-placement="top" title="Detalles" href="@Url.Action("verInsumo","Insumo", new { idInsumo=item.in_int_idinsum })">
+                        <i class="zmdi zmdi-more"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        <tr class="spacer"></tr>
+    }
+
+</table>

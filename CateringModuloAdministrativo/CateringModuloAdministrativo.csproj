@@ -440,6 +440,11 @@
     <Content Include="Views\Proveedor\agregarProveedor.cshtml" />
     <Content Include="Views\Proveedor\verProveedor.cshtml" />
     <Content Include="Views\Proveedor\editarProveedor.cshtml" />
+    <Content Include="Views\Insumo\Index.cshtml" />
+    <Content Include="Views\Insumo\listarinsumo.cshtml" />
+    <Content Include="Views\Insumo\agregarInsumo.cshtml" />
+    <Content Include="Views\Insumo\verInsumo.cshtml" />
+    <Content Include="Views\Insumo\editarInsumo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -448,7 +453,6 @@
     <Folder Include="Views\Cliente\" />
     <Folder Include="Views\Comida\" />
     <Folder Include="Views\GrupoTrabajo\" />
-    <Folder Include="Views\Insumo\" />
     <Folder Include="Views\MenuComida\" />
     <Folder Include="Views\MenuNaveacion\" />
     <Folder Include="Views\Pago\" />
