@@ -12,12 +12,8 @@ CREATE TABLE `tb_abastecimiento` (
   `ab_date_fechaejec` datetime DEFAULT NULL,
   `ab_char_estado` char(3) DEFAULT NULL,
   `ab_dec_costtotalabas` decimal(9,2) DEFAULT NULL,
-foreign key (us_int_idtipousu) references TB_TIPOUSUARIO(tu_int_idtipousu)
+foreign key (ab_int_idprove) references TB_PROVEEDORES(pr_int_idprove)
 ) ;
--- Dumping data for table `tb_abastecimiento`
---
--- ORDER BY:  `ab_int_idabas`
-
 
 INSERT INTO `tb_abastecimiento` VALUES (1,1,'2019-04-26 00:00:00','2019-04-26 00:00:00','PEA',0.00),(2,2,'2019-04-30 00:00:00','2019-04-30 00:00:00','PEA',0.00);
 
@@ -43,14 +39,13 @@ INSERT INTO `tb_acceso` VALUES (57,1,29),(58,1,28),(59,1,27),(60,1,26),(61,1,25)
 DROP TABLE IF EXISTS `tb_alimento`;
 
 CREATE TABLE `tb_alimento` (
-  `al_int_idalim` int(11) NOT NULL AUTO_INCREMENT,
+  `al_int_idalim` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `al_vchar_descr` varchar(30) DEFAULT NULL,
   `al_int_idtipoalim` int(11) DEFAULT NULL,
   `al_dec_precalim` decimal(9,2) DEFAULT NULL,
  `al_int_estado` int,
-  PRIMARY KEY (`al_int_idalim`),
-  KEY `al_int_idtipoalim` (`al_int_idtipoalim`),
-  CONSTRAINT `tb_alimento_ibfk_1` FOREIGN KEY (`al_int_idtipoalim`) REFERENCES `tb_tipoalimento` (`ta_int_idtipoalim`)
+
+ FOREIGN KEY (`al_int_idtipoalim`) REFERENCES `tb_tipoalimento` (`ta_int_idtipoalim`)
 ) ;
 
 --
@@ -227,15 +222,12 @@ DELIMITER ;
 DROP TABLE IF EXISTS `tb_detalleingredientealimento`;
 
 CREATE TABLE `tb_detalleingredientealimento` (
-  `dta_int_iddetingrealim` int(11) NOT NULL AUTO_INCREMENT,
+  `dta_int_iddetingrealim` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `dta_int_idinsum` int(11) NOT NULL,
   `dta_int_cantidad` int(11) NOT NULL,
   `dta_int_idingralim` int(11) NOT NULL,
-  PRIMARY KEY (`dta_int_iddetingrealim`),
-  KEY `dta_int_idinsum` (`dta_int_idinsum`),
-  KEY `fk_tb_ingrediente_id_ingrediente_idx` (`dta_int_idingralim`),
-  CONSTRAINT `fk_id_ingrediente` FOREIGN KEY (`dta_int_iddetingrealim`) REFERENCES `tb_ingredientesalimento` (`is_int_idingralim`),
-  CONSTRAINT `fk_id_insumo` FOREIGN KEY (`dta_int_idinsum`) REFERENCES `tb_insumos` (`in_int_idinsum`)
+foreign key (dta_int_idinsum) references TB_INSUMOS(in_int_idinsum),
+foreign key (dta_int_idingralim) references TB_INGREDIENTESALIMENTO(is_int_idingralim)
 ) ;
 
 --
@@ -283,14 +275,12 @@ DELIMITER ;
 
 DROP TABLE IF EXISTS `tb_detalletrabajadorcatering`;
 CREATE TABLE `tb_detalletrabajadorcatering` (
-  `dt_int_iddettrabcater` int(11) NOT NULL AUTO_INCREMENT,
+  `dt_int_iddettrabcater` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `dt_int_idtrab` int(11) DEFAULT NULL,
   `dt_int_idperson` int(11) DEFAULT NULL,
-  PRIMARY KEY (`dt_int_iddettrabcater`),
-  KEY `dt_int_idtrab` (`dt_int_idtrab`),
-  KEY `dt_int_idperson` (`dt_int_idperson`),
-  CONSTRAINT `tb_detalletrabajadorcatering_ibfk_1` FOREIGN KEY (`dt_int_idtrab`) REFERENCES `tb_trabajador` (`tr_int_idtrab`),
-  CONSTRAINT `tb_detalletrabajadorcatering_ibfk_2` FOREIGN KEY (`dt_int_idperson`) REFERENCES `tb_personalcatering` (`pc_int_idperson`)
+
+ FOREIGN KEY (`dt_int_idtrab`) REFERENCES `tb_trabajador` (`tr_int_idtrab`),
+ FOREIGN KEY (`dt_int_idperson`) REFERENCES `tb_personalcatering` (`pc_int_idperson`)
 ) ;
 
 --
@@ -307,12 +297,10 @@ INSERT INTO `tb_detalletrabajadorcatering` VALUES (1,1,1),(2,2,1),(3,3,1),(4,4,1
 
 DROP TABLE IF EXISTS `tb_ingredientesalimento`;
 CREATE TABLE `tb_ingredientesalimento` (
-  `is_int_idingralim` int(11) NOT NULL AUTO_INCREMENT,
+  `is_int_idingralim` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `is_int_idalim` int(11) NOT NULL,
   `is_date_feccrea` datetime NOT NULL,
-  PRIMARY KEY (`is_int_idingralim`),
-  KEY `fk_is_int_idalim_tb_alimento_int_idalim_idx` (`is_int_idalim`),
-  CONSTRAINT `fk_is_int_idalim_tb_alimento_int_idalim` FOREIGN KEY (`is_int_idalim`) REFERENCES `tb_alimento` (`al_int_idalim`)
+FOREIGN KEY (`is_int_idalim`) REFERENCES `tb_alimento` (`al_int_idalim`)
 );
 
 --
@@ -460,10 +448,10 @@ INSERT INTO `tb_proveedores` VALUES (1,'Bimbo Nuevo proveedor','12345678987',0),
 
 DROP TABLE IF EXISTS `tb_tipoalimento`;
 CREATE TABLE `tb_tipoalimento` (
-  `ta_int_idtipoalim` int(11) NOT NULL AUTO_INCREMENT,
+  `ta_int_idtipoalim` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `ta_vchar_descr` varchar(100) DEFAULT NULL,
- `ta_int_estado` int ,
-  PRIMARY KEY (`ta_int_idtipoalim`)
+ `ta_int_estado` int 
+
 );
 
 --

@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestructura.Data.MySql"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{6750E0EB-F884-4698-BBDD-6B0C2637064A}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Documents\dumps\BD_catering_export.sql = ..\..\..\Documents\dumps\BD_catering_export.sql
+		BD_catering_export.sql = BD_catering_export.sql
 	EndProjectSection
 EndProject
 Global
