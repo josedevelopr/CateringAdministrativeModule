@@ -40,6 +40,7 @@ namespace CateringModuloAdministrativo.Controllers
         {
             return View(new Proveedor());
         }
+
         [HttpPost]
         public ActionResult agregarProveedor(Proveedor objProovedor)
         {

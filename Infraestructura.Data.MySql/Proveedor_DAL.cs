@@ -24,7 +24,7 @@ namespace Infraestructura.Data.MySql
             cn.Open();
 
             MySqlCommand cmd = new MySqlCommand("SP_PROVE_LIST", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandType = CommandType.StoredProcedure();
             MySqlDataReader dr = cmd.ExecuteReader();
 
             try
