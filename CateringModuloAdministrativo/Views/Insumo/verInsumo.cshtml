@@ -1,0 +1,59 @@
+﻿@model Dominio.Core.Entities.Insumos
+
+@{
+    ViewBag.Title = "verInsumo";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+
+<h2>verInsumo</h2>
+
+<div>
+    <h4>Insumos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.in_int_idinsum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.in_int_idinsum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.in_vchar_descr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.in_vchar_descr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.in_int_stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.in_int_stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.in_int_minstock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.in_int_minstock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.in_dec_precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.in_dec_precio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "editarInsumo", new { idInsumo = Model.in_int_idinsum }) |
+    @Html.ActionLink("Regresar a la lista", "listarinsumo")
+</p>
