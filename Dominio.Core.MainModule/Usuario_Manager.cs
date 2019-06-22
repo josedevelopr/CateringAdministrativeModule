@@ -17,6 +17,13 @@ namespace Dominio.Core.MainModule
         {
             return objUsuario_DAL.log_in_usuario(correo);
         }
-
+        public Usuario lista_x_id_usuario(int x_id_usuario)
+        {
+            return objUsuario_DAL.lista_x_id_usuario(x_id_usuario);
+        }
+        public int insertar_or_actualizar_usuario(Usuario obUsuario, string action)
+        {
+            return objUsuario_DAL.insertar_or_actualizar_usuario(obUsuario,action);
+        }
     }
 }

@@ -5,69 +5,78 @@
     Layout = "~/Views/Shared/_principalSharedView.cshtml";
 }
 
-<h2>editarProveedor</h2>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Proveedor</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.pr_int_idprove, htmlAttributes: new { @class = "control-label col-md-2 d-none" })
-        <div class="col-md-10 d-none">
-            @Html.EditorFor(model => model.pr_int_idprove, new { htmlAttributes = new { @class = "form-control " } })
-            @Html.ValidationMessageFor(model => model.pr_int_idprove, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.pr_vchar_nomprove, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.pr_vchar_nomprove, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.pr_vchar_nomprove, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    <div class="card">
+        <div class="card-header">Proveedor</div>
+        <div class="card-body">
+            <div class="card-title">
+                <h3 class="text-center title-2">@ViewBag.Title</h3>
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.pr_char_ruc, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.pr_char_ruc, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.pr_char_ruc, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.pr_int_estado, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @{
-                string estadoProv = "";
-                var estado = @Html.DisplayFor(@model => model.pr_int_estado);
-            }
-            @if (estado.ToString() == "1")
-            {
-            estadoProv = "Activo";
-            }
-            else
-            {
-            estadoProv = "Anactivo";
-            }
+            <div class="form-horizontal">
+                <h4>Proveedor</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.pr_int_idprove, htmlAttributes: new { @class = "control-label col-md-2 d-none" })
+                    <div class="col-md-10 d-none">
+                        @Html.EditorFor(model => model.pr_int_idprove, new { htmlAttributes = new { @class = "form-control " } })
+                        @Html.ValidationMessageFor(model => model.pr_int_idprove, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-            <select class="js-select2" name="property">
-                <option selected="selected" value="@Html.DisplayFor(@model => model.pr_int_estado)">@estadoProv</option>
-                <option value="1">Activo</option>
-                <option value="0">Activo</option>
-            </select>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.pr_vchar_nomprove, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.pr_vchar_nomprove, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.pr_vchar_nomprove, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.pr_char_ruc, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.pr_char_ruc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.pr_char_ruc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.pr_int_estado, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @{
+                            string estadoProv = "";
+                            var estado = @Html.DisplayFor(@model => model.pr_int_estado);
+                        }
+                        @if (estado.ToString() == "1")
+                        {
+                            estadoProv = "Activo";
+                        }
+                        else
+                        {
+                            estadoProv = "Anactivo";
+                        }
+
+                        <select class="js-select2" name="property">
+                            <option selected="selected" value="@Html.DisplayFor(@model => model.pr_int_estado)">@estadoProv</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Activo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>    
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>    

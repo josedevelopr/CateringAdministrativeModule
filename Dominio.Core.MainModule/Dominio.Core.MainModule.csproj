@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente_Manager.cs" />
     <Compile Include="Insumo_Manager.cs" />
     <Compile Include="MenuNavegacion_Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
