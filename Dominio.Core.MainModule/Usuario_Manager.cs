@@ -13,6 +13,10 @@ namespace Dominio.Core.MainModule
     {
         private Usuario_DAL objUsuario_DAL = new Usuario_DAL();
 
+        public List<Usuario> lista_usuario()
+        {
+            return objUsuario_DAL.lista_usuario();
+        }
         public Usuario log_in_usuario(string correo)
         {
             return objUsuario_DAL.log_in_usuario(correo);

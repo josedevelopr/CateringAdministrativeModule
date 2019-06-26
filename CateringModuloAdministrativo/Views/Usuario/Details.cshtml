@@ -1,0 +1,75 @@
+﻿@model Dominio.Core.Entities.Usuario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.us_int_idusu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.us_int_idusu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.us_int_idtipousu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.us_int_idtipousu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.us_int_nomtipousu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.us_int_nomtipousu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.us_vchar_correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.us_vchar_correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.us_vchar_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.us_vchar_password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.us_vchar_foto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.us_vchar_foto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.us_vchar_nomusu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.us_vchar_nomusu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

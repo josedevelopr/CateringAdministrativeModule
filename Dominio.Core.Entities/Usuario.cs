@@ -13,11 +13,11 @@ namespace Dominio.Core.Entities
     {
         [Display(Name = "Codigo del usuario", Order = 0)]
         public int us_int_idusu { get; set; }
-        [Display(Name = "Id Tipo del usuario", Order = 1)]
+        [Display(Name = "Id Tipo del usuario", Order = 1)]        
         [Required]
         public int us_int_idtipousu { get; set; }
         [Display(Name = "Tipo del usuario", Order = 2)]
-        public int us_int_nomtipousu { get; set; }
+        public string us_int_nomtipousu { get; set; }
         [Required]
         [Display(Name = "Correo del usuario", Order = 3)]
         [EmailAddress]

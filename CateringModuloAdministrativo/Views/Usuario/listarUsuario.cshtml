@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Dominio.Core.Entities.Usuario>
+
+@{
+    ViewBag.Title = "listarUsuario";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+
+<h2>listarUsuario</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.us_int_idusu)
+        </th>      
+        <th>
+            @Html.DisplayNameFor(model => model.us_int_nomtipousu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.us_vchar_correo)
+        </th>       
+        <th>
+            @Html.DisplayNameFor(model => model.us_vchar_foto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.us_vchar_nomusu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.us_int_idusu)
+        </td>       
+        <td>
+            @Html.DisplayFor(modelItem => item.us_int_nomtipousu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.us_vchar_correo)
+        </td>        
+        <td>
+            @Html.DisplayFor(modelItem => item.us_vchar_foto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.us_vchar_nomusu)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { idUsuario=item.us_int_idusu}) |
+            @Html.ActionLink("Details", "Details", new { idUsuario = item.us_int_idusu })             
+        </td>
+    </tr>
+}
+
+</table>

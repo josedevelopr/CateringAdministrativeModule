@@ -58,11 +58,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente_DAL.cs" />
     <Compile Include="Conexioncs.cs" />
     <Compile Include="Insumo_DAL.cs" />
     <Compile Include="MenuNavegacion_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor_DAL.cs" />
+    <Compile Include="TipoUsuario_DAL.cs" />
     <Compile Include="Usuario_DAL.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,56 @@ namespace Infraestructura.Data.MySql
         private Conexioncs cnx = new Conexioncs();
         private MySqlConnection cn;
 
+        public List<Usuario> lista_usuario()
+        {
+            
+            cn = cnx.conectar();
+            cn.Open();
+            List<Usuario> lstUsuario = new List<Usuario>();
+
+            MySqlDataReader dr = null;
+
+
+            MySqlCommand cmd = new MySqlCommand("SP_USU_LIST", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("x_id", DbType.Int32).Value = 0;
+            cmd.Parameters.Add("x_tipo", DbType.String).Value = "A";
+
+            
+            try
+            {
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Usuario objUsuario = new Usuario()
+                    {
+                        us_int_idusu = dr.GetInt32(0),
+                        us_int_idtipousu = dr.GetInt32(1),                        
+                        us_vchar_correo = dr.GetString(2),
+                        us_vchar_password = dr.GetString(3),
+                        us_vchar_foto = dr.GetString(4),
+                        us_vchar_nomusu = dr.GetString(5),
+                        us_int_nomtipousu = dr.GetString(6)
+                    };
+
+                    lstUsuario.Add(objUsuario);
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Exception source", e.Source);
+                lstUsuario = new List<Usuario>();
+            }
+            finally
+            {
+                dr.Close();
+                cn.Close();
+            }            
+
+            return lstUsuario;
+        }
+
         public Usuario log_in_usuario(string correo)
         {
             cn = cnx.conectar();
@@ -56,10 +106,11 @@ namespace Infraestructura.Data.MySql
 
             Usuario objUsuario = null;
 
-            MySqlCommand cmd = new MySqlCommand("P_USU_LISTID", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
+            MySqlCommand cmd = new MySqlCommand("SP_USU_LIST", cn);
+            cmd.CommandType = CommandType.StoredProcedure; 
 
             cmd.Parameters.Add("x_id", DbType.Int32).Value = x_id_usuario;
+            cmd.Parameters.Add("x_tipo", DbType.String).Value = "F";
 
             MySqlDataReader dr = cmd.ExecuteReader();
 
@@ -72,7 +123,8 @@ namespace Infraestructura.Data.MySql
                     us_vchar_correo = dr.GetString(2),
                     us_vchar_password = dr.GetString(3),
                     us_vchar_foto = dr.GetString(4),
-                    us_vchar_nomusu = dr.GetString(5)
+                    us_vchar_nomusu = dr.GetString(5),
+                    us_int_nomtipousu = dr.GetString(6)
                 };
             }
 

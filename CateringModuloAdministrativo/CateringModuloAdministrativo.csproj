@@ -160,6 +160,8 @@
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RecetaController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
+    <Compile Include="Controllers\TipoUsuarioController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -445,6 +447,11 @@
     <Content Include="Views\Insumo\agregarInsumo.cshtml" />
     <Content Include="Views\Insumo\verInsumo.cshtml" />
     <Content Include="Views\Insumo\editarInsumo.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\listarUsuario.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Details.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -458,6 +465,7 @@
     <Folder Include="Views\Pago\" />
     <Folder Include="Views\Receta\" />
     <Folder Include="Views\Reporte\" />
+    <Folder Include="Views\TipoUsuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
