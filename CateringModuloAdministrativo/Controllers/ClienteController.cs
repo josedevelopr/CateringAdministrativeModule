@@ -9,7 +9,7 @@ namespace CateringModuloAdministrativo.Controllers
 {
     public class ClienteController : Controller
     {
-        
+        /*
         public ActionResult Index()
         {
             return View();
@@ -101,6 +101,6 @@ namespace CateringModuloAdministrativo.Controllers
             {
                 return View();
             }
-        }
+        }*/
     }
 }
