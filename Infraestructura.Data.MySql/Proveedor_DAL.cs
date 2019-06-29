@@ -51,7 +51,7 @@ namespace Infraestructura.Data.MySql
                 cn.Close();
             }
 
-            return lstProveedor;  
+            return lstProveedor;
         }
 
         public Proveedor ver_proveedor(int codigo)

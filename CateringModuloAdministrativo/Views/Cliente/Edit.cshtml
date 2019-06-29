@@ -23,11 +23,16 @@
                     </div>
                 </div>
 
-                <div class="form-group d-none">
+                <div class="form-group">
                     @Html.LabelFor(model => model.cl_int_idusu, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.cl_int_idusu, new { htmlAttributes = new { @class = "form-control" } })
+                        <input type="hidden" name="cl_int_idusu" id="cl_int_idusu" value="@Model.cl_int_idusu"/>
+                        <input type="text" name="cl_int_idusu_des" id="cl_int_idusu_des" readonly value="" />
                         @Html.ValidationMessageFor(model => model.cl_int_idusu, "", new { @class = "text-danger" })
+                    </div>
+                    <br />
+                    <div class="col-md-2">
+                        <a id="btnUsuarios" href="#" class="btn  btn-sm btn-success" data-toggle="modal" data-target="#UsuarioModal">Usuarios</a>
                     </div>
                 </div>
 
@@ -108,3 +113,104 @@
 <div>
     @Html.ActionLink("Regresar a la lista", "listarCliente")
 </div>
+
+
+<style>
+    .modal-backdrop {
+        z-index: 1040 !important;
+    }
+
+    .modal-backdrop {
+        /* bug fix - no overlay */
+        display: none;
+    }
+
+    .modal {
+        text-align: center;
+        padding: 0 !important;
+    }
+
+        .modal:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+        }
+
+    .modal-dialog {
+        width: 500px;
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .scrollable {
+        height: 100px;
+        overflow-y: scroll;
+    }
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="UsuarioModal" tabindex="-1" role="dialog" aria-labelledby="UsuarioModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Usuarios</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scrollable" style='overflow:auto;height:200px;'>
+                <div class="" style=" width:100%; height:auto;">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Seleccione un usuario</label>
+                        <select multiple class="form-control" id="slctUSuario">
+                            @{ List<Dominio.Core.Entities.Usuario> lstUsuario = new List<Dominio.Core.Entities.Usuario>();
+                                lstUsuario = (List<Dominio.Core.Entities.Usuario>)ViewBag.ListaUsuario;}
+                            @foreach (var Usuario in lstUsuario)
+                            {
+                                <option value="@Usuario.us_int_idusu">
+
+                                    @Usuario.us_vchar_nomusu
+                                </option>
+                            }
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarUsuario" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnElegirUsuario">Elegir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var btnUsuarios         = document.getElementById("btnUsuarios");
+    var slctUSuario         = document.getElementById("slctUSuario");
+    var txtidusu            = document.getElementById("cl_int_idusu");
+    var txtidusu_des        = document.getElementById("cl_int_idusu_des");
+    var btnElegirUsuario    = document.getElementById("btnElegirUsuario");
+    var usuarioSeleccionado = "";
+
+    btnUsuarios.addEventListener("click", function (e) {
+        e.preventDefault();
+    });
+
+    slctUSuario.addEventListener("change", function (e){
+        var usuarioSeleccionadoValue = this.value;
+        usuarioSeleccionado         = this.options[this.selectedIndex].text;
+        txtidusu.value               = usuarioSeleccionadoValue;
+
+
+    });
+    btnElegirUsuario.addEventListener("click", function (index) {
+        txtidusu_des.value = usuarioSeleccionado;
+        document.getElementById("btnCerrarUsuario").click();
+    });
+
+</script>

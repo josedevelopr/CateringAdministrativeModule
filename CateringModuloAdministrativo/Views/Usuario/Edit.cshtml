@@ -17,7 +17,7 @@
                 <h3 class="text-center title-2">@ViewBag.Title</h3>
             </div>
             <div class="form-horizontal">
-                
+
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group d-none">
                     @Html.LabelFor(model => model.us_int_idusu, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -28,10 +28,15 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.us_int_idtipousu, htmlAttributes: new { @class = "control-label col-md-4" })
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.us_int_idtipousu, new { htmlAttributes = new { @class = "form-control" } })
+                    <label class="control-label col-md-2">Tipo Usuario</label>
+                    <div class="col-md-10">
+                        <input type="hidden" name="us_int_idtipousu" id="us_int_idtipousu" value=" @Model.us_int_idtipousu"/>
+                        <input type="text" name="us_int_idtipousu_des" id="us_int_idtipousu_des" readonly value="@Model.us_int_nomtipousu"/>
                         @Html.ValidationMessageFor(model => model.us_int_idtipousu, "", new { @class = "text-danger" })
+                    </div>
+                    <br />
+                    <div class="col-md-2">
+                        <a id="btnTipoUsuarios" href="#" class="btn  btn-sm btn-success" data-toggle="modal" data-target="#TipoUsuarioModal">Tipo Usuarios</a>
                     </div>
                 </div>
 
@@ -83,8 +88,108 @@
             </div>
         </div>
     </div>
-            }
+}
 
-            <div>
-                @Html.ActionLink("Back to List", "Index")
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<style>
+    .modal-backdrop {
+        z-index: 1040 !important;
+    }
+
+    .modal-backdrop {
+        /* bug fix - no overlay */
+        display: none;
+    }
+
+    .modal {
+        text-align: center;
+        padding: 0 !important;
+    }
+
+        .modal:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+        }
+
+    .modal-dialog {
+        width: 500px;
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .scrollable {
+        height: 100px;
+        overflow-y: scroll;
+    }
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="TipoUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="TipoUsuarioModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tipo Usuarios</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body scrollable" style='overflow:auto;height:200px;'>
+                <div class="" style=" width:100%; height:auto;">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Seleccione un Tipo Usuario</label>
+                        <select multiple class="form-control" id="slctTipoUsuario">                            
+                            @{ List<Dominio.Core.Entities.TipoUsuario> lstTipoUsuario = new List<Dominio.Core.Entities.TipoUsuario>();
+                                lstTipoUsuario = (List<Dominio.Core.Entities.TipoUsuario>)ViewBag.ListaTipoUsuario;}
+                            @foreach (var TipoUsuario in lstTipoUsuario)
+                            {
+                                <option value="@TipoUsuario.tu_int_idtipousu">
+                                    @TipoUsuario.tu_vchar_descr
+                                </option>
+                            }
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarTipoUsuario" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnElegirTipoUsuario">Elegir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var btnTipoUsuarios         = document.getElementById("btnTipoUsuarios");
+    var slctTipoUsuario         = document.getElementById("slctTipoUsuario");
+    var txtidtipousu            = document.getElementById("us_int_idtipousu");
+    var txtidtipousu_des        = document.getElementById("us_int_idtipousu_des");
+    var btnElegirTipoUsuario    = document.getElementById("btnElegirTipoUsuario");
+    var tipoUsuarioSeleccionado = "";
+
+    btnTipoUsuarios.addEventListener("click", function (e) {
+        e.preventDefault();
+    });
+
+    slctTipoUsuario.addEventListener("change", function (e){
+        var TipousuarioSeleccionadoValue = this.value;
+        tipoUsuarioSeleccionado          = this.options[this.selectedIndex].text;
+        txtidtipousu.value               = TipousuarioSeleccionadoValue;
+
+
+    });
+    btnElegirTipoUsuario.addEventListener("click", function (index) {
+        txtidtipousu_des.value = tipoUsuarioSeleccionado;
+        document.getElementById("btnCerrarTipoUsuario").click();
+    });
+
+</script>
