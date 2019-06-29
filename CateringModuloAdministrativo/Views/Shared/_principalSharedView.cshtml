@@ -150,15 +150,15 @@
                         <div class="section__content section__content--p30">
                             <div class="container-fluid">
                                 <div class="header-wrap">
-                                    <form class="form-header" action="" method="POST">
-                                        <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
-                                        <button class="au-btn--submit" type="submit">
+                                    <form class="form-header" action="" method="">
+                                        <input class="au-input au-input--xl  d-none" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                        <button class="au-btn--submit  d-none" type="submit">
                                             <i class="zmdi zmdi-search"></i>
                                         </button>
                                     </form>
                                     <div class="header-button">
                                         <div class="noti-wrap">
-                                            <div class="noti__item js-item-menu">
+                                            @*<div class="noti__item js-item-menu">
                                                 <i class="zmdi zmdi-comment-more"></i>
                                                 <span class="quantity">1</span>
                                                 <div class="mess-dropdown js-dropdown">
@@ -166,8 +166,8 @@
                                                         <p>You have 2 news message</p>
                                                     </div>
                                                     <div class="mess__item">
-                                                        <div class="image img-cir img-40">
-                                                            <img src="~/images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+                                                        <div class="image img-cir img-40">                                                           
+                                                            <img src="~/images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
                                                         </div>
                                                         <div class="content">
                                                             <h6>Michelle Moreno</h6>
@@ -189,8 +189,8 @@
                                                         <a href="#">View all messages</a>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="noti__item js-item-menu">
+                                            </div>*@
+                                            @*<div class="noti__item js-item-menu">
                                                 <i class="zmdi zmdi-email"></i>
                                                 <span class="quantity">1</span>
                                                 <div class="email-dropdown js-dropdown">
@@ -228,7 +228,7 @@
                                                         <a href="#">See all emails</a>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>*@
                                             <div class="noti__item js-item-menu">
                                                 <i class="zmdi zmdi-notifications"></i>
                                                 <span class="quantity">3</span>
@@ -270,9 +270,18 @@
                                             </div>
                                         </div>
                                         <div class="account-wrap">
-                                            <div class="account-item clearfix js-item-menu">
-                                                <div class="image">
-                                                    <img src="~/images/icon/avatar-01.jpg" alt="@userInfo.us_vchar_nomusu" />
+                                            <div class="account-item clearfix js-item-menu">   
+                                                <div class="image img-circle">
+                                                    @{ 
+                                                        if (userInfo.us_vchar_foto == "ND")
+                                                        {
+                                                            <img class="img-circle" src="~/images/icon/user-icon.png" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <img class="img-circle" src="@userInfo.us_vchar_foto" />
+                                                        }
+                                                    }
                                                 </div>
                                                 <div class="content">
                                                     <a class="js-acc-btn" href="#">@userInfo.us_vchar_nomusu</a>
@@ -280,9 +289,16 @@
                                                 <div class="account-dropdown js-dropdown">
                                                     <div class="info clearfix">
                                                         <div class="image">
-                                                            <a href="#">
-                                                                <img src="~/images/icon/avatar-01.jpg" alt="@userInfo.us_vchar_nomusu" />
-                                                            </a>
+                                                            @{
+                                                                if (userInfo.us_vchar_foto == "ND")
+                                                                {
+                                                                    <img class="img-circle" src="~/images/icon/user-icon.png" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <img class="img-circle" src="@userInfo.us_vchar_foto" />
+                                                                }
+                                                            }                                                          
                                                         </div>
                                                         <div class="content">
                                                             <h5 class="name">
@@ -302,11 +318,11 @@
                                                                 <i class="zmdi zmdi-settings"></i>Setting
                                                             </a>
                                                         </div>
-                                                        <div class="account-dropdown__item">
+                                                        @*<div class="account-dropdown__item">
                                                             <a href="#">
                                                                 <i class="zmdi zmdi-money-box"></i>Billing
                                                             </a>
-                                                        </div>
+                                                        </div>*@
                                                     </div>
                                                     <div class="account-dropdown__footer">
                                                         <a href="@Url.Action("CerrarSesion","Login")">

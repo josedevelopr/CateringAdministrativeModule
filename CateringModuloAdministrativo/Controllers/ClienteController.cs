@@ -1,4 +1,5 @@
 ﻿using Dominio.Core.Entities;
+using Dominio.Core.MainModule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace CateringModuloAdministrativo.Controllers
 {
     public class ClienteController : Controller
     {
-        /*
+        private Cliente_Manager objClienteManager = new Cliente_Manager();
+        private Usuario_Manager objUsuarioManager = new Usuario_Manager();
+        
         public ActionResult Index()
         {
             return View();
@@ -18,7 +21,7 @@ namespace CateringModuloAdministrativo.Controllers
         public ActionResult listarCliente()
         {
             List<Cliente> lstCliente = new List<Cliente>();
-            lstCliente = objClienteManager.lista_Cliente();
+            lstCliente = objClienteManager.listar_cliente();
             return View(lstCliente);
 
         }
@@ -27,16 +30,14 @@ namespace CateringModuloAdministrativo.Controllers
         public ActionResult Details(int idCliente)
         {
             Cliente objCliente = new Cliente();
-            objCliente = objClienteManager.lista_x_id_Cliente(idCliente);
+            objCliente = objClienteManager.lista_x_id_cliente(idCliente);
             return View(objCliente);
         }
 
         // GET: Cliente/Create
         public ActionResult Create()
         {
-            List<TipoCliente> lstTipoCliente = objTipoClienteManager.lista_TipoCliente();
-            ViewBag.ListaTipoCliente = new SelectList(objTipoClienteManager.lista_TipoCliente(), "tu_int_idtipousu", "tu_vchar_descr");
-
+            ViewBag.ListaUsuario = objUsuarioManager.lista_usuario();
             return View();
         }
 
@@ -50,7 +51,7 @@ namespace CateringModuloAdministrativo.Controllers
             }
             else
             {
-                int respuesta = objClienteManager.insertar_or_actualizar_Cliente(objCliente, "I");
+                int respuesta = objClienteManager.insertar_or_actualizar_cliente(objCliente, "I");
             }
 
             return RedirectToAction("listarCliente");
@@ -60,7 +61,7 @@ namespace CateringModuloAdministrativo.Controllers
         public ActionResult Edit(int idCliente)
         {
             Cliente objCliente = new Cliente();
-            objCliente = objClienteManager.lista_x_id_Cliente(idCliente);
+            objCliente = objClienteManager.lista_x_id_cliente(idCliente);
             return View(objCliente);
         }
 
@@ -74,33 +75,11 @@ namespace CateringModuloAdministrativo.Controllers
             }
             else
             {
-                int respuesta = objClienteManager.insertar_or_actualizar_Cliente(objCliente, "U");
+                int respuesta = objClienteManager.insertar_or_actualizar_cliente(objCliente, "U");
             }
 
             return RedirectToAction("listarCliente");
         }
-
-        // GET: Cliente/Delete/5
-        public ActionResult Delete(int id)
-        {
-
-            return View();
-        }
-
-        // POST: Cliente/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }*/
+      
     }
 }

@@ -257,6 +257,7 @@
     <Content Include="images\icon\logo-white.png" />
     <Content Include="images\icon\logo.png" />
     <Content Include="images\icon\Untitled-1.jpg" />
+    <Content Include="images\icon\user-icon.png" />
     <Content Include="images\img_tomatoes.jpg" />
     <Content Include="js\main.js" />
     <Content Include="js\vendor\jquery-1.9.1.min.js" />
@@ -495,12 +496,16 @@
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Details.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\listarCliente.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Catering\" />
-    <Folder Include="Views\Cliente\" />
     <Folder Include="Views\Comida\" />
     <Folder Include="Views\GrupoTrabajo\" />
     <Folder Include="Views\MenuComida\" />

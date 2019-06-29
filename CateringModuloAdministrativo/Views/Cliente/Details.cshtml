@@ -1,0 +1,104 @@
+﻿@model Dominio.Core.Entities.Cliente
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+
+
+    <div class="card">
+        <div class="card-header">Insumos</div>
+        <div class="card-body">
+            <div class="card-title">
+                <h3 class="text-center title-2">@ViewBag.Title</h3>
+            </div>
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cl_char_dniclie)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cl_char_dniclie)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cl_int_idusu)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cl_int_idusu)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cl_vchar_nombre)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cl_vchar_nombre)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cl_vchar_apellido)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cl_vchar_apellido)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cl_char_sexo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cl_char_sexo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cl_char_ruc)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cl_char_ruc)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cl_char_fono)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cl_char_fono)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cl_vchar_direc)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cl_vchar_direc)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cl_vchar_foto)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cl_vchar_foto)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cl_vchar_correo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cl_vchar_correo)
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { idCliente = Model.cl_int_idusu }) |
+        @Html.ActionLink("Regresar a la lista", "listarCliente")
+    </p>

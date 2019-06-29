@@ -37,8 +37,8 @@ namespace CateringModuloAdministrativo.Controllers
         // GET: Usuario/Create
         public ActionResult Create()
         {
-            List < TipoUsuario > lstTipoUsuario= objTipoUsuarioManager.lista_TipoUsuario();
-            ViewBag.ListaTipoCliente = new SelectList(objTipoUsuarioManager.lista_TipoUsuario(), "tu_int_idtipousu", "tu_vchar_descr"); 
+            // Arreglar el list para poder mostrarlo dentro del modal y programar la seleccion de usuario            
+            ViewBag.ListaTipoCliente = objTipoUsuarioManager.lista_TipoUsuario();
 
             return View();
         }

@@ -58,13 +58,13 @@
                         }
                         else
                         {
-                            estadoProv = "Anactivo";
+                            estadoProv = "Inactivo";
                         }
 
-                        <select class="js-select2" name="property">
-                            <option selected="selected" value="@Html.DisplayFor(@model => model.pr_int_estado)">@estadoProv</option>
+                        <select class="form-control"  name="pr_int_estado">
+                            <option selected="selected" disabled value="@Html.DisplayFor(@model => model.pr_int_estado)">@estadoProv</option>
                             <option value="1">Activo</option>
-                            <option value="0">Activo</option>
+                            <option value="0">Inactivo</option>
                         </select>
                     </div>
                 </div>

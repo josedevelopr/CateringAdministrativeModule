@@ -1,75 +1,76 @@
 ﻿@model Dominio.Core.Entities.Usuario
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Ver Usuario";
     Layout = "~/Views/Shared/_principalSharedView.cshtml";
 }
+    <div class="card">
+        <div class="card-header">Insumos</div>
+        <div class="card-body">
+            <div class="card-title">
+                <h3 class="text-center title-2">@ViewBag.Title</h3>
+            </div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.us_int_idusu)
+                </dt>
 
-<h2>Details</h2>
+                <dd>
+                    @Html.DisplayFor(model => model.us_int_idusu)
+                </dd>
 
-<div>
-    <h4>Usuario</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.us_int_idusu)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.us_int_idtipousu)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.us_int_idusu)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.us_int_idtipousu)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.us_int_idtipousu)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.us_int_nomtipousu)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.us_int_idtipousu)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.us_int_nomtipousu)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.us_int_nomtipousu)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.us_vchar_correo)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.us_int_nomtipousu)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.us_vchar_correo)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.us_vchar_correo)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.us_vchar_password)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.us_vchar_correo)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.us_vchar_password)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.us_vchar_password)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.us_vchar_foto)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.us_vchar_password)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.us_vchar_foto)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.us_vchar_foto)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.us_vchar_nomusu)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.us_vchar_foto)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.us_vchar_nomusu)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.us_vchar_nomusu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.us_vchar_nomusu)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+    </div>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new { idUsuario = Model.us_int_idusu }) |
+            @Html.ActionLink("Regresar al listado", "listarUsuario")
+        </p>
