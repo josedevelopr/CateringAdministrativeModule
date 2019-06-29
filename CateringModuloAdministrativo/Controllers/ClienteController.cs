@@ -62,6 +62,7 @@ namespace CateringModuloAdministrativo.Controllers
         {
             Cliente objCliente = new Cliente();
             objCliente = objClienteManager.lista_x_id_cliente(idCliente);
+            ViewBag.ListaUsuario = objUsuarioManager.lista_usuario();
             return View(objCliente);
         }
 

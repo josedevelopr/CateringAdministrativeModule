@@ -93,7 +93,9 @@
     <Compile Include="MenuNavegacion_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor_DAL.cs" />
+    <Compile Include="TipoTrabajador_DAL.cs" />
     <Compile Include="TipoUsuario_DAL.cs" />
+    <Compile Include="Trabajador_DAL.cs" />
     <Compile Include="Usuario_DAL.cs" />
   </ItemGroup>
   <ItemGroup>
