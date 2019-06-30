@@ -35,7 +35,7 @@ namespace Infraestructura.Data.MySql
                 {
                     Trabajador objTrabajador = new Trabajador()
                     {
-                        idttr_int_idtrabrab = dr.GetInt32(0),
+                        tr_int_idtrab = dr.GetInt32(0),
                         tr_int_idusu        = dr.GetInt32(1),
                         tr_int_idtipotrab   = dr.GetInt32(2),
                         tr_vchar_nombre     = dr.GetString(3),
@@ -84,7 +84,7 @@ namespace Infraestructura.Data.MySql
                 {
                     objTrabajador = new Trabajador()
                     {
-                        idttr_int_idtrabrab = dr.GetInt32(0),
+                        tr_int_idtrab = dr.GetInt32(0),
                         tr_int_idusu = dr.GetInt32(1),
                         tr_int_idtipotrab = dr.GetInt32(2),
                         tr_vchar_nombre = dr.GetString(3),
@@ -122,7 +122,7 @@ namespace Infraestructura.Data.MySql
                 MySqlCommand cmd = new MySqlCommand("SP_TRABAJ_INSERT_UPDATE", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("x_int_idtrab", DbType.Int32).Value = objTrabajador.idttr_int_idtrabrab;
+                cmd.Parameters.Add("x_int_idtrab", DbType.Int32).Value = objTrabajador.tr_int_idtrab;
                 cmd.Parameters.Add("x_int_idusu", DbType.Int32).Value = objTrabajador.tr_int_idusu;
                 cmd.Parameters.Add("x_int_idtipotrab", DbType.Int32).Value = objTrabajador.tr_int_idtipotrab;
                 cmd.Parameters.Add("x_vchar_nombre", DbType.String).Value = objTrabajador.tr_vchar_nombre;

@@ -13,8 +13,8 @@ namespace Dominio.Core.Entities
     public class Trabajador
     {
      
-        [Display(Name ="Id Trabajador",Order =0)]        
-        public int idttr_int_idtrabrab { get; set; }
+        [Display(Name ="Id Trabajador", Order = 0)]        
+        public int tr_int_idtrab { get; set; }
         [Display(Name = "Id Usuario", Order = 1)]
         [Required]        
         public int tr_int_idusu { get; set; }

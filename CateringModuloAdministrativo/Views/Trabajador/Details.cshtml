@@ -1,0 +1,107 @@
+﻿@model Dominio.Core.Entities.Trabajador
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Trabajador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_int_idtrab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_int_idtrab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_int_idusu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_int_idusu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_int_idtipotrab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_int_idtipotrab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_vchar_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_vchar_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_vchar_apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_vchar_apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_char_dni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_char_dni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_vchar_direc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_vchar_direc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_vchar_foto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_vchar_foto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_vchar_correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_vchar_correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tt_vchar_descr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tt_vchar_descr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.us_vchar_nomusu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.us_vchar_nomusu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
