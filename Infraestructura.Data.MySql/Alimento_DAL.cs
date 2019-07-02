@@ -27,7 +27,7 @@ namespace Infraestructura.Data.MySql
             cn = cnx.conectar();
             cn.Open();
 
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM TB_ALIMENTO", cn);
+            MySqlCommand cmd = new MySqlCommand("", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataReader dr = cmd.ExecuteReader();
             

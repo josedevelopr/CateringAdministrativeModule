@@ -147,7 +147,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AlimentoController.cs" />
     <Compile Include="Controllers\CateringController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ComidaController.cs" />
@@ -442,14 +441,15 @@
     <Content Include="Views\Proveedor\agregarProveedor.cshtml" />
     <Content Include="Views\Proveedor\verProveedor.cshtml" />
     <Content Include="Views\Proveedor\editarProveedor.cshtml" />
+    <Content Include="Views\Comida\Index.cshtml" />
+    <Content Include="Views\Comida\ListarAlimento.cshtml" />
+    <Content Include="Views\Comida\CrearAgregarAlimentos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Alimento\" />
     <Folder Include="Views\Catering\" />
     <Folder Include="Views\Cliente\" />
-    <Folder Include="Views\Comida\" />
     <Folder Include="Views\GrupoTrabajo\" />
     <Folder Include="Views\Insumo\" />
     <Folder Include="Views\MenuComida\" />

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 
 using Dominio.Core.Entities;
-using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace Infraestructura.Data.MySql
@@ -24,7 +24,7 @@ namespace Infraestructura.Data.MySql
             cn.Open();
 
             MySqlCommand cmd = new MySqlCommand("SP_PROVE_LIST", cn);
-            cmd.CommandType = CommandType.StoredProcedure();
+            cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataReader dr = cmd.ExecuteReader();
 
             try

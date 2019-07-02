@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "ALIMENTO";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+
+
+<h2>@ViewBag.Tite</h2>
+
+<br />
+<br />
+<h5>MENU DE @ViewBag.Title</h5>
+@Html.ActionLink("Listado", "ListarAlimento", "Comida")
