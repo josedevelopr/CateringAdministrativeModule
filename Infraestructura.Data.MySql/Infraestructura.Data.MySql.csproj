@@ -87,8 +87,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catering_DAL.cs" />
     <Compile Include="Cliente_DAL.cs" />
     <Compile Include="Conexioncs.cs" />
+    <Compile Include="DetalleCatering.cs" />
     <Compile Include="Insumo_DAL.cs" />
     <Compile Include="MenuNavegacion_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

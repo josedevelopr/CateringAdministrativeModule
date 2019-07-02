@@ -90,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catering.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Insumos.cs" />
     <Compile Include="MenuNavegacion.cs" />
