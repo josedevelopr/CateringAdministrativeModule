@@ -1,33 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace Dominio.Core.Entities
 {
     public class Alimento
     {
 
-
-        [Display(Name = "Codigo del alimento", Order = 0)]
+        [Display(Name = "Codigo alimento", Order = 0)]
         public int al_int_idalim { get; set; }
 
+        [Display(Name = "Descripción", Order = 4)]
+        [StringLength(int.MaxValue, MinimumLength = 10)]
+        public string al_vchar_descr { get; set; }
 
-        [StringLength(100, ErrorMessage = "Descripcion maxima hasta 100 caracteres.", MinimumLength = 6)]
-        [Display(Name = "Descripcion del alimento", Order = 0)]
-        public string  al_vchar_descr { get; set; }
-        [Display(Name = "Tipo pais ID", Order = 0)]
-        public int al_int_idtipoalim { get; set; }
-        [Display(Name = "Precio Alimento", Order = 0)]
+        public string al_int_idtipoalim { get; set; }
+        [Display(Name = "Precio del alimento", Order = 4)]
+        [Required(ErrorMessage = "El precio del insumo es necesario")]
         public decimal al_dec_precalim { get; set; }
-
-        [Display(Name = "Estado", Order = 0)]
-        public int al_int_est { get; set; } 
-        
-
-        
+        [Display(Name = "Estado del alimento", Order = 3)]
+        public int al_int_estado { get; set; }
 
     }
 }

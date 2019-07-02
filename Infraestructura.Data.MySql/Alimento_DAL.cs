@@ -17,20 +17,17 @@ namespace Infraestructura.Data.MySql
         private Conexioncs cnx = new Conexioncs();
         private MySqlConnection cn;
 
-
-
-
-        public List<Alimento> lista_Alimento()
+        public List<Alimento> lista_alimento()
         {
             List<Alimento> lstAlimento = new List<Alimento>();
 
             cn = cnx.conectar();
             cn.Open();
 
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM TB_ALIMENTO", cn);
+            MySqlCommand cmd = new MySqlCommand("SP_ALIM_LISTID", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataReader dr = cmd.ExecuteReader();
-            
+
             try
             {
                 while (dr.Read())
@@ -39,9 +36,9 @@ namespace Infraestructura.Data.MySql
                     {
                         al_int_idalim = dr.GetInt32(0),
                         al_vchar_descr = dr.GetString(1),
-                        al_int_idtipoalim = dr.GetInt32(2),
+                        al_int_idtipoalim = dr.GetString(2),
                         al_dec_precalim = dr.GetDecimal(3),
-                        al_int_est = dr.GetInt32(4)
+                        al_int_estado = dr.GetInt32(4)
                     };
                     lstAlimento.Add(objAlimento);
                 }
@@ -57,34 +54,30 @@ namespace Infraestructura.Data.MySql
             }
 
             return lstAlimento;
-            
         }
 
-
-
-        public Alimento ver_Alimento(int cod)
+        /*public Alimento ver_alimento(int cod)
         {
-            Alimento objAlimento = null;
+            Alimento objalimento = null;
             cn = cnx.conectar();
             cn.Open();
 
-            MySqlCommand cmd = new MySqlCommand("SP_ALIM_LISTID", cn);
+            MySqlCommand cmd = new MySqlCommand("", cn);
             cmd.CommandType = CommandType.StoredProcedure;
-            /* ese id de donde sale -- no estoy segura ayudaa :v*/
-            cmd.Parameters.Add("al_int_idalim", DbType.Int32).Value = cod;
+            cmd.Parameters.Add("id", DbType.Int32).Value = cod;
 
             MySqlDataReader dr = cmd.ExecuteReader();
             try
             {
                 while (dr.Read())
                 {
-                    objAlimento = new Alimento()
+                    objalimento = new Alimento()
                     {
-                        al_int_idalim = dr.GetInt32(0),
-                        al_vchar_descr = dr.GetString(1),
-                        al_int_idtipoalim = dr.GetInt32(2),
-                        al_dec_precalim = dr.GetDecimal(3),
-                        al_int_est = dr.GetInt32(4)
+                        ca_int_idcatering = dr.GetInt32(0),
+                        ca_date_fecha = dr.GetString(1),
+                        ca_char_estado = dr.GetString(2),
+                        ca_varchar_lugarcatering = dr.GetString(3),
+                        ca_char_dnicliente = dr.GetString(4)
 
                     };
                 }
@@ -92,7 +85,7 @@ namespace Infraestructura.Data.MySql
             catch (Exception e)
             {
                 Console.WriteLine("Exception source", e.Source);
-                objAlimento = new Alimento();
+                objCatering = new Catering();
             }
             finally
             {
@@ -100,36 +93,28 @@ namespace Infraestructura.Data.MySql
                 cn.Close();
             }
 
-            return objAlimento;
+            return objCatering;
         }
 
 
-        public int registrar_Alimento(Alimento objAlimento)
+        public int registrar_catering(Catering objCatering)
         {
             int resultado = -1;
             cn = cnx.conectar();
             cn.Open();
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SP_ALIM_INSERT", cn);
+                MySqlCommand cmd = new MySqlCommand("", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("ca_date_fecha", DbType.String).
+                    Value = objCatering.ca_date_fecha;
+                cmd.Parameters.Add("ca_char_estado", DbType.String).
+                    Value = objCatering.ca_char_estado;
+                cmd.Parameters.Add("ca_varchar_lugarcatering", DbType.String).
+               Value = objCatering.ca_varchar_lugarcatering;
+                cmd.Parameters.Add("ca_char_dnicliente", DbType.String).
+                    Value = objCatering.ca_char_dnicliente;
 
-                cmd.Parameters.Add("al_int_idalim", DbType.Int32).
-                    Value = objAlimento.al_int_idalim;
-
-                cmd.Parameters.Add("al_vchar_descr", DbType.String).
-                    Value = objAlimento.al_vchar_descr;
-
-                cmd.Parameters.Add("al_int_idtipoalim", DbType.Int32).
-                    Value = objAlimento.al_int_idtipoalim;
-
-                cmd.Parameters.Add("al_dec_precalim", DbType.Decimal).
-                    Value = objAlimento.al_dec_precalim;
-
-                cmd.Parameters.Add("al_int_est", DbType.Int32).
-                    Value = objAlimento.al_int_est;
-
-            
                 resultado = cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -145,23 +130,20 @@ namespace Infraestructura.Data.MySql
         }
 
 
-        public int actualizar_alimento(Alimento objAlimento)
-
+        public int actualizar_catering(Catering objCatering)
         {
             int resultado = -1;
             cn = cnx.conectar();
             cn.Open();
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SP_ALIM_UPDATE", cn);
+                MySqlCommand cmd = new MySqlCommand("", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("al_int_idalim", DbType.Int32).Value = objAlimento.al_int_idalim;
-                cmd.Parameters.Add("al_vchar_descr", DbType.String).Value = objAlimento.al_vchar_descr;
-                cmd.Parameters.Add("al_int_idtipoalim", DbType.String).Value = objAlimento.al_int_idtipoalim;
-                cmd.Parameters.Add("al_dec_precalim", DbType.String).Value = objAlimento.al_dec_precalim;
-                cmd.Parameters.Add("al_int_est", DbType.String).Value = objAlimento.al_int_est;
-
-
+                cmd.Parameters.Add("ca_int_idcatering", DbType.Int32).Value = objCatering.ca_int_idcatering;
+                cmd.Parameters.Add("ca_date_fecha", DbType.String).Value = objCatering.ca_date_fecha;
+                cmd.Parameters.Add("ca_char_estado", DbType.String).Value = objCatering.ca_char_estado;
+                cmd.Parameters.Add("ca_varchar_lugarcatering", DbType.String).Value = objCatering.ca_varchar_lugarcatering;
+                cmd.Parameters.Add("ca_char_dnicliente", DbType.String).Value = objCatering.ca_char_dnicliente;
 
                 resultado = cmd.ExecuteNonQuery();
             }
@@ -175,10 +157,11 @@ namespace Infraestructura.Data.MySql
             }
 
             return resultado;
-        }
+        }*/
+
 
 
     
 
-    }
+}
 }
