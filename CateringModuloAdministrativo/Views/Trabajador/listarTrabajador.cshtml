@@ -1,93 +1,108 @@
 ﻿@model IEnumerable<Dominio.Core.Entities.Trabajador>
 
 @{
-    ViewBag.Title = "listarTrabajador";
+    ViewBag.Title = "Lista de trabajadores";
     Layout = "~/Views/Shared/_principalSharedView.cshtml";
 }
+    <h2>@ViewBag.Title</h2>
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+            <div class="rs-select2--light rs-select2--md d-none">
+                <select class="js-select2" name="property">
+                    <option selected="selected">Tipo de insumos</option>
+                    <option value="">Insumos 1</option>
+                    <option value="">Insumos 1</option>
+                </select>
+                <div class="dropDownSelect2"></div>
+            </div>
+            <div class="rs-select2--light rs-select2--sm d-none">
+                <select class="js-select2" name="time">
+                    <option selected="selected">Estado</option>
+                    <option value="">Activos</option>
+                    <option value="">Inactivo</option>
+                </select>
+                <div class="dropDownSelect2"></div>
+            </div>
+            <button class="au-btn-filter d-none">
+                <i class="zmdi zmdi-filter-list"></i>filtros
+            </button>
+        </div>
+        <div class="table-data__tool-right">
+            <a class="au-btn au-btn-icon au-btn--green au-btn--small" href="@Url.Action("Create", "Trabajador", new { /* id=item.PrimaryKey */ })">
+                <i class="zmdi zmdi-plus"></i>añadir elemento
+            </a>
+            <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                <select class="js-select2" name="type">
+                    <option selected="selected">Exportar</option>
+                    <option value="">Pdf</option>
+                    <option value="">Excel</option>
+                </select>
+                <div class="dropDownSelect2"></div>
+            </div>
+        </div>
+    </div>
+        <table class="table table-data2 table-responsive">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tr_int_idtrab)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tr_vchar_nombre)
 
-<h2>listarTrabajador</h2>
+                        @Html.DisplayNameFor(model => model.tr_vchar_apellido)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tr_char_dni)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tr_vchar_foto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tr_vchar_correo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tt_vchar_descr)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tr_int_idtrab)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tr_vchar_nombre)
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tr_int_idtrab)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tr_int_idusu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tr_int_idtipotrab)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tr_vchar_nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tr_vchar_apellido)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tr_char_dni)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tr_vchar_direc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tr_vchar_foto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tr_vchar_correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tt_vchar_descr)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.us_vchar_nomusu)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tr_int_idtrab)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tr_int_idusu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tr_int_idtipotrab)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tr_vchar_nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tr_vchar_apellido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tr_char_dni)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tr_vchar_direc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tr_vchar_foto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tr_vchar_correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tt_vchar_descr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.us_vchar_nomusu)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  idTrabajador=item.tr_int_idtrab  }) |
-            @Html.ActionLink("Details", "Details", new { idTrabajador=item.tr_int_idtrab }) 
-        </td>
-    </tr>
-}
-
-</table>
+                            @Html.DisplayFor(modelItem => item.tr_vchar_apellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tr_char_dni)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tr_vchar_foto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tr_vchar_correo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tt_vchar_descr)
+                        </td>                       
+                        <td>
+                            <div class="table-data-feature">
+                                <a class="item" data-toggle="tooltip" data-placement="top" title="Editar" href=" @Url.Action("Edit","Trabajador", new { idTrabajador = item.tr_int_idtrab })">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </a>
+                                <a class="item" data-toggle="tooltip" data-placement="top" title="Detalles" href=" @Url.Action("Details","Trabajador", new { idTrabajador = item.tr_int_idtrab })">
+                                    <i class="zmdi zmdi-more"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="spacer"></tr>
+                }
+           <tbody>
+        </table>

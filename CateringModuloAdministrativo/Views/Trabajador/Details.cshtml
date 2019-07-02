@@ -7,101 +7,100 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Trabajador</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_int_idtrab)
-        </dt>
+<div class="card">
+    <div class="card-header">Cliente</div>
+    <div class="card-body">
+        <div class="card-title">
+            <h3 class="text-center title-2">@ViewBag.Title</h3>
+        </div>
+        <div>
+            <h4>Trabajador</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_int_idtrab)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_int_idtrab)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_int_idtrab)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_int_idusu)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_int_idusu)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_int_idusu)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_int_idusu)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_int_idtipotrab)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_vchar_nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_int_idtipotrab)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_vchar_nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_vchar_nombre)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_vchar_apellido)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_vchar_nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_vchar_apellido)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_vchar_apellido)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_char_dni)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_vchar_apellido)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_char_dni)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_char_dni)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_vchar_direc)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_char_dni)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_vchar_direc)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_vchar_direc)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_vchar_foto)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_vchar_direc)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_vchar_foto)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_vchar_foto)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_vchar_correo)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_vchar_foto)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_vchar_correo)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_vchar_correo)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tt_vchar_descr)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_vchar_correo)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tt_vchar_descr)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tt_vchar_descr)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.us_vchar_nomusu)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tt_vchar_descr)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.us_vchar_nomusu)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.us_vchar_nomusu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.us_vchar_nomusu)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new {  idTrabajador = Model.tr_int_idtrab  }) |
+        @Html.ActionLink("Regresar a la lista", "listarTrabajador")
+    </p>

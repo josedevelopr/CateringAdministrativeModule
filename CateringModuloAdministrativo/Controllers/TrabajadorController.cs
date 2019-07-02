@@ -65,6 +65,8 @@ namespace CateringModuloAdministrativo.Controllers
         {
             Trabajador objTrabajador = new Trabajador();
             objTrabajador = objTrabajadorManager.lista_x_id_trabajador(idTrabajador);
+            ViewBag.ListaUsuario = objUsuarioManager.lista_usuario();
+            ViewBag.ListaTipoTrabajador = objTipoTrabajadorManager.lista_TipoTrabajador();
             return View(objTrabajador);
         }
 
