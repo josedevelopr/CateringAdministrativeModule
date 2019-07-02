@@ -147,7 +147,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AlimentoController.cs" />
     <Compile Include="Controllers\CateringController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ComidaController.cs" />
@@ -161,7 +160,6 @@
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RecetaController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
-    <Compile Include="Controllers\TipoAlimentoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -446,7 +444,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Alimento\" />
     <Folder Include="Views\Catering\" />
     <Folder Include="Views\Cliente\" />
     <Folder Include="Views\Comida\" />
@@ -457,7 +454,6 @@
     <Folder Include="Views\Pago\" />
     <Folder Include="Views\Receta\" />
     <Folder Include="Views\Reporte\" />
-    <Folder Include="Views\TipoAlimento\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
