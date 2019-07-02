@@ -12,6 +12,31 @@ namespace Dominio.Core.MainModule
 {
     public class Alimento_Manager
     {
-        private Alimento_DAL objAlimento = new Alimento_DAL();
+        private Alimento_DAL objAlimento_DAL = new Alimento_DAL();
+
+        public List<Alimento> lista_Alimento()
+        {
+            return objAlimento_DAL.lista_Alimento();
+        }
+
+        public Alimento ver_Alimento(int cod)
+        {
+            return objAlimento_DAL.ver_Alimento(cod);
+        }
+
+        public int registrar_Alimento(Alimento objAlimento)
+        {
+            return objAlimento_DAL.registrar_Alimento(objAlimento);
+        }
+
+        public int actualizar_proveedor(Alimento objAlimento)
+        {
+            return objAlimento_DAL.actualizar_alimento(objAlimento);
+        }
+
+
+
+
+
     }
 }
