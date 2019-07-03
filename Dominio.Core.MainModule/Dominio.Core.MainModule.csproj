@@ -89,7 +89,9 @@
   <ItemGroup>
     <Compile Include="Catering_Manager.cs" />
     <Compile Include="Cliente_Manager.cs" />
+    <Compile Include="DetalleMenuCatering_Manager.cs" />
     <Compile Include="Insumo_Manager.cs" />
+    <Compile Include="MenuCatering_Manager.cs" />
     <Compile Include="MenuNavegacion_Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor_Manager.cs" />

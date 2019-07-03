@@ -95,7 +95,6 @@
     <Compile Include="DetalleMenuCatering.cs" />
     <Compile Include="Insumos.cs" />
     <Compile Include="MenuCatering.cs" />
-    <Compile Include="MenuDetalleCatering.cs" />
     <Compile Include="MenuNavegacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor.cs" />
