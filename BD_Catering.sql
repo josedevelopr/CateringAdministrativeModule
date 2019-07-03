@@ -1,8 +1,8 @@
-﻿-- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
+﻿-- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: bd_catering
 -- ------------------------------------------------------
--- Server version	8.0.12
+-- Server version	8.0.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -38,7 +38,6 @@ CREATE TABLE `tb_abastecimiento` (
 --
 -- Dumping data for table `tb_abastecimiento`
 --
--- ORDER BY:  `ab_int_idabas`
 
 LOCK TABLES `tb_abastecimiento` WRITE;
 /*!40000 ALTER TABLE `tb_abastecimiento` DISABLE KEYS */;
@@ -62,17 +61,16 @@ CREATE TABLE `tb_acceso` (
   KEY `acc_int_idtipousu` (`acc_int_idtipousu`),
   CONSTRAINT `tb_acceso_ibfk_1` FOREIGN KEY (`acc_int_idarchivo`) REFERENCES `tb_archivomenu` (`am_int_idarchivo`),
   CONSTRAINT `tb_acceso_ibfk_2` FOREIGN KEY (`acc_int_idtipousu`) REFERENCES `tb_tipousuario` (`tu_int_idtipousu`)
-) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_acceso`
 --
--- ORDER BY:  `acc_int_idacc`
 
 LOCK TABLES `tb_acceso` WRITE;
 /*!40000 ALTER TABLE `tb_acceso` DISABLE KEYS */;
-INSERT INTO `tb_acceso` VALUES (57,1,29),(58,1,28),(59,1,27),(60,1,26),(61,1,25),(62,1,24),(63,1,23),(64,1,22),(65,1,21),(66,1,20),(67,1,19),(68,1,18),(69,1,17),(70,1,16),(71,1,15),(72,1,14),(73,1,13),(74,1,12),(75,1,11),(76,1,10),(77,1,9),(78,1,8),(79,1,7),(80,1,6),(81,1,5),(82,1,4),(83,1,3),(84,1,2),(85,1,1),(86,2,3),(87,2,4),(88,2,5),(89,2,6),(90,2,7),(91,3,8),(92,3,9),(93,3,10),(94,3,11),(95,3,12),(96,3,13),(97,3,14),(98,6,15),(99,3,16),(100,3,17),(101,3,18),(102,3,19),(103,6,25),(104,6,26),(105,6,27),(106,6,28),(107,6,29),(108,4,8),(109,4,10),(110,4,13),(111,4,14),(112,4,21),(113,5,21);
+INSERT INTO `tb_acceso` VALUES (57,1,29),(58,1,28),(59,1,27),(60,1,26),(61,1,25),(62,1,24),(63,1,23),(64,1,22),(65,1,21),(66,1,20),(67,1,19),(68,1,18),(69,1,17),(70,1,16),(71,1,15),(72,1,14),(73,1,13),(74,1,12),(75,1,11),(76,1,10),(77,1,9),(78,1,8),(79,1,7),(80,1,6),(81,1,5),(82,1,4),(83,1,3),(84,1,2),(85,1,1),(86,2,3),(87,2,4),(88,2,5),(89,2,6),(90,2,7),(91,3,8),(92,3,9),(93,3,10),(94,3,11),(95,3,12),(96,3,13),(97,3,14),(98,6,15),(99,3,16),(100,3,17),(101,3,18),(102,3,19),(103,6,25),(104,6,26),(105,6,27),(106,6,28),(107,6,29),(108,4,8),(109,4,10),(110,4,13),(111,4,14),(112,4,21),(113,5,21),(114,1,86);
 /*!40000 ALTER TABLE `tb_acceso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,6 +86,7 @@ CREATE TABLE `tb_alimento` (
   `al_vchar_descr` varchar(30) DEFAULT NULL,
   `al_int_idtipoalim` int(11) DEFAULT NULL,
   `al_dec_precalim` decimal(9,2) DEFAULT NULL,
+  `al_int_est` int(11) DEFAULT NULL,
   PRIMARY KEY (`al_int_idalim`),
   KEY `al_int_idtipoalim` (`al_int_idtipoalim`),
   CONSTRAINT `tb_alimento_ibfk_1` FOREIGN KEY (`al_int_idtipoalim`) REFERENCES `tb_tipoalimento` (`ta_int_idtipoalim`)
@@ -97,11 +96,10 @@ CREATE TABLE `tb_alimento` (
 --
 -- Dumping data for table `tb_alimento`
 --
--- ORDER BY:  `al_int_idalim`
 
 LOCK TABLES `tb_alimento` WRITE;
 /*!40000 ALTER TABLE `tb_alimento` DISABLE KEYS */;
-INSERT INTO `tb_alimento` VALUES (1,'Ceviche',1,30.00),(2,'Juanes',3,30.00);
+INSERT INTO `tb_alimento` VALUES (1,'Ceviche',1,30.00,NULL),(2,'Juanes',1,30.00,NULL);
 /*!40000 ALTER TABLE `tb_alimento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,17 +116,16 @@ CREATE TABLE `tb_archivomenu` (
   `am_vchar_cntrl` varchar(1000) DEFAULT NULL,
   `am_vchar_nombr` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`am_int_idarchivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_archivomenu`
 --
--- ORDER BY:  `am_int_idarchivo`
 
 LOCK TABLES `tb_archivomenu` WRITE;
 /*!40000 ALTER TABLE `tb_archivomenu` DISABLE KEYS */;
-INSERT INTO `tb_archivomenu` VALUES (1,'Iniciar sesion','Login','IniciarSesion'),(2,'Inicio','Home','Index'),(3,'Catering','Catering','Index'),(4,'Catering en proceso','Catering','lista_catering_en_proceso'),(5,'Catering finalizados','Catering','lista_catering_finalizado'),(6,'Agregar Catering','Catering','agregar_catering'),(7,'Asignar grupo de trabajo','GrupoTrabajo','agregar_grupo_trabajo'),(8,'Menu','MenuComida','lista_menu'),(9,'Nuevo menu','MenuComida','lista_menu'),(10,'Pedidos de menu','MenuComida','lista_menu_pedidos'),(11,'Comida','Comida','lista_comida'),(12,'Agregar Comida','Comida','agregar_comida'),(13,'Comida','Comida','lista_comida'),(14,'Lista de recetas','Receta','lista_pagos'),(15,'Pagos','Pagos','lista_de_pagos'),(16,'Insumo','Insumo','lista_insumos'),(17,'Agregar insusmo','Insumo','agregar_insumos'),(18,'Solicitar Insumo','Insumo','provicionar_insumos'),(19,'Lista de proveedores','Proveedor','lista_proveedor'),(20,'Lista de cliente','Cliente','lista_cliente'),(21,'Ver grupo de trabajo','GrupoTrabajo','ver_grupo_trabajo'),(22,'Lista Usuario','Usuario','lista_usuario'),(23,'Nuevo Usuario','Usuario','agregar_usuario'),(24,'Dar de baja','Insumo','dar_baja_usuario'),(25,'Reportes','Reporte','listado_reporte'),(26,'Reportes de comida','Reporte','reporte_comida'),(27,'Reportes de pagos','Reporte','reporte_pago'),(28,'Reportes de insumos','Reporte','reporte_insumo'),(29,'Reportes de clientes','Reporte','reporte_clientes'),(30,'Inicio','Home','Index'),(31,'Catering','Catering','Index'),(32,'Catering en proceso','Catering','lista_catering_en_proceso'),(33,'Catering finalizados','Catering','lista_catering_finalizado'),(34,'Agregar Catering','Catering','agregar_catering'),(35,'Asignar grupo de trabajo','Catering','Index'),(36,'Menu','MenuComida','lista_menu'),(37,'Nuevo menu','MenuComida','lista_menu'),(38,'Pedidos de menu','MenuComida','lista_menu_pedidos'),(39,'Comida','Comida','lista_comida'),(40,'Agregar Comida','Comida','agregar_comida'),(41,'Comida','Comida','lista_comida'),(42,'Lista de recetas','Receta','lista_pagos'),(43,'Pagos','Pagos','lista_de_pagos'),(44,'Insumo','Insumo','lista_insumos'),(45,'Agregar insusmo','Insumo','agregar_insumos'),(46,'Solicitar Insumo','Insumo','provicionar_insumos'),(47,'Lista de proveedores','Proveedor','lista_proveedor'),(48,'Lista de cliente','Cliente','lista_cliente'),(49,'Insumo','Insumo','lista_insumos'),(50,'Lista Usuario','Usuario','lista_usuario'),(51,'Nuevo Usuario','Usuario','agregar_usuario'),(52,'Dar de baja','Insumo','dar_baja_usuario'),(53,'Reportes','Reporte','listado_reporte'),(54,'Reportes de comida','Reporte','reporte_comida'),(55,'Reportes de pagos','Reporte','reporte_pago'),(56,'Reportes de insumos','Reporte','reporte_insumo'),(57,'Reportes de clientes','Reporte','reporte_clientes');
+INSERT INTO `tb_archivomenu` VALUES (1,'Iniciar sesion','Login','IniciarSesion'),(2,'Inicio','Home','Index'),(3,'Catering','Catering','Index'),(4,'Catering en proceso','Catering','lista_catering_en_proceso'),(5,'Catering finalizados','Catering','lista_catering_finalizado'),(6,'Agregar Catering','Catering','agregar_catering'),(7,'Asignar grupo de trabajo','GrupoTrabajo','agregar_grupo_trabajo'),(8,'Menu','MenuComida','lista_menu'),(9,'Nuevo menu','MenuComida','lista_menu'),(10,'Pedidos de menu','MenuComida','lista_menu_pedidos'),(11,'Comida','Comida','lista_comida'),(12,'Agregar Comida','Comida','agregar_comida'),(13,'Comida','Comida','lista_comida'),(14,'Lista de recetas','Receta','lista_pagos'),(15,'Pagos','Pagos','lista_de_pagos'),(16,'Insumo','Insumo','lista_insumos'),(17,'Agregar insusmo','Insumo','agregar_insumos'),(18,'Solicitar Insumo','Insumo','provicionar_insumos'),(19,'Lista de proveedores','Proveedor','lista_proveedor'),(20,'Lista de cliente','Cliente','lista_cliente'),(21,'Ver grupo de trabajo','GrupoTrabajo','ver_grupo_trabajo'),(22,'Lista Usuario','Usuario','lista_usuario'),(23,'Nuevo Usuario','Usuario','agregar_usuario'),(24,'Dar de baja','Insumo','dar_baja_usuario'),(25,'Reportes','Reporte','listado_reporte'),(26,'Reportes de comida','Reporte','reporte_comida'),(27,'Reportes de pagos','Reporte','reporte_pago'),(28,'Reportes de insumos','Reporte','reporte_insumo'),(29,'Reportes de clientes','Reporte','reporte_clientes'),(30,'Inicio','Home','Index'),(31,'Catering','Catering','Index'),(32,'Catering en proceso','Catering','lista_catering_en_proceso'),(33,'Catering finalizados','Catering','lista_catering_finalizado'),(34,'Agregar Catering','Catering','agregar_catering'),(35,'Asignar grupo de trabajo','Catering','Index'),(36,'Menu','MenuComida','lista_menu'),(37,'Nuevo menu','MenuComida','lista_menu'),(38,'Pedidos de menu','MenuComida','lista_menu_pedidos'),(39,'Comida','Comida','lista_comida'),(40,'Agregar Comida','Comida','agregar_comida'),(41,'Comida','Comida','lista_comida'),(42,'Lista de recetas','Receta','lista_pagos'),(43,'Pagos','Pagos','lista_de_pagos'),(44,'Insumo','Insumo','lista_insumos'),(45,'Agregar insusmo','Insumo','agregar_insumos'),(46,'Solicitar Insumo','Insumo','provicionar_insumos'),(47,'Lista de proveedores','Proveedor','lista_proveedor'),(48,'Lista de cliente','Cliente','lista_cliente'),(49,'Insumo','Insumo','lista_insumos'),(50,'Lista Usuario','Usuario','lista_usuario'),(51,'Nuevo Usuario','Usuario','agregar_usuario'),(52,'Dar de baja','Insumo','dar_baja_usuario'),(53,'Reportes','Reporte','listado_reporte'),(54,'Reportes de comida','Reporte','reporte_comida'),(55,'Reportes de pagos','Reporte','reporte_pago'),(56,'Reportes de insumos','Reporte','reporte_insumo'),(57,'Reportes de clientes','Reporte','reporte_clientes'),(58,'Inicio','Home','Index'),(59,'Catering','Catering','Index'),(60,'Catering en proceso','Catering','lista_catering_en_proceso'),(61,'Catering finalizados','Catering','lista_catering_finalizado'),(62,'Agregar Catering','Catering','agregar_catering'),(63,'Asignar grupo de trabajo','Catering','Index'),(64,'Menu','MenuComida','lista_menu'),(65,'Nuevo menu','MenuComida','lista_menu'),(66,'Pedidos de menu','MenuComida','lista_menu_pedidos'),(67,'Comida','Comida','lista_comida'),(68,'Agregar Comida','Comida','agregar_comida'),(69,'Comida','Comida','lista_comida'),(70,'Lista de recetas','Receta','lista_pagos'),(71,'Pagos','Pagos','lista_de_pagos'),(72,'Insumo','Insumo','lista_insumos'),(73,'Agregar insusmo','Insumo','agregar_insumos'),(74,'Solicitar Insumo','Insumo','provicionar_insumos'),(75,'Lista de proveedores','Proveedor','lista_proveedor'),(76,'Lista de cliente','Cliente','lista_cliente'),(77,'Insumo','Insumo','lista_insumos'),(78,'Lista Usuario','Usuario','lista_usuario'),(79,'Nuevo Usuario','Usuario','agregar_usuario'),(80,'Dar de baja','Insumo','dar_baja_usuario'),(81,'Reportes','Reporte','listado_reporte'),(82,'Reportes de comida','Reporte','reporte_comida'),(83,'Reportes de pagos','Reporte','reporte_pago'),(84,'Reportes de insumos','Reporte','reporte_insumo'),(85,'Reportes de clientes','Reporte','reporte_clientes'),(86,'Inicio','Trabajador','Index');
 /*!40000 ALTER TABLE `tb_archivomenu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,16 +145,16 @@ CREATE TABLE `tb_auditoriausuario` (
   PRIMARY KEY (`aus_int_idauditusu`),
   KEY `aus_int_idusu` (`aus_int_idusu`),
   CONSTRAINT `tb_auditoriausuario_ibfk_1` FOREIGN KEY (`aus_int_idusu`) REFERENCES `tb_usuario` (`us_int_idusu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_auditoriausuario`
 --
--- ORDER BY:  `aus_int_idauditusu`
 
 LOCK TABLES `tb_auditoriausuario` WRITE;
 /*!40000 ALTER TABLE `tb_auditoriausuario` DISABLE KEYS */;
+INSERT INTO `tb_auditoriausuario` VALUES (1,11,'TB_USUARIO','CREAR NUEVO USUARIO','2019-06-24 22:50:53'),(2,11,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-24 22:51:58'),(3,11,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 10:51:28'),(4,12,'TB_USUARIO','CREAR NUEVO USUARIO','2019-06-28 12:32:24'),(5,7,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 12:36:41'),(6,11,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 12:37:27'),(7,12,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(8,11,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(9,10,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(10,9,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(11,8,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(12,7,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(13,6,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(14,5,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(15,4,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(16,3,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(17,2,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(18,1,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 14:33:46'),(19,12,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 16:00:28'),(20,11,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 16:00:28'),(21,12,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 16:01:33'),(22,11,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 16:02:13'),(23,7,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 16:21:02'),(24,7,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 16:21:29'),(25,7,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-28 16:21:57'),(26,13,'TB_USUARIO','CREAR NUEVO USUARIO','2019-06-29 02:49:26'),(27,13,'TB_USUARIO','USUARIO ACTUALIZADO','2019-06-29 03:35:52'),(28,14,'TB_USUARIO','CREAR NUEVO USUARIO','2019-06-29 03:37:40'),(29,15,'TB_USUARIO','CREAR NUEVO USUARIO','2019-06-29 03:39:18');
 /*!40000 ALTER TABLE `tb_auditoriausuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,7 +183,6 @@ CREATE TABLE `tb_catering` (
 --
 -- Dumping data for table `tb_catering`
 --
--- ORDER BY:  `ca_int_idcater`
 
 LOCK TABLES `tb_catering` WRITE;
 /*!40000 ALTER TABLE `tb_catering` DISABLE KEYS */;
@@ -221,11 +217,10 @@ CREATE TABLE `tb_cliente` (
 --
 -- Dumping data for table `tb_cliente`
 --
--- ORDER BY:  `cl_char_dniclie`
 
 LOCK TABLES `tb_cliente` WRITE;
 /*!40000 ALTER TABLE `tb_cliente` DISABLE KEYS */;
-INSERT INTO `tb_cliente` VALUES ('12345678',5,'Cristoforo Rich','Armas Oscuras','M','12345678901','123456789','Av. Chimu 123','foto5.jpg','cliente@hotmail.com'),('87654321',6,'Pepe Toño','Alvinoalv Velasque','M','10987654321','987654321','Av. Punta Hermosa 123','foto6.jpg','otrocliente@hotmail.com');
+INSERT INTO `tb_cliente` VALUES ('11111111',13,'j','Alvino','M','00011122299','999999999','casa','ND','antonio@gmail.com'),('12345678',5,'Cristoforo Rich','Armas Oscuras','M','12345678901','123456789','Av. Chimu 123','foto5.jpg','cliente@hotmail.com'),('43231143',12,'Abrahamm','Tantaleann','M','54342323443','999888777','su casa','abraham.png','abraham@gmail.com'),('54334434',11,'JHADIRA','ROSALES','F','43223423412','987234765','Su casa','foto.jpg','jhadira@gmail.com'),('87654321',6,'Pepe Toño','Alvinoalv Velasque','M','10987654321','987654321','Av. Punta Hermosa 123','foto6.jpg','otrocliente@hotmail.com');
 /*!40000 ALTER TABLE `tb_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,7 +247,6 @@ CREATE TABLE `tb_contratocatering` (
 --
 -- Dumping data for table `tb_contratocatering`
 --
--- ORDER BY:  `cc_int_idcontrato`
 
 LOCK TABLES `tb_contratocatering` WRITE;
 /*!40000 ALTER TABLE `tb_contratocatering` DISABLE KEYS */;
@@ -284,13 +278,13 @@ CREATE TABLE `tb_detalleabastecimiento` (
 --
 -- Dumping data for table `tb_detalleabastecimiento`
 --
--- ORDER BY:  `dab_int_iddetabas`
 
 LOCK TABLES `tb_detalleabastecimiento` WRITE;
 /*!40000 ALTER TABLE `tb_detalleabastecimiento` DISABLE KEYS */;
 INSERT INTO `tb_detalleabastecimiento` VALUES (1,1,1,10,0.00),(2,2,1,10,0.00),(3,1,2,10,0.00),(4,2,2,10,0.00);
 /*!40000 ALTER TABLE `tb_detalleabastecimiento` ENABLE KEYS */;
 UNLOCK TABLES;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -308,6 +302,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 --
 -- Table structure for table `tb_detalleingredientealimento`
@@ -332,7 +327,6 @@ CREATE TABLE `tb_detalleingredientealimento` (
 --
 -- Dumping data for table `tb_detalleingredientealimento`
 --
--- ORDER BY:  `dta_int_iddetingrealim`
 
 LOCK TABLES `tb_detalleingredientealimento` WRITE;
 /*!40000 ALTER TABLE `tb_detalleingredientealimento` DISABLE KEYS */;
@@ -364,13 +358,13 @@ CREATE TABLE `tb_detallemenucatering` (
 --
 -- Dumping data for table `tb_detallemenucatering`
 --
--- ORDER BY:  `dm_int_iddetmenucater`
 
 LOCK TABLES `tb_detallemenucatering` WRITE;
 /*!40000 ALTER TABLE `tb_detallemenucatering` DISABLE KEYS */;
 INSERT INTO `tb_detallemenucatering` VALUES (1,1,1,20,0.00),(2,1,1,20,0.00),(3,1,1,20,0.00),(4,2,1,20,0.00),(5,2,1,20,0.00),(6,2,1,20,0.00),(7,1,2,20,0.00),(8,1,2,20,0.00),(9,1,2,20,0.00),(10,2,2,20,0.00),(11,2,2,20,0.00),(12,2,2,20,0.00);
 /*!40000 ALTER TABLE `tb_detallemenucatering` ENABLE KEYS */;
 UNLOCK TABLES;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -388,6 +382,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 --
 -- Table structure for table `tb_detalletrabajadorcatering`
@@ -411,7 +406,6 @@ CREATE TABLE `tb_detalletrabajadorcatering` (
 --
 -- Dumping data for table `tb_detalletrabajadorcatering`
 --
--- ORDER BY:  `dt_int_iddettrabcater`
 
 LOCK TABLES `tb_detalletrabajadorcatering` WRITE;
 /*!40000 ALTER TABLE `tb_detalletrabajadorcatering` DISABLE KEYS */;
@@ -439,7 +433,6 @@ CREATE TABLE `tb_ingredientesalimento` (
 --
 -- Dumping data for table `tb_ingredientesalimento`
 --
--- ORDER BY:  `is_int_idingralim`
 
 LOCK TABLES `tb_ingredientesalimento` WRITE;
 /*!40000 ALTER TABLE `tb_ingredientesalimento` DISABLE KEYS */;
@@ -467,7 +460,6 @@ CREATE TABLE `tb_insumos` (
 --
 -- Dumping data for table `tb_insumos`
 --
--- ORDER BY:  `in_int_idinsum`
 
 LOCK TABLES `tb_insumos` WRITE;
 /*!40000 ALTER TABLE `tb_insumos` DISABLE KEYS */;
@@ -496,13 +488,13 @@ CREATE TABLE `tb_menucatering` (
 --
 -- Dumping data for table `tb_menucatering`
 --
--- ORDER BY:  `mc_int_idmenu`
 
 LOCK TABLES `tb_menucatering` WRITE;
 /*!40000 ALTER TABLE `tb_menucatering` DISABLE KEYS */;
 INSERT INTO `tb_menucatering` VALUES (1,1,'ECN',0.00),(2,2,'ECN',0.00);
 /*!40000 ALTER TABLE `tb_menucatering` ENABLE KEYS */;
 UNLOCK TABLES;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -520,6 +512,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 --
 -- Table structure for table `tb_pago`
@@ -550,13 +543,13 @@ CREATE TABLE `tb_pago` (
 --
 -- Dumping data for table `tb_pago`
 --
--- ORDER BY:  `pa_int_idpago`
 
 LOCK TABLES `tb_pago` WRITE;
 /*!40000 ALTER TABLE `tb_pago` DISABLE KEYS */;
 INSERT INTO `tb_pago` VALUES (1,0.00,'12345678',1,1,'PPE','2019-04-30 00:00:00',100.00),(2,0.00,'87654321',2,2,'PPE','2019-04-30 00:00:00',100.00);
 /*!40000 ALTER TABLE `tb_pago` ENABLE KEYS */;
 UNLOCK TABLES;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -574,6 +567,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 --
 -- Table structure for table `tb_personalcatering`
@@ -594,7 +588,6 @@ CREATE TABLE `tb_personalcatering` (
 --
 -- Dumping data for table `tb_personalcatering`
 --
--- ORDER BY:  `pc_int_idperson`
 
 LOCK TABLES `tb_personalcatering` WRITE;
 /*!40000 ALTER TABLE `tb_personalcatering` DISABLE KEYS */;
@@ -615,17 +608,16 @@ CREATE TABLE `tb_proveedores` (
   `pr_char_ruc` char(11) DEFAULT NULL,
   `pr_int_estado` int(11) NOT NULL,
   PRIMARY KEY (`pr_int_idprove`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_proveedores`
 --
--- ORDER BY:  `pr_int_idprove`
 
 LOCK TABLES `tb_proveedores` WRITE;
 /*!40000 ALTER TABLE `tb_proveedores` DISABLE KEYS */;
-INSERT INTO `tb_proveedores` VALUES (1,'Bimbo Nuevo proveedor','12345678987',0),(2,'Sofia proveedores','12345678987',1),(3,'actualizar','12345678987',0),(4,'actualizar','12345678987',0),(9,'actualizar','12345678987',0),(10,'actualizar','12345678987',0),(11,'actualizar','12345678987',0);
+INSERT INTO `tb_proveedores` VALUES (1,'Bimbo Nuevo proveedor','12345678987',1),(2,'Sofia proveedores','12345678987',1),(3,'actualizar','12345678987',0),(4,'actualizar','12345678987',0),(9,'actualizar','12345678987',0),(10,'actualizar','12345678987',0),(11,'actualizar','12345678987',0),(12,'actualizar nuevo proveedor','12345678900',0),(13,'actualizar nuevo proveedor','12345678909',1);
 /*!40000 ALTER TABLE `tb_proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -639,18 +631,18 @@ DROP TABLE IF EXISTS `tb_tipoalimento`;
 CREATE TABLE `tb_tipoalimento` (
   `ta_int_idtipoalim` int(11) NOT NULL AUTO_INCREMENT,
   `ta_vchar_descr` varchar(100) DEFAULT NULL,
+  `ta_int_est` int(11) DEFAULT NULL,
   PRIMARY KEY (`ta_int_idtipoalim`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_tipoalimento`
 --
--- ORDER BY:  `ta_int_idtipoalim`
 
 LOCK TABLES `tb_tipoalimento` WRITE;
 /*!40000 ALTER TABLE `tb_tipoalimento` DISABLE KEYS */;
-INSERT INTO `tb_tipoalimento` VALUES (1,'Marino'),(2,'Criollo'),(3,'Selvatico');
+INSERT INTO `tb_tipoalimento` VALUES (1,'Entrada',1),(2,'Plato fuerte',1),(3,'Bebida',1),(4,'Desayuno',1);
 /*!40000 ALTER TABLE `tb_tipoalimento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -671,7 +663,6 @@ CREATE TABLE `tb_tipopago` (
 --
 -- Dumping data for table `tb_tipopago`
 --
--- ORDER BY:  `tp_int_idtipopago`
 
 LOCK TABLES `tb_tipopago` WRITE;
 /*!40000 ALTER TABLE `tb_tipopago` DISABLE KEYS */;
@@ -690,17 +681,16 @@ CREATE TABLE `tb_tipotrabajador` (
   `tt_int_idtipotrab` int(11) NOT NULL AUTO_INCREMENT,
   `tt_vchar_descr` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`tt_int_idtipotrab`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_tipotrabajador`
 --
--- ORDER BY:  `tt_int_idtipotrab`
 
 LOCK TABLES `tb_tipotrabajador` WRITE;
 /*!40000 ALTER TABLE `tb_tipotrabajador` DISABLE KEYS */;
-INSERT INTO `tb_tipotrabajador` VALUES (1,'Administrador'),(2,'Organizador'),(3,'Encargado de Menu'),(4,'Preparador de Catering');
+INSERT INTO `tb_tipotrabajador` VALUES (1,'Administrador'),(2,'Organizador'),(3,'Cocinero'),(4,'Preparador de Catering'),(5,'Contador'),(6,'Ayudante');
 /*!40000 ALTER TABLE `tb_tipotrabajador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -716,17 +706,16 @@ CREATE TABLE `tb_tipousuario` (
   `tu_vchar_descr` varchar(100) DEFAULT NULL,
   `tu_char_estado` char(3) DEFAULT NULL,
   PRIMARY KEY (`tu_int_idtipousu`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_tipousuario`
 --
--- ORDER BY:  `tu_int_idtipousu`
 
 LOCK TABLES `tb_tipousuario` WRITE;
 /*!40000 ALTER TABLE `tb_tipousuario` DISABLE KEYS */;
-INSERT INTO `tb_tipousuario` VALUES (1,'Administrador','ACT'),(2,'Organizador','ACT'),(3,'Cocinero Avanzado','ACT'),(4,'Cocinero Basico','ACT'),(5,'Trabajador Apoyo','ACT'),(6,'Contador','ACT');
+INSERT INTO `tb_tipousuario` VALUES (1,'Administrador','ACT'),(2,'Organizador','ACT'),(3,'Cocinero Avanzado','ACT'),(4,'Cocinero Basico','ACT'),(5,'Trabajador Apoyo','ACT'),(6,'Contador','ACT'),(7,'Cliente','ACT');
 /*!40000 ALTER TABLE `tb_tipousuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -752,17 +741,16 @@ CREATE TABLE `tb_trabajador` (
   KEY `tr_int_idtipotrab` (`tr_int_idtipotrab`),
   CONSTRAINT `tb_trabajador_ibfk_1` FOREIGN KEY (`tr_int_idusu`) REFERENCES `tb_usuario` (`us_int_idusu`),
   CONSTRAINT `tb_trabajador_ibfk_2` FOREIGN KEY (`tr_int_idtipotrab`) REFERENCES `tb_tipotrabajador` (`tt_int_idtipotrab`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_trabajador`
 --
--- ORDER BY:  `tr_int_idtrab`
 
 LOCK TABLES `tb_trabajador` WRITE;
 /*!40000 ALTER TABLE `tb_trabajador` DISABLE KEYS */;
-INSERT INTO `tb_trabajador` VALUES (1,1,1,'Cristof Richard','Armas Claros','15937468','Av. Brasil 123','foto1.jpg','admin123@hotmail.com'),(2,2,2,'Antonio Pedro','Alvin Vela','35746829','Av. Larco 123','foto2.jpg','organizador@hotmail.com'),(3,3,3,'Joseph Raul','Joestar Kujo','48691237','Av. Arequipa 123','foto3.jpg','encargado@hotmail.com'),(4,4,4,'Cesar Alex','Ochoa Ramos','13579642','Av. La Republica 123','foto4.jpg','preparador@hotmail.com'),(5,7,1,'Sofia Heidi','Valladares','98475220','Av. Brasil 456','foto7.jpg','admin456@hotmail.com'),(6,8,2,'Carme Rita','Cordoba Leon','15937468','Av. Brasil 123','foto8.jpg','organizador2@hotmail.com'),(7,9,3,'Miguel Luis','Romero Quispe','15937468','Av. Brasil 123','foto9.jpg','encargado2@hotmail.com'),(8,10,4,'Cristof Richard','Armas Claros','15937468','Av. Brasil 123','foto10.jpg','preparador2@hotmail.com');
+INSERT INTO `tb_trabajador` VALUES (1,1,1,'Cristof Richard','Armas Claros','15937468','Av. Brasil 123','foto1.jpg','admin123@hotmail.com'),(2,2,2,'Antonio Pedro','Alvin Vela','35746829','Av. Larco 123','foto2.jpg','organizador@hotmail.com'),(3,3,3,'Joseph Raul','Joestar Kujo','48691237','Av. Arequipa 123','foto3.jpg','encargado@hotmail.com'),(4,4,4,'Cesar Alex','Ochoa Ramos','13579642','Av. La Republica 123','foto4.jpg','preparador@hotmail.com'),(5,7,1,'Sofia Heidi','Valladares','98475220','Av. Brasil 456','foto7.jpg','admin456@hotmail.com'),(6,8,2,'Carme Rita','Cordoba Leon','15937468','Av. Brasil 123','foto8.jpg','organizador2@hotmail.com'),(7,9,3,'Miguel Luis','Romero Quispe','15937468','Av. Brasil 123','foto9.jpg','encargado2@hotmail.com'),(8,10,4,'Cristof Richard','Armas Claros','15937468','Av. Brasil 123','foto10.jpg','preparador2@hotmail.com'),(9,15,5,'Roberto','Morales','43223343','casa','ND','robert@gmail.com'),(10,1,1,'Cristof Richard','Armas Claros','15937468','Av. Brasil 123','fd','admin123@hotmail.com'),(11,1,2,'Cristof Richard','Armas Claros','15937468','Av. Brasil 123','fd','admin123@hotmail.com');
 /*!40000 ALTER TABLE `tb_trabajador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -778,24 +766,24 @@ CREATE TABLE `tb_usuario` (
   `us_int_idtipousu` int(11) DEFAULT NULL,
   `us_vchar_correo` varchar(30) DEFAULT NULL,
   `us_vchar_password` varchar(16) DEFAULT NULL,
-  `us_vchar_foto` varchar(100) DEFAULT NULL,
+  `us_vchar_foto` varchar(1000) DEFAULT NULL,
   `us_vchar_nomusu` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`us_int_idusu`),
   KEY `us_int_idtipousu` (`us_int_idtipousu`),
   CONSTRAINT `tb_usuario_ibfk_1` FOREIGN KEY (`us_int_idtipousu`) REFERENCES `tb_tipousuario` (`tu_int_idtipousu`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_usuario`
 --
--- ORDER BY:  `us_int_idusu`
 
 LOCK TABLES `tb_usuario` WRITE;
 /*!40000 ALTER TABLE `tb_usuario` DISABLE KEYS */;
-INSERT INTO `tb_usuario` VALUES (1,1,'admin123@hotmail.com','123','foto1.jpg','usuario1'),(2,2,'organizador@hotmail.com','456','foto2.jpg','usuario2'),(3,3,'encargado@hotmail.com','789','foto3.jpg','usuario3'),(4,4,'preparador@hotmail.com','321','foto4.jpg','usuario4'),(5,5,'cliente@hotmail.com','654','foto5.jpg','usuario5'),(6,5,'otrocliente@hotmail.com','987','foto6.jpg','usuario6'),(7,1,'admin456@hotmail.com','465','foto7.jpg','usuario7'),(8,2,'organizador2@hotmail.com','364','foto8.jpg','usuario8'),(9,3,'encargado2@hotmail.com','743','foto9.jpg','usuario9'),(10,4,'preparador2@hotmail.com','159','foto10.jpg','usuario10');
+INSERT INTO `tb_usuario` VALUES (1,1,'admin123@hotmail.com','123','ND','usuario1'),(2,2,'organizador@hotmail.com','456','ND','usuario2'),(3,3,'encargado@hotmail.com','789','ND','usuario3'),(4,4,'preparador@hotmail.com','321','ND','usuario4'),(5,5,'cliente@hotmail.com','654','ND','usuario5'),(6,5,'otrocliente@hotmail.com','987','ND','usuario6'),(7,7,'luis@gmail.com','Jao0!***','ND','LuisitoComunica'),(8,2,'organizador2@hotmail.com','364','ND','usuario8'),(9,3,'encargado2@hotmail.com','743','ND','usuario9'),(10,4,'preparador2@hotmail.com','159','ND','usuario10'),(11,7,'clientenuevo@gmail.com','Jao0!***','https://scontent.faqp3-1.fna.fbcdn.net/v/t1.0-9/50690238_2167472833566287_1178421017500975104_n.jpg?_nc_cat=104&_nc_oc=AQlTytacT77r8nCOwJ4YgTEaMIQrHifSSuVv737lyPwZgcNlMXToN966ub2Kf6N5M4nod40gJRobf8fx-G9Xk9eA&_nc_ht=scontent.faqp3-1.fna&oh=da905c3c7fb34cf17f42219cfea939ce&oe=5D7956AE','JhadiraRosales'),(12,7,'abraham@gmail.com','Abrah@m1','https://scontent.faqp3-1.fna.fbcdn.net/v/t1.0-9/10347156_1431401543812805_5428175669653411139_n.jpg?_nc_cat=109&_nc_oc=AQnvwDNw483I2Q7-2CgfQrzZQCKrvokDAcdjLOY1p5hiydhxgL80QhDke8PCNpIO-XzMlZNMZQB9C3kmKs4gpiuR&_nc_ht=scontent.faqp3-1.fna&oh=55c3a101098bec3b64316d10dc2a6275&oe=5DC3152A','abrahamTreh'),(13,1,'antonio@gmail.com','J0sÉ_12t','ND','jose_'),(14,6,'marta@gmail.com','Abrah@m1','ND','martita'),(15,5,'robert@gmail.com','Abrah@m1','ND','robert_');
 /*!40000 ALTER TABLE `tb_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -814,6 +802,8 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -832,6 +822,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 --
 -- Dumping events for database 'bd_catering'
@@ -841,6 +832,7 @@ DELIMITER ;
 -- Dumping routines for database 'bd_catering'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ABASTE_INSERT` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -865,7 +857,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ABAS_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -884,7 +878,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ABAS_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -903,7 +899,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ABAS_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -937,7 +935,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ACCES_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -956,7 +956,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ACC_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -975,7 +977,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ACC_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -999,7 +1003,33 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_ALIM_INSERT` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ALIM_INSERT`(al_int_idalim int ,
+al_vchar_descr varchar(30) ,
+al_int_idtipoalim int ,
+al_dec_precalim decimal(9,2),
+al_int_est int 
+)
+BEGIN
+INSERT INTO TB_ALIMENTO  (al_int_idalim, al_vchar_descr, al_int_idtipoalim,al_dec_precalim,al_int_est)VALUES(al_int_idalim, al_vchar_descr, al_int_idtipoalim,al_dec_precalim,al_int_est);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ALIM_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1018,7 +1048,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ARCHIMEN_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1037,7 +1069,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ARCHIMEN_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1064,7 +1098,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ARCHMEN_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1083,7 +1119,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_AUDITO_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1103,7 +1141,8 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_CATE_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_CATE_INSERT_UPDATE` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1113,61 +1152,123 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CATE_DELETE`(ca_int_idcater int)
-BEGIN
-DELETE FROM TB_CATERING WHERE ca_int_idtrab=ca_int_idtrab;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_CATE_LISTID` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CATE_LISTID`(id int)
-BEGIN
-SELECT * FROM TB_CATERING WHERE ca_int_idcater = id;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_CATE_UPDATE` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CATE_UPDATE`(ca_int_idcater int,
-ca_date_fecha datetime ,
-ca_char_estado char(3) ,
-ca_vchar_lugarcater varchar(300) ,
-ca_char_dniclie char(8) ,
-ca_int_idtrab int 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CATE_INSERT_UPDATE`(
+x_int_idcater	int(11),
+x_date_fecha	datetime,
+x_char_estado	char(3),
+x_vchar_lugarcater	varchar(300),
+x_char_dniclie	char(8),
+x_int_idtrab	int(11),
+x_action varchar(1)
 )
-begin
-update TB_CATERING set
-ca_int_idcater=ca_int_idcater,
-ca_date_fecha=ca_date_fecha,
-ca_char_estado=ca_char_estado,
-ca_vchar_lugarcater=ca_vchar_lugarcater,
-ca_char_dniclie=ca_char_dniclie,
-ca_int_idtrab=ca_int_idtrab
-where ca_int_idtrab=ca_int_idtrab;
-
+BEGIN
+	if x_action = "I" then
+		INSERT INTO tb_catering
+        values
+        (
+        null,
+		x_date_fecha,
+		x_char_estado,
+		x_vchar_lugarcater,
+		x_char_dniclie,
+		x_int_idtrab
+       );
+    elseif x_action = "U" then
+		UPDATE tb_catering
+        set
+			ca_date_fecha = x_date_fecha,
+			ca_char_estado = x_char_estado,
+			ca_vchar_lugarcater = x_vchar_lugarcater,
+			ca_char_dniclie = x_char_dniclie,
+			ca_int_idtrab = x_int_idtrab
+            where 
+            ca_int_idcater= x_int_idcater ;
+    end if;    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_CATE_LIST` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CATE_LIST`(
+x_id int,
+x_tipo varchar(1)
+)
+BEGIN
+	if x_tipo = 'A'
+    then    
+		SELECT 
+		t1.*,
+		concat(t2.tr_vchar_nombre,' ',t2.tr_vchar_apellido) as ca_vchar_encargadonom,
+		concat(t3.cl_vchar_nombre,' ',t3.cl_vchar_apellido) as ca_char_nomclie
+		FROM 
+		tb_catering as t1
+		inner join 
+		tb_trabajador as t2
+		on t1.ca_int_idtrab = t2.tr_int_idtrab
+		inner join tb_cliente as t3
+		on t1.ca_char_dniclie = t3.cl_char_dniclie
+		order by t1.ca_int_idcater;
+	elseif x_tipo = 'F'
+    then
+		SELECT 
+		t1.*,
+		concat(t2.tr_vchar_nombre,' ',t2.tr_vchar_apellido) as ca_vchar_encargadonom,
+		concat(t3.cl_vchar_nombre,' ',t3.cl_vchar_apellido) as ca_char_nomclie
+		FROM 
+		tb_catering as t1
+		inner join 
+		tb_trabajador as t2
+		on t1.ca_int_idtrab = t2.tr_int_idtrab
+		inner join tb_cliente as t3
+		on t1.ca_char_dniclie = t3.cl_char_dniclie
+        where 
+        t1.ca_int_idcater = x_id
+        order by t1.ca_int_idcater;     
+    end if;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_CLIENTE_LIST` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CLIENTE_LIST`(x_id int, x_tipo varchar(1))
+BEGIN
+	if x_tipo = 'A'
+    then    
+		SELECT 
+		* 
+		FROM 
+		TB_CLIENTE
+        order by cl_int_idusu;
+	elseif x_tipo = 'F'
+    then
+		SELECT 
+		* 
+		FROM 
+		TB_CLIENTE
+		WHERE cl_int_idusu = x_id;        
+    end if;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1175,6 +1276,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_CLI_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1194,7 +1296,8 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_CLI_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_CLI_INSERT_UPDATE` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1204,33 +1307,47 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CLI_UPDATE`(
-cl_char_dniclie char(8) ,
-cl_int_idusu int  ,
-cl_vchar_nombre varchar(50) ,
-cl_vchar_apellido varchar(50) ,
-cl_char_sexo char(1) ,
-cl_char_ruc char(11),
-cl_char_fono char(9) ,
-cl_vchar_direc varchar(300) ,
-cl_vchar_foto varchar(100) ,
-cl_vchar_correo varchar(40)
- 
-)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CLI_INSERT_UPDATE`(x_char_dniclie char(8),
+x_int_idusu	int(11),
+x_vchar_nombre varchar(50),
+x_vchar_apellido varchar(50),
+x_char_sexo	char(1),
+x_char_ruc char(11),
+x_char_fono	char(9),
+x_vchar_direc varchar(300),
+x_vchar_foto nvarchar(100),
+x_vchar_correo varchar(40),
+x_action char(1))
 BEGIN
-UPDATE TB_CLIENTE SET
-cl_char_dniclie=cl_char_dniclie,
-cl_int_idusu=cl_int_idusu,
-cl_vchar_nombre=cl_vchar_nombre,
-cl_vchar_apellido=cl_vchar_apellido,
-cl_char_sexo=cl_char_sexo,
-cl_char_ruc=cl_char_ruc,
-cl_char_fono=cl_char_fono,
-cl_vchar_direc=cl_vchar_direc,
-cl_vchar_foto=cl_vchar_foto,
-cl_vchar_correo=cl_vchar_correo
-where cl_char_dniclie=cl_char_dniclie;
-
+	if x_action = "I" then
+		INSERT INTO tb_cliente
+        values
+        (
+        x_char_dniclie,
+		x_int_idusu	,
+		x_vchar_nombre,
+		x_vchar_apellido,
+		x_char_sexo,
+		x_char_ruc,
+		x_char_fono,
+		x_vchar_direc,
+		x_vchar_foto,
+		x_vchar_correo);
+    elseif x_action = "U" then
+		UPDATE tb_cliente
+        set
+			cl_char_dniclie = x_char_dniclie,			
+			cl_vchar_nombre = x_vchar_nombre,
+			cl_vchar_apellido = x_vchar_apellido,
+			cl_char_sexo = x_char_sexo,
+			cl_char_ruc = x_char_ruc,
+			cl_char_fono = x_char_fono,
+			cl_vchar_direc = x_vchar_direc,
+			cl_vchar_foto = x_vchar_foto,
+			cl_vchar_correo = x_vchar_correo
+            where 
+            cl_int_idusu = x_int_idusu;	
+    end if;    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1238,6 +1355,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_CONTRACATER` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1272,7 +1390,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_CONTRACATER_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1291,7 +1411,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_CONTRACAT_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1310,7 +1432,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETABASTE_INSERT` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1335,7 +1459,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETABASTE_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1354,7 +1480,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETABAS_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1373,7 +1501,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETABAS_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1405,7 +1535,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETAINGREALIME_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1424,7 +1556,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETAINGREALIME_INSERT` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1448,7 +1582,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETAINGREALIME_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1478,7 +1614,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETAINGREDALIMEN_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1497,7 +1635,8 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_DETAMENUCATE_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_DETAMENUCATE_INSERT_UPDATE` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1507,16 +1646,53 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DETAMENUCATE_DELETE`(dm_int_iddetmenucater int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DETAMENUCATE_INSERT_UPDATE`(
+x_int_iddetmenucater	int(11),
+x_int_idmenu	int(11),
+x_int_idalim	int(11),
+x_int_cantmenu	int(11),
+x_dec_subto	decimal(9,2),
+x_action varchar(1)
+)
 BEGIN
-DELETE FROM TB_DETALLEMENUCATERING WHERE dm_int_iddetmenucater=dm_int_iddetmenucater;
+	if x_action = "I" then
+		
+        SET @temp_dec_precio_ali = 0;
+        SET @temp_dec_subtot_detali = 0;
+		SELECT al_dec_precalim into @temp_dec_precio_ali FROM tb_alimento WHERE al_int_idalim = al_int_idalim;    
+		SELECT @temp_dec_precio_ali * x_int_cantmenu into @temp_dec_subtot_detali;
+		
+		INSERT INTO tb_detallemenucatering
+        values
+        (
+		x_int_idmenu,
+		x_int_idalim,
+		x_int_cantmenu,
+		@temp_dec_subtot_detali
+       );
+    elseif x_action = "U" then
+				
+		SET @temp_dec_precio_ali = 0;
+        SET @temp_dec_subtot_detali = 0;
+		SELECT al_dec_precalim into @temp_dec_precio_ali FROM tb_alimento WHERE al_int_idalim = al_int_idalim;    
+		SELECT @temp_dec_precio_ali * x_int_cantmenu into @temp_dec_subtot_detali;
+    
+		UPDATE tb_detallemenucatering
+        set
+			dm_int_idmenu  = x_int_idmenu,
+			dm_int_idalim = x_int_idalim,
+			dm_int_cantmenu = x_int_cantmenu,
+            dm_dec_subto = @temp_dec_precio_ali
+            where 
+            dm_int_iddetmenucater = x_int_iddetmenucater;
+    end if;   
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_DETAMENUCATE_INSERT` */;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_DETAMENUCATE_LIST` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1526,48 +1702,44 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DETAMENUCATE_INSERT`(
-dm_int_iddetmenucater int ,
-dm_int_idmenu int ,
-dm_int_idalim int ,
-dm_int_cantmenu int ,
-dm_dec_subto decimal(9,2)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DETAMENUCATE_LIST`(
+x_id_detamenu int,
+x_id_men int,
+x_tipo varchar(3)
 )
 BEGIN
-INSERT INTO TB_DETALLEMENUCATERING  (dm_int_iddetmenucater, dm_int_idmenu, dm_int_idalim,dm_int_cantmenu,dm_dec_subto)VALUES(dm_int_iddetmenucater, dm_int_idmenu, dm_int_idalim,dm_int_cantmenu,dm_dec_subto);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_DETAMENUCATE_UPDATE` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DETAMENUCATE_UPDATE`(
-dm_int_iddetmenucater int ,
-dm_int_idmenu int ,
-dm_int_idalim int ,
-dm_int_cantmenu int ,
-dm_dec_subto decimal(9,2)
-
-)
-BEGIN
-UPDATE TB_DETALLEMENUCATERING SET
-dm_int_iddetmenucater=dm_int_iddetmenucater,
-dm_int_idmenu=dm_int_idmenu,
-dm_int_idalim=dm_int_idalim,
-dm_int_cantmenu=dm_int_cantmenu,
-dm_dec_subto=dm_dec_subto
-
-WHERE dm_int_iddetmenucater=dm_int_iddetmenucater;
+	if x_tipo = 'A'
+    then    
+		SELECT 
+		T1.*, T2.al_vchar_descr 
+		FROM 
+		tb_detallemenucatering as T1
+		inner join 
+		tb_alimento as T2
+		on T1.dm_int_idalim = T2.al_int_idalim;
+	elseif x_tipo = 'FM' -- Find menu details 
+    then
+		SELECT 
+		T1.*, T2.al_vchar_descr 
+		FROM 
+		tb_detallemenucatering as T1
+		inner join 
+		tb_alimento as T2
+		on T1.dm_int_idalim = T2.al_int_idalim
+		WHERE
+		dm_int_idmenu = x_id_men;
+    elseif x_tipo = 'F' -- Find one menu detail
+    then    
+    SELECT 
+		T1.*, T2.al_vchar_descr 
+		FROM 
+		tb_detallemenucatering as T1
+		inner join 
+		tb_alimento as T2
+		on T1.dm_int_idalim = T2.al_int_idalim
+		WHERE
+		dm_int_iddetmenucater = x_id_men;
+    end if;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1575,6 +1747,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETATRABACATE_INSERT` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1597,7 +1770,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETATRABACATE_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1616,7 +1791,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETATRACATE_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1635,7 +1812,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_DETATRACATE_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1662,26 +1841,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_DETMENUCAT_LISTID` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DETMENUCAT_LISTID`(id int)
-BEGIN
-SELECT*FROM TB_DETALLEMENUCATERING  WHERE  dm_int_iddetmenucater = id;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_INGREALIMEN_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1700,7 +1862,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_INGREALIMEN_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1719,7 +1883,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_INGREALIMEN_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1747,7 +1913,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_INGREDALIMENT_INSERT` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1770,7 +1938,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_INSUM_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1789,7 +1959,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_INSUM_INSERT` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1816,7 +1988,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_INSUM_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1848,7 +2022,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_INS_LIS` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1873,7 +2049,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_INS_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1892,7 +2070,8 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_MENCATE_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_MENUCATE_INSERT_UPDATE` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1902,16 +2081,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MENCATE_DELETE`(mc_int_idmenu int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MENUCATE_INSERT_UPDATE`(
+x_int_idmenu	int(11),
+x_int_idcater	int(11),
+x_char_estado	char(3),
+x_dec_prectotalmenu	decimal(9,2),
+x_action varchar(1)
+)
 BEGIN
-DELETE FROM TB_MENUCATERING WHERE mc_int_idmenu=mc_int_idmenu;
+	if x_action = "I" then
+		INSERT INTO tb_menucatering
+        values
+        (
+        null,
+        x_int_idcater,
+        x_char_estado,
+        x_dec_prectotalmenu
+        );
+    elseif x_action = "U" then
+		UPDATE tb_menucatering
+        set
+			mc_int_idcater=x_int_idcater,
+			mc_char_estado=x_char_estado,
+			mc_dec_prectotalmenu=x_dec_prectotalmenu
+            where 
+            mc_int_idmenu=x_int_idmenu;
+    end if;    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_MENCATE_UPDATE` */;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_MENUCATE_LIST` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1921,37 +2123,35 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MENCATE_UPDATE`(
-mc_int_idmenu int ,
-mc_int_idcater int ,
-mc_char_estado char(3) ,
-mc_dec_prectotalmenu decimal(9,2))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MENUCATE_LIST`(
+x_int_idcater int,
+x_int_idmenu int,
+x_tipo varchar(10)
+)
 BEGIN
-UPDATE TB_MENUCATERING SET 
-mc_int_idmenu=mc_int_idmenu,
-mc_int_idcater=mc_int_idcater,
-mc_char_estado=mc_char_estado,
-mc_dec_prectotalmenu=mc_dec_prectotalmenu
-WHERE mc_int_idmenu=mc_int_idmenu;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_MENCAT_LISTID` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MENCAT_LISTID`(id int)
-BEGIN
-SELECT*FROM TB_MENUCATERING WHERE mc_int_idmenu = id;
+	if x_tipo = "A"-- all
+    then
+		SELECT 
+		* 
+		FROM 
+		tb_menucatering;
+	elseif  x_tipo = "F" -- find
+    then
+		SELECT 
+		* 
+		FROM 
+		tb_menucatering
+        WHERE 
+        mc_int_idmenu = x_int_idmenu ;
+	elseif  x_tipo = "FC" -- find menu by catering id
+    then
+		SELECT 
+		* 
+		FROM 
+		tb_menucatering
+        WHERE         
+		mc_int_idcater = x_int_idcater;
+    end if;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1959,6 +2159,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_OBTENER_MONTOPAGAR` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1978,7 +2179,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_OBTENER_PRECIOMENU` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1998,7 +2201,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_OBTENER_SUBTOTAL` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2018,7 +2223,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_PAG_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2037,7 +2244,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_PERSOCARTE_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2056,7 +2265,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_PERSOCARTE_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2082,7 +2293,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_PERSOCATE_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2101,7 +2314,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_PROVE_INSERT` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2123,7 +2338,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_PROVE_LIST` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2147,7 +2364,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_PROVE_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2171,7 +2390,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_PROV_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2190,7 +2411,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_PROV_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2218,7 +2441,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_TIPALIM_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2237,25 +2462,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_TIPOALIMENTO_DELETE` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPOALIMENTO_DELETE`(ta_int_idtipoalim int)
-BEGIN 
-DELETE FROM TB_TIPOALIMENTO WHERE ta_int_idtipoalim=ta_int_idtipoalim;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_TIPOALIMENTO_UPDATE` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2268,13 +2475,15 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPOALIMENTO_UPDATE`(
 ta_int_idtipoalim int ,
-ta_vchar_descr varchar(100) 
+ta_vchar_descr varchar(100) ,
+ta_int_est int
 )
 BEGIN 
 UPDATE TB_TIPOALIMENTO SET
 ta_int_idtipoalim=ta_int_idtipoalim,
-ta_vchar_descr=ta_vchar_descr
+ta_vchar_descr=ta_vchar_descr,ta_int_est=ta_int_est
 WHERE ta_int_idtipoalim=ta_int_idtipoalim;
+
 
 END ;;
 DELIMITER ;
@@ -2294,11 +2503,12 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPOALIM_INSERT`(
 ta_int_idtipoalim int ,
-ta_vchar_descr varchar(100) 
+ta_vchar_descr varchar(100) ,
+ta_int_est int
 )
 BEGIN
-INSERT INTO TB_TIPOALIMENTO (ta_int_idtipoalim,ta_vchar_descr)values 
-(ta_int_idtipoalim,ta_vchar_descr);
+INSERT INTO TB_TIPOALIMENTO (ta_int_idtipoalim,ta_vchar_descr,ta_int_est)values 
+(ta_int_idtipoalim,ta_vchar_descr,ta_int_est);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2306,6 +2516,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_TIPOPA_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2324,7 +2535,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_TIPOPA_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2350,7 +2563,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_TIPPAGO_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2369,7 +2584,8 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_TIPTRAB_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_TIPTRABA_INSERT_UPDATE` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2379,41 +2595,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPTRAB_DELETE`(tt_int_idtipotrab int)
-BEGIN
-DELETE FROM TB_TIPOTRABAJADOR WHERE tt_int_idtipotrab=tt_int_idtipotrab;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_TIPTRAB_UPDATE` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPTRAB_UPDATE`(
-tt_int_idtipotrab int ,
-tt_vchar_descr varchar(100) 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPTRABA_INSERT_UPDATE`(
+x_int_idtipotrab	int(11),
+x_vchar_descr	varchar(100),
+x_action varchar(10)
 )
 BEGIN
-UPDATE TB_TIPOTRABAJADOR SET
-tt_int_idtipotrab=tt_int_idtipotrab,
-tt_vchar_descr=tt_vchar_descr
-WHERE tt_int_idtipotrab=tt_int_idtipotrab;
+	if x_action = "I"
+    then
+		INSERT INTO
+        TB_TIPOTRABAJADOR VALUES
+		(NULL,
+		x_vchar_descr);
+	elseif x_action = "U"
+	then	
+		UPDATE TB_TIPOTRABAJADOR SET
+		tt_vchar_descr=x_vchar_descr		
+		WHERE tt_int_idtipotrab=x_int_idtipotrab;
+    end if ;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_TIPTRA_LISTID` */;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_TIPTRABA_LIST` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2423,9 +2629,22 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPTRA_LISTID`(id int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPTRABA_LIST`(x_id int, x_tipo varchar(1))
 BEGIN
-SELECT*FROM TB_TIPOTRABAJADOR WHERE tt_int_idtipotrab = id;
+	if x_tipo = 'A'
+    then   
+		SELECT 
+			tt_int_idtipotrab,
+            tt_vchar_descr
+		FROM tb_tipotrabajador;
+    elseif x_tipo = 'F'
+    then
+		SELECT 
+			tt_int_idtipotrab,
+            tt_vchar_descr
+		FROM tb_tipotrabajador
+        WHERE tt_int_idtipotrab = x_id;			
+    end if;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2433,6 +2652,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_TIPUSU_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2451,7 +2671,8 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_TIPUSU_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_TIPUSU_INSERT_UPDATE` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2461,16 +2682,79 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPUSU_LISTID`(id int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPUSU_INSERT_UPDATE`(
+x_int_idtipousu int ,
+x_vchar_descr varchar(100) ,
+x_char_estado char(3) ,	
+x_action varchar(10)
+)
 BEGIN
-SELECT * FROM TB_TIPOUSUARIO WHERE tu_int_idtipousu  = id;
+	if x_action = "I"
+    then
+		INSERT INTO
+        TB_TIPOUSUARIO VALUES
+		(NULL,
+        x_int_idtipousu,
+		X_vchar_descr,
+		X_char_estado);
+	elseif x_action = "U"
+	then	
+		UPDATE TB_TIPOUSUARIO SET
+		tu_int_idtipousu=x_int_idtipousu,
+		tu_vchar_descr=x_vchar_descr,
+		tu_char_estado=x_char_estado
+		WHERE tu_int_idtipousu=x_int_idtipousu;
+    end if ;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_TIPUSU_LIST` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPUSU_LIST`(x_id int,x_tipo varchar(10))
+BEGIN
+	if x_tipo = "A"-- all
+    then
+		SELECT 
+		* 
+		FROM 
+		TB_TIPOUSUARIO;
+	elseif  x_tipo = "F" -- find
+    then
+		SELECT 
+		* 
+		FROM 
+		TB_TIPOUSUARIO 
+        WHERE tu_int_idtipousu  = x_id;
+    elseif x_tipo = "AS" -- active state
+	then
+		SELECT 
+		* 
+		FROM 
+		TB_TIPOUSUARIO 
+        WHERE tu_char_estado = 'ACT';
+    end if;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_TIPUSU_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2497,7 +2781,8 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_TRABA_DELETE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_TRABAJ_INSERT_UPDATE` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2507,16 +2792,52 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TRABA_DELETE`(tr_int_idtrab int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TRABAJ_INSERT_UPDATE`(
+x_int_idtrab	int(11),
+x_int_idusu	int(11),
+x_int_idtipotrab	int(11),
+x_vchar_nombre	varchar(50),
+x_vchar_apellido	varchar(50),
+x_char_dni	char(8),
+x_vchar_direc	varchar(100),
+x_vchar_foto	varchar(100),
+x_vchar_correo	varchar(40),
+x_action varchar(10)
+)
 BEGIN
-DELETE FROM TB_TRABAJADOR WHERE  tr_int_idtrab=tr_int_idtrab;
+	if x_action = "I"
+    then
+		INSERT INTO
+        tb_trabajador VALUES
+		(NULL,
+		x_int_idusu,
+		x_int_idtipotrab,
+		x_vchar_nombre,
+		x_vchar_apellido,
+		x_char_dni,
+		x_vchar_direc,
+		x_vchar_foto,
+		x_vchar_correo);
+	elseif x_action = "U"
+	then	
+		UPDATE tb_trabajador SET		
+		tr_int_idusu = x_int_idusu,
+		tr_int_idtipotrab = x_int_idtipotrab,
+		tr_vchar_nombre = x_vchar_nombre,
+		tr_vchar_apellido = x_vchar_apellido,
+		tr_char_dni = x_char_dni,
+		tr_vchar_direc = x_vchar_direc,
+		tr_vchar_foto = x_vchar_foto,
+		tr_vchar_correo = x_vchar_correo
+		WHERE tu_int_idtipousu=x_int_idtipousu;
+    end if ;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_TRABA_UPDATE` */;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_TRABAJ_LIST` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2526,29 +2847,95 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TRABA_UPDATE`(
-tr_int_idtrab int ,
-tr_int_idusu int ,
-tr_int_idtipotrab int ,
-tr_vchar_nombre varchar(50) ,
-tr_vchar_apellido varchar(50) ,
-tr_char_dni char(8) ,
-tr_vchar_direc varchar(100) ,
-tr_vchar_foto varchar(100) ,
-tr_vchar_correo varchar(40) 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TRABAJ_LIST`(
+x_id int,
+x_tipo varchar(10)
 )
 BEGIN
-UPDATE  TB_TRABAJADOR SET
-tr_int_idtrab=tr_int_idtrab,
-tr_int_idusu=tr_int_idusu,
-tr_int_idtipotrab=tr_int_idtipotrab,
-tr_vchar_nombre=tr_vchar_nombre,
-tr_vchar_apellido=tr_vchar_apellido,
-tr_char_dni=tr_char_dni,
-tr_vchar_direc=tr_vchar_direc,
-tr_vchar_foto=tr_vchar_foto,
-tr_vchar_correo=tr_vchar_correo
-WHERE  tr_int_idtrab=tr_int_idtrab;
+	if x_tipo = "A"-- all
+    then
+		SELECT 
+		T1.*,
+		T2.tt_vchar_descr,
+		T3.us_vchar_nomusu
+		FROM tb_trabajador AS T1
+		inner join 
+		tb_tipotrabajador as T2
+		on T1.tr_int_idtipotrab = T2.tt_int_idtipotrab
+		inner join tb_usuario as T3
+		on T3.us_int_idusu = T1.tr_int_idusu
+		order by 
+		t1.tr_int_idtrab;
+	elseif  x_tipo = "F" -- find
+    then
+		SELECT 
+		T1.*,
+		T2.tt_vchar_descr,
+		T3.us_vchar_nomusu
+		FROM tb_trabajador AS T1
+		inner join 
+		tb_tipotrabajador as T2
+		on T1.tr_int_idtipotrab = T2.tt_int_idtipotrab
+		inner join tb_usuario as T3
+		on T3.us_int_idusu = T1.tr_int_idusu		
+        where t1.tr_int_idtrab = x_id
+        order by 
+		t1.tr_int_idtrab; 
+    end if;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_USU_INSERT_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_USU_INSERT_UPDATE`(
+x_int_idusu	int,
+x_int_idtipousu	int,
+x_vchar_correo	varchar(30),
+x_vchar_password	varchar(16),
+x_vchar_foto	varchar(100),
+x_vchar_nomusu	varchar(50),
+x_action char(1)
+)
+BEGIN
+	if x_action  = 'I'
+	then
+			INSERT INTO 
+			TB_USUARIO
+			VALUES(
+            null,
+            x_int_idtipousu,
+			x_vchar_correo	,
+			x_vchar_password,
+			x_vchar_foto	,
+			x_vchar_nomusu);
+	elseif x_action = 'U'
+	then
+			UPDATE 
+            TB_USUARIO
+            SET
+			us_int_idtipousu	= x_int_idtipousu,
+			us_vchar_correo		= x_vchar_correo,
+			us_vchar_password	= x_vchar_password,
+			us_vchar_foto		= x_vchar_foto,
+			us_vchar_nomusu		= x_vchar_nomusu			
+            where 
+             us_int_idusu		= x_int_idusu;
+		
+	end if;
+    
+
 
 END ;;
 DELIMITER ;
@@ -2556,7 +2943,8 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_TRA_LISTID` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_USU_LIST` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2566,47 +2954,33 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TRA_LISTID`(id int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_USU_LIST`(x_id int, x_tipo varchar(1))
 BEGIN
-SELECT*FROM TB_TRABAJADOR WHERE tr_int_idtrab  = id;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_USU_DELETE` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_USU_DELETE`(us_int_idusu int)
-BEGIN
-DELETE FROM TB_USUARIO WHERE us_int_idusu=us_int_idusu;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SP_USU_LISTID` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_USU_LISTID`(id int)
-BEGIN
-SELECT * FROM TB_USUARIO WHERE us_int_idusu = id;
+	if x_tipo = 'A'
+    then   
+		SELECT 
+			t1.*,
+			t2.tu_vchar_descr 
+			FROM 
+			TB_USUARIO as t1
+			inner join 
+			tb_tipousuario as t2
+			on 
+			t1.us_int_idtipousu = t2.tu_int_idtipousu 
+            order by t1.us_int_idusu;
+    elseif x_tipo = 'F'
+    then
+		SELECT 
+			t1.*,
+			t2.tu_vchar_descr 
+			FROM 
+			TB_USUARIO as t1
+			inner join 
+			tb_tipousuario as t2
+			on 
+			t1.us_int_idtipousu = t2.tu_int_idtipousu 
+            where t1.us_int_idusu = x_id;			
+    end if;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2614,6 +2988,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_USU_LOGIN` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2632,7 +3007,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_USU_MENACCCAB` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2666,7 +3043,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_USU_MENUACCES` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2700,7 +3079,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_USU_UPDATE` */;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2728,6 +3109,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `bd_catering` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -2738,4 +3120,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-11  0:56:42
+-- Dump completed on 2019-07-03  4:37:01

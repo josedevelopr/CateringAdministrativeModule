@@ -91,7 +91,9 @@
     <Compile Include="Cliente_DAL.cs" />
     <Compile Include="Conexioncs.cs" />
     <Compile Include="DetalleCatering.cs" />
+    <Compile Include="DetalleMenuCatering.cs" />
     <Compile Include="Insumo_DAL.cs" />
+    <Compile Include="MenuCatering_DAL.cs" />
     <Compile Include="MenuNavegacion_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor_DAL.cs" />
