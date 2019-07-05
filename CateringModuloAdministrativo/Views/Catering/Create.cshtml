@@ -1,0 +1,372 @@
+﻿@model Dominio.Core.Entities.Catering
+
+@{
+    ViewBag.Title = "Nuevo catering";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+<!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+<div class="card" id="catering-section">
+    <div class="card-header">Clientes</div>
+    <div class="card-body">
+        <div class="card-title">
+            <h3 class="text-center title-2">@ViewBag.Title</h3>
+        </div>
+
+        <div class="form-horizontal">
+            <h4>Catering</h4>
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ca_date_fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" />
+                    @Html.ValidationMessageFor(model => model.ca_date_fecha, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ca_vchar_lugarcater, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ca_vchar_lugarcater, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ca_vchar_lugarcater, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ca_char_dniclie, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="hidden" name="ca_char_dniclie" id="ca_char_dniclie" />
+                    <input type="text" name="ca_char_dniclie_des" id="ca_char_dniclie_des" readonly />
+                    <br />
+                    <div class="col-md-2">
+                        <a id="btnClientes" href="#" class="btn  btn-sm btn-success" data-toggle="modal" data-target="#ClienteModal">Clientes</a>
+                    </div>
+                    <br />
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ca_int_idtrab, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="hidden" name="ca_char_dniclie" id="ca_char_dniclie" />
+                        <input type="text" name="ca_char_dniclie_des" id="ca_char_dniclie_des" readonly />
+                        <br />
+                        <div class="col-md-2">
+                            <a id="btnTrabajadores" href="#" class="btn  btn-sm btn-success" data-toggle="modal" data-target="#TrabajadorModal">Trabajador Encargardo</a>
+                        </div>
+                        <br />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @*<input type="submit" value="Create" class="btn btn-default" />*@
+                            <button class="btn btn-primary" id="btnCrearCatering">Crear Catering</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card d-none" id="menu-catering">
+            <div class="card-header">Clientes</div>
+            <div class="card-body">
+                <div class="card-title">
+                    <h3 class="text-center title-2">Menu catering</h3>
+                </div>
+
+                <div class="form-horizontal">
+                    <h4>Menu</h4>
+                    <br />
+
+                    <div class="row">
+                        <div class="col-11">
+                            Catering codigo: <span>0001</span>
+                        </div>
+                        <div class="col-1">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#UsuarioDetalleMenuCatering">+</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div id="detail-section">
+                        <table class="table table-data2 table-responsive">
+
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Id
+                                    </th>
+                                    <th></th>
+                                    <th>
+                                        Comida
+                                    </th>
+                                    <th></th>
+                                    <th>
+                                        Cantidad
+                                    </th>
+                                    <th></th>
+                                    <th>
+                                        Sub total
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        1
+                                    </td>
+                                    <th></th>
+                                    <td>
+                                        Salchipapas
+                                    </td>
+                                    <th></th>
+                                    <td>
+                                        10
+                                    </td>
+                                    <th></th>
+                                    <td>
+                                        20.50
+                                    </td>
+                                    <th></th>
+                                    <td>
+                                        <div class="table-data-feature">
+                                            <a class="item" data-toggle="tooltip" data-placement="top" title="Editar" href="#">
+                                                <i class="zmdi zmdi-edit"></i>
+                                            </a>
+                                            <a class="item" data-toggle="tooltip" data-placement="top" title="Detalles" href="#">
+                                                <i class="zmdi zmdi-delete"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+
+
+                </div>
+
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .modal-backdrop {
+        z-index: 1040 !important;
+    }
+
+    .modal-backdrop {
+        /* bug fix - no overlay */
+        display: none;
+    }
+
+    .modal {
+        text-align: center;
+        padding: 0 !important;
+    }
+
+        .modal:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+        }
+
+    .modal-dialog {
+        width: 500px;
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .scrollable {
+        height: 100px;
+        overflow-y: scroll;
+    }
+</style>
+
+<!-- Modal Detalle Menu Catering-->
+<div class="modal fade" id="UsuarioDetalleMenuCatering" tabindex="-1" role="dialog" aria-labelledby="UsuarioDetalleMenuCatering" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalle Menu Catering</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scrollable" style='overflow:auto;height:200px;'>
+                <div class="" style=" width:100%; height:auto;">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Seleccione un alimento</label>
+                        <select multiple class="form-control" id="slctUSuario">
+                            @*@{ List<Dominio.Core.Entities.Usuario> lstUsuario = new List<Dominio.Core.Entities.Usuario>();
+                                    lstUsuario = (List<Dominio.Core.Entities.Usuario>)ViewBag.ListaUsuario;}
+                                @foreach (var Usuario in lstUsuario)
+                                {
+                                    <option value="@Usuario.us_int_idusu">
+
+                                        @Usuario.us_vchar_nomusu
+                                    </option>
+                                }*@
+                            <option>Alimento1</option>
+                            <option>Alimento1</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Cantidad</label>
+                        <input type="text" name="name" value="" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Sub total</label>
+                        <h3>23.50</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarUsuario" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnElegirUsuario">Elegir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Cliente-->
+<div class="modal fade" id="ClienteModal" tabindex="-1" role="dialog" aria-labelledby="ClienteModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scrollable" style='overflow:auto;height:200px;'>
+                <div class="" style=" width:100%; height:auto;">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Seleccione un Cliente</label>
+                        <select multiple class="form-control" id="slctUSuario">
+                            @*@{ List<Dominio.Core.Entities.Usuario> lstUsuario = new List<Dominio.Core.Entities.Usuario>();
+                                    lstUsuario = (List<Dominio.Core.Entities.Usuario>)ViewBag.ListaUsuario;}
+                                @foreach (var Usuario in lstUsuario)
+                                {
+                                    <option value="@Usuario.us_int_idusu">
+
+                                        @Usuario.us_vchar_nomusu
+                                    </option>
+                                }*@
+                            <option>Cliente1</option>
+                            <option>Cliente2</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarUsuario" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnElegirUsuario">Elegir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Cliente-->
+<div class="modal fade" id="TrabajadorModal" tabindex="-1" role="dialog" aria-labelledby="TrabajadorModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Trabajador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scrollable" style='overflow:auto;height:200px;'>
+                <div class="" style=" width:100%; height:auto;">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Seleccione un Trabajador</label>
+                        <select multiple class="form-control" id="slctUSuario">
+                            @*@{ List<Dominio.Core.Entities.Usuario> lstUsuario = new List<Dominio.Core.Entities.Usuario>();
+                                    lstUsuario = (List<Dominio.Core.Entities.Usuario>)ViewBag.ListaUsuario;}
+                                @foreach (var Usuario in lstUsuario)
+                                {
+                                    <option value="@Usuario.us_int_idusu">
+
+                                        @Usuario.us_vchar_nomusu
+                                    </option>
+                                }*@
+                            <option>Cliente1</option>
+                            <option>Cliente2</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarUsuario" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnElegirUsuario">Elegir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
+    })
+</script>
+
+<script>
+
+
+
+    var btnUsuarios = document.getElementById("btnUsuarios");
+    var slctUSuario = document.getElementById("slctUSuario");
+    var txtidusu = document.getElementById("cl_int_idusu");
+    var txtidusu_des = document.getElementById("cl_int_idusu_des");
+    var btnElegirUsuario = document.getElementById("btnElegirUsuario");
+    var usuarioSeleccionado = "";
+
+    btnUsuarios.addEventListener("click", function (e) {
+        e.preventDefault();
+    });
+
+    slctUSuario.addEventListener("change", function (e) {
+        var usuarioSeleccionadoValue = this.value;
+        usuarioSeleccionado = this.options[this.selectedIndex].text;
+        txtidusu.value = usuarioSeleccionadoValue;
+
+
+    });
+    btnElegirUsuario.addEventListener("click", function (index) {
+        txtidusu_des.value = usuarioSeleccionado;
+        document.getElementById("btnCerrarUsuario").click();
+    });
+
+</script>
