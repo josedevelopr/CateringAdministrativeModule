@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Dominio.Core.Entities.DetalleMenuCatering>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dm_int_iddetmenucater)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dm_int_idmenu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dm_int_idalim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dm_int_cantmenu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dm_dec_subto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.al_vchar_descr)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.dm_int_iddetmenucater)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dm_int_idmenu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dm_int_idalim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dm_int_cantmenu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dm_dec_subto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.al_vchar_descr)
+            </td>
+            <td>
+                <div class="table-data-feature">
+                    <a class="item" data-toggle="tooltip" data-placement="top" title="Editar" onclick="editarMenuDetalleCatering(@item.dm_int_iddetmenucater)">
+                        <i class="zmdi zmdi-edit"></i>
+                    </a>
+                    <a class="item" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="eliminarMenuDetalleCatering(@item.dm_int_iddetmenucater)">
+                        <i class="zmdi zmdi-delete"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -12,6 +12,10 @@ namespace Dominio.Core.MainModule
     {
         private Catering_DAL objCatering_DAL = new Catering_DAL();
 
+        public List<Alimento> listar_alimento()
+        {
+            return objCatering_DAL.listar_alimento();
+        }
         public List<Catering> listar_catering()
         {
             return objCatering_DAL.listar_catering();
@@ -22,9 +26,10 @@ namespace Dominio.Core.MainModule
             return objCatering_DAL.lista_x_id_catering(id);
         }
 
-        public int insertar_or_actualizar_trabajador(Trabajador objTrabajador, string action)
+
+        public int insertar_or_actualizar_catering(Catering objCatering, string action)
         {
-            return objCatering_DAL.insertar_or_actualizar_trabajador(objTrabajador, action);
+            return objCatering_DAL.insertar_or_actualizar_catering(objCatering,action);
         }
     }
 }

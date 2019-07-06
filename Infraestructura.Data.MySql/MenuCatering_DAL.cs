@@ -142,6 +142,49 @@ namespace Infraestructura.Data.MySql
             return objMenuCatering;
         }
 
+        public MenuCatering lista_ultimo_menucatering()
+        {
+            MenuCatering objMenuCatering = null;
+
+            cn = cnx.conectar();
+            cn.Open();
+
+            MySqlCommand cmd = new MySqlCommand("SP_MENUCATE_LIST", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("x_int_idcater", DbType.Int32).Value = 0;
+            cmd.Parameters.Add("x_int_idmenu", DbType.Int32).Value = 0;
+            cmd.Parameters.Add("x_tipo", DbType.String).Value = "LM";
+
+            MySqlDataReader dr = cmd.ExecuteReader();
+
+            try
+            {
+                while (dr.Read())
+                {
+                    objMenuCatering = new MenuCatering()
+                    {
+                        
+                        mc_int_idmenu = dr.GetInt32(0),
+                        mc_int_idcater = dr.GetInt32(1),
+                        mc_char_estado = dr.GetString(2),
+                        mc_dec_prectotalmenu = Double.Parse(dr.GetDecimal(3).ToString())
+                    };
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception source", e.Source);
+            }
+            finally
+            {
+                dr.Close();
+                cn.Close();
+            }
+
+            return objMenuCatering;
+        }
+
         public int insertar_or_actualizar_menucatering (MenuCatering objMenuCatering, string action)
         {
             int resultado = -1;

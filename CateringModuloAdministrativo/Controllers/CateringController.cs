@@ -11,7 +11,7 @@ namespace CateringModuloAdministrativo.Controllers
     public class CateringController : Controller
     {
         private Catering_Manager objCateringManager = new Catering_Manager();
-        private DetalleMenuCatering_Manager objDetalleMenuCatering = new DetalleMenuCatering_Manager();
+        private DetalleMenuCatering_Manager objDetalleMenuCateringManager = new DetalleMenuCatering_Manager();
         private MenuCatering_Manager objMenuCateringManager = new MenuCatering_Manager();
         private Cliente_Manager objClienteManager = new Cliente_Manager();
         private Trabajador_Manager objTrabajadorManager = new Trabajador_Manager();
@@ -33,6 +33,10 @@ namespace CateringModuloAdministrativo.Controllers
             lstCliente = objClienteManager.listar_cliente();
             ViewBag.ListaCliente = lstCliente;
 
+            List<Alimento> lstAlimento = new List<Alimento>();
+            lstAlimento = objCateringManager.listar_alimento();
+            ViewBag.ListaAlimento = lstAlimento;
+
             return View();
         }
 
@@ -43,12 +47,18 @@ namespace CateringModuloAdministrativo.Controllers
             return View(lstCatering);
         }
 
-        [HttpPost]
-        public JsonResult Insertar_Catering(Catering objCatering)
+        public ActionResult listarDetalleMenuCatering()
         {
-            String mensaje = "";
+            List<Catering> lstCatering = new List<Catering>();
+            lstCatering = objCateringManager.listar_catering();
+            return View(lstCatering);
+        }
 
-            return Json(mensaje);
+        public PartialViewResult MenuDetalleCatering(int idMenu)
+        {
+            List<DetalleMenuCatering> lstDetalleMenuCatering = new List<DetalleMenuCatering>();
+            lstDetalleMenuCatering = objDetalleMenuCateringManager.listaDetalleMenuCatering_x_idmenu(idMenu);
+            return PartialView("_DetalleMenuCatering", lstDetalleMenuCatering);
         }
 
         // GET: Catering/Edit/5
@@ -58,17 +68,76 @@ namespace CateringModuloAdministrativo.Controllers
         }
 
         [HttpPost]
-        public JsonResult Insertar_Detalle(DetalleMenuCatering objMenuCatering)
+        public JsonResult Insertar_Catering(Catering objCatering)
         {
-            String mensaje = "";
+            int resultado = -1;
+            try
+            {
+                objCatering.ca_char_estado = "NCF";//No confirmado
+                resultado = objCateringManager.insertar_or_actualizar_catering(objCatering, "I");
+                if (resultado == 1)
+                {
+                    MenuCatering obj = new MenuCatering();
+                    int resultado2 = -1;
+                    resultado2 = objMenuCateringManager.insertar_or_actualizar_menucatering(obj, "I");
 
-            return Json(mensaje);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception source", e.Source);
+            }
+
+            return Json(resultado);
         }
 
-       
+        [HttpPost]
+        public JsonResult Insertar_Detalle(DetalleMenuCatering objDetalleMenuCatering)
+        {
+            int resultado = -1;
+            try
+            {
+                resultado = objDetalleMenuCateringManager.insertar_or_actualizar_menucatering(objDetalleMenuCatering,"I");               
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception source", e.Source);
+            }
 
 
+            return Json(resultado);
+        }
 
+        [HttpPost]
+        public JsonResult obtenerAlimento(int idAlimento)
+        {
+
+            List<Alimento> lstAlimento = new List<Alimento>();
+            lstAlimento = objCateringManager.listar_alimento();
+
+            Alimento objAlimento = new Alimento();
+            objAlimento = lstAlimento.Where(x=>x.al_int_idalim == idAlimento).First();
+            var precio = objAlimento.al_dec_precalim;
+            return Json(precio);
+        }
+
+        [HttpPost]
+        public JsonResult obtenerMenuDetalleCatering(int idMenuDetalleCatering)
+        {
+            DetalleMenuCatering obj = new DetalleMenuCatering();
+            obj = objDetalleMenuCateringManager.listaDetalleMenuCatering_x_id(idMenuDetalleCatering);
+            return Json(obj);
+        }
+
+        [HttpPost]
+        public JsonResult eliminarMenuDetalleCatering(int idMenuDetalleCatering)
+        {
+            var respuesta = -1;
+
+            respuesta = objDetalleMenuCateringManager.eliminar_menuDetalleCatering(idMenuDetalleCatering);
+
+            return Json(respuesta);
+        }
 
 
 
@@ -107,7 +176,7 @@ namespace CateringModuloAdministrativo.Controllers
         //    }
         //}
 
-       
+
 
         //// POST: Catering/Edit/5
         //[HttpPost]

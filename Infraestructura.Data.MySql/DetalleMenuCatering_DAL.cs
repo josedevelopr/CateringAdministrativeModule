@@ -71,8 +71,8 @@ namespace Infraestructura.Data.MySql
             MySqlCommand cmd = new MySqlCommand("SP_DETAMENUCATE_LIST", cn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("x_id_detamenu", DbType.Int32).Value = id_men;
-            cmd.Parameters.Add("x_id_men", DbType.Int32).Value = 0;
+            cmd.Parameters.Add("x_id_detamenu", DbType.Int32).Value = 0;
+            cmd.Parameters.Add("x_id_men", DbType.Int32).Value = id_men;
             cmd.Parameters.Add("x_tipo", DbType.String).Value = "FM";
 
             MySqlDataReader dr = cmd.ExecuteReader();
@@ -87,7 +87,7 @@ namespace Infraestructura.Data.MySql
                         dm_int_idmenu = dr.GetInt32(1),
                         dm_int_idalim = dr.GetInt32(2),
                         dm_int_cantmenu = dr.GetInt32(3),
-                        dm_dec_subto = dr.GetDouble(4),
+                        dm_dec_subto = Double.Parse(dr.GetDecimal(4).ToString()),
                         al_vchar_descr = dr.GetString(5)
 
                     };
@@ -152,6 +152,33 @@ namespace Infraestructura.Data.MySql
             }
 
             return objDetalleMenuCatering;
+        }
+
+        public int eliminar_menuDetalleCatering(int idMenuDetalleCatering)
+        {
+            int resultado = -1;
+            cn = cnx.conectar();
+            cn.Open();
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SP_DETAMENUCATE_DELETE", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("x_idDetalle", DbType.Int32).Value = idMenuDetalleCatering;
+
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception source", e.Source);
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+            return resultado;
         }
 
         public int insertar_or_actualizar_menucatering(DetalleMenuCatering objDetalleMenuCatering, string action)

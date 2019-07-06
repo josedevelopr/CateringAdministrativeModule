@@ -1,14 +1,9 @@
 ﻿@model Dominio.Core.Entities.Catering
-
+@using Dominio.Core.MainModule;
 @{
     ViewBag.Title = "Nuevo catering";
     Layout = "~/Views/Shared/_principalSharedView.cshtml";
 }
-<!--  jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 <div class="card" id="catering-section">
     <div class="card-header">Clientes</div>
@@ -24,7 +19,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ca_date_fecha, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" />
+                    <input class="form-control" id="ca_date_fecha" name="ca_date_fecha" placeholder="MM/DD/YYY" type="text" />
                     @Html.ValidationMessageFor(model => model.ca_date_fecha, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -42,6 +37,7 @@
                 <div class="col-md-10">
                     <input type="hidden" name="ca_char_dniclie" id="ca_char_dniclie" />
                     <input type="text" name="ca_char_dniclie_des" id="ca_char_dniclie_des" readonly />
+                    @Html.ValidationMessageFor(model => model.ca_char_dniclie, "", new { @class = "text-danger" })
                     <br />
                     <div class="col-md-2">
                         <a id="btnClientes" href="#" class="btn  btn-sm btn-success" data-toggle="modal" data-target="#ClienteModal">Clientes</a>
@@ -52,8 +48,9 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ca_int_idtrab, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input type="hidden" name="ca_char_dniclie" id="ca_char_dniclie" />
-                        <input type="text" name="ca_char_dniclie_des" id="ca_char_dniclie_des" readonly />
+                        <input type="hidden" name="ca_int_idtrab" id="ca_int_idtrab" />
+                        <input type="text" name="ca_int_idtrab_des" id="ca_int_idtrab_des" readonly />
+                        @Html.ValidationMessageFor(model => model.ca_int_idtrab, "", new { @class = "text-danger" })
                         <br />
                         <div class="col-md-2">
                             <a id="btnTrabajadores" href="#" class="btn  btn-sm btn-success" data-toggle="modal" data-target="#TrabajadorModal">Trabajador Encargardo</a>
@@ -70,94 +67,59 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="card d-none" id="menu-catering">
-            <div class="card-header">Clientes</div>
-            <div class="card-body">
-                <div class="card-title">
-                    <h3 class="text-center title-2">Menu catering</h3>
-                </div>
-
-                <div class="form-horizontal">
-                    <h4>Menu</h4>
-                    <br />
-
-                    <div class="row">
-                        <div class="col-11">
-                            Catering codigo: <span>0001</span>
-                        </div>
-                        <div class="col-1">
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#UsuarioDetalleMenuCatering">+</button>
-                        </div>
-                    </div>
-                    <br />
-                    <div id="detail-section">
-                        <table class="table table-data2 table-responsive">
-
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Id
-                                    </th>
-                                    <th></th>
-                                    <th>
-                                        Comida
-                                    </th>
-                                    <th></th>
-                                    <th>
-                                        Cantidad
-                                    </th>
-                                    <th></th>
-                                    <th>
-                                        Sub total
-                                    </th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        1
-                                    </td>
-                                    <th></th>
-                                    <td>
-                                        Salchipapas
-                                    </td>
-                                    <th></th>
-                                    <td>
-                                        10
-                                    </td>
-                                    <th></th>
-                                    <td>
-                                        20.50
-                                    </td>
-                                    <th></th>
-                                    <td>
-                                        <div class="table-data-feature">
-                                            <a class="item" data-toggle="tooltip" data-placement="top" title="Editar" href="#">
-                                                <i class="zmdi zmdi-edit"></i>
-                                            </a>
-                                            <a class="item" data-toggle="tooltip" data-placement="top" title="Detalles" href="#">
-                                                <i class="zmdi zmdi-delete"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br />
-
-
-                </div>
-
-            </div>
+<div class="card d-none" id="menucatering-section">
+    <div class="card-header">Clientes</div>
+    <div class="card-body">
+        <div class="card-title">
+            <h3 class="text-center title-2">Menu catering</h3>
         </div>
-        <div>
-            @Html.ActionLink("Back to List", "Index")
+
+        <div class="form-horizontal">
+            <h4>Menu</h4>
+            <br />
+
+            <div class="row">
+                <div class="col-11">
+                    @{
+
+                        Dominio.Core.Entities.MenuCatering objMC = new Dominio.Core.Entities.MenuCatering();
+
+                        MenuCatering_Manager objMenuCateringManager = new MenuCatering_Manager();
+
+                        objMC = objMenuCateringManager.lista_ultimo_menucatering();                       
+
+                        if (objMC != null)
+                        {
+                            Dominio.Core.Entities.MenuCatering objMenuCatering = new Dominio.Core.Entities.MenuCatering();
+                            objMenuCatering = objMC;
+                            var idACtual = objMC.mc_int_idmenu + 1;
+
+                            <p>Catering codigo: <span>@idACtual </span></p>
+                            <input id="dm_int_idmenu" name="dm_int_idmenu" type="text" hidden value="@objMenuCatering.mc_int_idcater"/>
+                        }
+                    }
+
+                </div>
+                <div class="col-1">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#UsuarioDetalleMenuCatering">+</button>
+                </div>
+            </div>
+            <br />
+            <div id="detail-section">
+                
+            </div>
         </div>
     </div>
 </div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+    </div>
+
 
 
 <style>
@@ -210,34 +172,34 @@
                 <div class="" style=" width:100%; height:auto;">
                     <div class="form-group">
                         <label for="exampleFormControlSelect2">Seleccione un alimento</label>
-                        <select multiple class="form-control" id="slctUSuario">
-                            @*@{ List<Dominio.Core.Entities.Usuario> lstUsuario = new List<Dominio.Core.Entities.Usuario>();
-                                    lstUsuario = (List<Dominio.Core.Entities.Usuario>)ViewBag.ListaUsuario;}
-                                @foreach (var Usuario in lstUsuario)
-                                {
-                                    <option value="@Usuario.us_int_idusu">
-
-                                        @Usuario.us_vchar_nomusu
-                                    </option>
-                                }*@
-                            <option>Alimento1</option>
-                            <option>Alimento1</option>
+                        <select multiple class="form-control" id="slctAlimento" name="dm_int_idmenu">
+                            @{ List<Dominio.Core.Entities.Alimento> lstAlimento = new List<Dominio.Core.Entities.Alimento>();
+                                lstAlimento = (List<Dominio.Core.Entities.Alimento>)ViewBag.ListaAlimento;}
+                            @foreach (var Alimento in lstAlimento)
+                            {
+                                <option value="@Alimento.al_int_idalim">
+                                    @Alimento.al_vchar_descr @Alimento.al_dec_precalim
+                                </option>
+                            }
 
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Cantidad</label>
-                        <input type="text" name="name" value="" class="form-control" />
+                        <input type="text" name="dm_int_cantmenu" id="dm_int_cantmenu" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label>Sub total</label>
-                        <h3>23.50</h3>
+                        <h3 id="dec_subto">23.50</h3> NUEVOS SOLES
+                        <input hidden type="text" name="precioComida" id="precioComida"/>
+                        <input hidden type="text" name="dm_dec_subto" id="dm_dec_subto"/>
+
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="btnCerrarUsuario" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="btnElegirUsuario">Elegir</button>
+                <button type="button" class="btn btn-secondary" id="btnCerrarAlimento" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnElegirAlimento">Elegir</button>
             </div>
         </div>
     </div>
@@ -258,33 +220,30 @@
                 <div class="" style=" width:100%; height:auto;">
                     <div class="form-group">
                         <label for="exampleFormControlSelect2">Seleccione un Cliente</label>
-                        <select multiple class="form-control" id="slctUSuario">
-                            @*@{ List<Dominio.Core.Entities.Usuario> lstUsuario = new List<Dominio.Core.Entities.Usuario>();
-                                    lstUsuario = (List<Dominio.Core.Entities.Usuario>)ViewBag.ListaUsuario;}
-                                @foreach (var Usuario in lstUsuario)
-                                {
-                                    <option value="@Usuario.us_int_idusu">
+                        <select multiple class="form-control" id="slctCliente">
+                            @{ List<Dominio.Core.Entities.Cliente> lstCliente = new List<Dominio.Core.Entities.Cliente>();
+                                lstCliente = (List<Dominio.Core.Entities.Cliente>)ViewBag.ListaCliente;}
+                            @foreach (var Cliente in lstCliente)
+                            {
+                                <option value="@Cliente.cl_char_dniclie">
 
-                                        @Usuario.us_vchar_nomusu
-                                    </option>
-                                }*@
-                            <option>Cliente1</option>
-                            <option>Cliente2</option>
-
+                                    @Cliente.cl_vchar_nombre @Cliente.cl_vchar_apellido
+                                </option>
+                            }
                         </select>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="btnCerrarUsuario" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="btnElegirUsuario">Elegir</button>
+                <button type="button" class="btn btn-secondary" id="btnCerrarCliente" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnElegirCliente">Elegir</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<!-- Modal Cliente-->
+<!-- Modal Trabajador-->
 <div class="modal fade" id="TrabajadorModal" tabindex="-1" role="dialog" aria-labelledby="TrabajadorModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -298,75 +257,247 @@
                 <div class="" style=" width:100%; height:auto;">
                     <div class="form-group">
                         <label for="exampleFormControlSelect2">Seleccione un Trabajador</label>
-                        <select multiple class="form-control" id="slctUSuario">
-                            @*@{ List<Dominio.Core.Entities.Usuario> lstUsuario = new List<Dominio.Core.Entities.Usuario>();
-                                    lstUsuario = (List<Dominio.Core.Entities.Usuario>)ViewBag.ListaUsuario;}
-                                @foreach (var Usuario in lstUsuario)
-                                {
-                                    <option value="@Usuario.us_int_idusu">
+                        <select multiple class="form-control" id="slctTrabajador">
+                            @{ List<Dominio.Core.Entities.Trabajador> lstTrabajador = new List<Dominio.Core.Entities.Trabajador>();
+                                lstTrabajador = (List<Dominio.Core.Entities.Trabajador>)ViewBag.ListaTrabajador;}
+                            @foreach (var Trabajador in lstTrabajador)
+                            {
+                                <option value="@Trabajador.tr_int_idtrab">
 
-                                        @Usuario.us_vchar_nomusu
-                                    </option>
-                                }*@
-                            <option>Cliente1</option>
-                            <option>Cliente2</option>
-
+                                    @Trabajador.tr_vchar_nombre @Trabajador.tr_vchar_apellido
+                                </option>
+                            }
                         </select>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="btnCerrarUsuario" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="btnElegirUsuario">Elegir</button>
+                <button type="button" class="btn btn-secondary" id="btnCerrarTrabajador" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnElegirTrabajador">Elegir</button>
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-
-
 <script>
+
     $(document).ready(function () {
-        var date_input = $('input[name="date"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        var options = {
-            format: 'mm/dd/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
+        //var date_input = $('input[name="date"]'); //our date input has the name "date"
+        //var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        //var options = {
+        //    format: 'mm/dd/yyyy',
+        //    container: container,
+        //    todayHighlight: true,
+        //    autoclose: true,
+        //};
+        //date_input.datepicker(options);
+
+
+    });
+
+    var slctCliente = document.getElementById("slctCliente");
+    var slctTrabajador = document.getElementById("slctTrabajador");
+
+    var txtidclien = document.getElementById("ca_char_dniclie");
+    var txtidtrab = document.getElementById("ca_int_idtrab");
+
+    var txtidclien_des = document.getElementById("ca_char_dniclie_des");
+    var txtidtrab_des = document.getElementById("ca_int_idtrab_des");
+
+    var btnElegirAlimento = document.getElementById("btnElegirAlimento");
+    var btnElegirCliente = document.getElementById("btnElegirCliente");
+    var btnElegirTrabajador = document.getElementById("btnElegirTrabajador");
+
+    var clienteSeleccionado = "";
+    var trabajadorSeleccionado = "";
+
+
+    slctCliente.addEventListener("change", function (e) {
+        var clienteSeleccionadoValue = this.value;
+        clienteSeleccionado = this.options[this.selectedIndex].text;
+        txtidclien.value = clienteSeleccionadoValue;
+    });
+    btnElegirCliente.addEventListener("click", function (index) {
+        txtidclien_des.value = clienteSeleccionado;
+        document.getElementById("btnCerrarCliente").click();
+    });
+
+    slctTrabajador.addEventListener("change", function (e) {
+        var trabajadorSeleccionadoValue = this.value;
+        trabajadorSeleccionado = this.options[this.selectedIndex].text;
+        txtidtrab.value = trabajadorSeleccionadoValue;
+    });
+    btnElegirTrabajador.addEventListener("click", function (index) {
+        txtidtrab_des.value = trabajadorSeleccionado;
+        document.getElementById("btnCerrarTrabajador").click();
+    });
+
+    $("#slctAlimento").change(function() {
+        var codigoAlimento = this.value;
+        var precioAlimento = 0;
+
+
+        var url = '@Url.Action("obtenerAlimento","Catering")';
+
+        var data =
+        {
+            idAlimento    : codigoAlimento           
         };
-        date_input.datepicker(options);
-    })
-</script>
 
-<script>
-
-
-
-    var btnUsuarios = document.getElementById("btnUsuarios");
-    var slctUSuario = document.getElementById("slctUSuario");
-    var txtidusu = document.getElementById("cl_int_idusu");
-    var txtidusu_des = document.getElementById("cl_int_idusu_des");
-    var btnElegirUsuario = document.getElementById("btnElegirUsuario");
-    var usuarioSeleccionado = "";
-
-    btnUsuarios.addEventListener("click", function (e) {
-        e.preventDefault();
+        $.post(url, data).done(function (data) {
+            $("#precioComida").val(data);
+        }).fail(function (e) {
+            alert("Error en la ejecucion");
+        });
     });
 
-    slctUSuario.addEventListener("change", function (e) {
-        var usuarioSeleccionadoValue = this.value;
-        usuarioSeleccionado = this.options[this.selectedIndex].text;
-        txtidusu.value = usuarioSeleccionadoValue;
+    $("#btnCrearCatering").click(function() {        
 
+        var url = '@Url.Action("Insertar_Catering","Catering")';
+
+        var fecha = $("#ca_date_fecha").val();
+        var dnicli = $("#ca_char_dniclie").val();
+        var lugar = $("#ca_vchar_lugarcater").val();
+        var idtrab = $("#ca_int_idtrab").val();
+
+        var data =
+        {
+            ca_date_fecha       : fecha,
+            ca_vchar_lugarcater : lugar,
+            ca_char_dniclie     : dnicli,
+            ca_int_idtrab       : idtrab
+        };
+
+        $.post(url, data).done(function (data) {
+            if (data == 1) {
+                alert("Catering guardado");                
+                $("#catering-section").addClass("d-none");
+                $("#menucatering-section").removeClass("d-none");
+            }
+            else
+            {
+                alert("Error al guardar catering");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
 
     });
-    btnElegirUsuario.addEventListener("click", function (index) {
-        txtidusu_des.value = usuarioSeleccionado;
-        document.getElementById("btnCerrarUsuario").click();
+
+    $("#btnElegirAlimento").click(function() {        
+
+        var url = '@Url.Action("Insertar_Detalle","Catering")';
+
+        var dm_int_idmenu = $("#dm_int_idmenu").val();
+        var dm_int_idalim = $("#slctAlimento").val();
+        var dm_int_cantmenu = $("#dm_int_cantmenu").val();
+        var dm_dec_subto = $("#dm_dec_subto").val();
+
+        var data =
+        {
+            dm_int_idmenu       : dm_int_idmenu,
+            dm_int_idalim       : dm_int_idalim,
+            dm_int_cantmenu     : dm_int_cantmenu,
+            dm_dec_subto        : dm_dec_subto
+        };
+
+        $.post(url, data).done(function (data) {
+            if (data == 1)
+            {
+                mostrarDetalleMenuCatering();
+                $("#btnCerrarAlimento").click();
+            }
+            else
+            {
+                alert("Error al guardar el detalle del catering");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
+
     });
+
+    $("#dm_int_cantmenu").change(function () {
+        var subtotal = $("#precioComida").val() * $("#dm_int_cantmenu").val();
+        $("#dm_dec_subto").val(subtotal);
+        $("#dec_subto").text(subtotal);
+
+    });
+
+    
+    function eliminarMenuDetalleCatering(id)
+    {
+        var url = '@Url.Action("eliminarMenuDetalleCatering","Catering")';
+
+        var data =
+        {
+            idMenuDetalleCatering : id
+        };
+
+        $.post(url, data).done(function (data) {
+            if (data == 1)
+            {
+                alert("Eliminado el detalle");
+                mostrarDetalleMenuCatering();
+            }
+            else
+            {
+                alert("Error al eliminar el detalle");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
+    }
+
+    
+    function editarMenuDetalleCatering(id)
+    {
+        var url = '@Url.Action("obtenerMenuDetalleCatering","Catering")';
+
+        var data =
+        {
+            idMenuDetalleCatering : id
+        };
+
+        $.post(url, data).done(function (data) {
+            if (data)
+            {
+                alert(data);
+            }
+            else
+            {
+                alert("Error al obtener el detalle");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
+    }
+
+    function mostrarDetalleMenuCatering()
+    {
+        var url = '@Url.Action("MenuDetalleCatering","Catering")';
+
+        var dm_int_idmenu = $("#dm_int_idmenu").val();       
+
+        var data =
+        {
+            idMenu       : dm_int_idmenu
+        };
+
+         $.post(url, data).done(function (data) {
+            if (data)
+            {
+                $("#detail-section").empty();
+                $("#detail-section").append(data);
+            }
+            else
+            {
+                alert("Error al mostrar Menu Detalle Catering");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
+    }
+
 
 </script>

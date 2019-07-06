@@ -31,5 +31,9 @@ namespace Dominio.Core.MainModule
         {
             return objMenuCateringDAL.insertar_or_actualizar_menucatering(objMenuCatering,action);
         }
+        public MenuCatering lista_ultimo_menucatering()
+        {
+            return objMenuCateringDAL.lista_ultimo_menucatering();
+        }
     }
 }

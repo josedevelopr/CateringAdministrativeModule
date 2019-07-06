@@ -31,5 +31,9 @@ namespace Dominio.Core.MainModule
         {
             return objDetalleMenuCatering_DAL.insertar_or_actualizar_menucatering(objDetalleMenuCatering,action);
         }
+        public int eliminar_menuDetalleCatering(int idMenuDetalleCatering)
+        {
+            return objDetalleMenuCatering_DAL.eliminar_menuDetalleCatering(idMenuDetalleCatering);
+        }
     }
 }

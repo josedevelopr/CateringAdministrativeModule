@@ -14,9 +14,9 @@ namespace Infraestructura.Data.MySql
         private Conexioncs cnx = new Conexioncs();
         private MySqlConnection cn;
 
-        public List<Catering> listar_alimento()
+        public List<Alimento> listar_alimento()
         {
-            List<Catering> lstCatering = new List<Catering>();
+            List<Alimento> lstAlimento = new List<Alimento>();
 
             cn = cnx.conectar();
             cn.Open();
@@ -30,18 +30,15 @@ namespace Infraestructura.Data.MySql
             {
                 while (dr.Read())
                 {
-                    Catering objCatering = new Catering()
+                    Alimento objAlimento = new Alimento()
                     {
-                        ca_int_idcater = dr.GetInt32(0),
-                        ca_date_fecha = dr.GetString(1),
-                        ca_vchar_lugarcater = dr.GetString(2),
-                        ca_char_estado = dr.GetString(3),
-                        ca_char_dniclie = dr.GetString(4),
-                        ca_int_idtrab = dr.GetInt32(5),
-                        ca_vchar_encargadonom = dr.GetString(6),
-                        ca_char_nomclie = dr.GetString(7)
+                        al_int_idalim = dr.GetInt32(0),
+                        al_vchar_descr = dr.GetString(1),
+                        al_int_idtipoalim = dr.GetInt32(2),
+                        al_dec_precalim = Double.Parse(dr.GetDecimal(3).ToString()),
+                        al_int_est = dr.GetInt32(4)
                     };
-                    lstCatering.Add(objCatering);
+                    lstAlimento.Add(objAlimento);
                 }
             }
             catch (Exception e)
@@ -54,7 +51,7 @@ namespace Infraestructura.Data.MySql
                 cn.Close();
             }
 
-            return lstCatering;
+            return lstAlimento;
         }
         public List<Catering> listar_catering()
         {
@@ -145,7 +142,8 @@ namespace Infraestructura.Data.MySql
             return objCatering;
         }
 
-        public int insertar_or_actualizar_trabajador(Trabajador objTrabajador, string action)
+
+        public int insertar_or_actualizar_catering(Catering objCatering, string action)
         {
             int resultado = -1;
             cn = cnx.conectar();
@@ -156,13 +154,13 @@ namespace Infraestructura.Data.MySql
                 MySqlCommand cmd = new MySqlCommand("SP_CATE_INSERT_UPDATE", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("x_int_idcater", DbType.Int32).Value = objTrabajador.tr_int_idtrab;
-                cmd.Parameters.Add("x_date_fecha", DbType.String).Value = objTrabajador.tr_int_idusu;
-                cmd.Parameters.Add("x_char_estado", DbType.String).Value = objTrabajador.tr_int_idtipotrab;
-                cmd.Parameters.Add("x_vchar_lugarcater", DbType.String).Value = objTrabajador.tr_vchar_nombre;
-                cmd.Parameters.Add("x_char_dniclie", DbType.String).Value = objTrabajador.tr_vchar_apellido;
-                cmd.Parameters.Add("x_int_idtrab", DbType.Int32).Value = objTrabajador.tr_char_dni;
-                 cmd.Parameters.Add("x_action", DbType.String).Value = action;
+                cmd.Parameters.Add("x_int_idcater", DbType.Int32).Value = 0;
+                cmd.Parameters.Add("x_date_fecha", DbType.String).Value = objCatering.ca_date_fecha;
+                cmd.Parameters.Add("x_char_estado", DbType.String).Value = objCatering.ca_char_estado;
+                cmd.Parameters.Add("x_vchar_lugarcater", DbType.String).Value = objCatering.ca_vchar_lugarcater;
+                cmd.Parameters.Add("x_char_dniclie", DbType.String).Value = objCatering.ca_char_dniclie;
+                cmd.Parameters.Add("x_int_idtrab", DbType.Int32).Value = objCatering.ca_int_idtrab;
+                cmd.Parameters.Add("x_action", DbType.String).Value = action;
 
                 resultado = cmd.ExecuteNonQuery();
             }

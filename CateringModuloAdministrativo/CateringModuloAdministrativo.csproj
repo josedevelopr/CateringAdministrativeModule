@@ -510,6 +510,7 @@
     <Content Include="Views\Catering\Index.cshtml" />
     <Content Include="Views\Catering\listarCatering.cshtml" />
     <Content Include="Views\Catering\Create.cshtml" />
+    <Content Include="Views\Catering\_DetalleMenuCatering.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
