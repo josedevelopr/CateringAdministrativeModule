@@ -14,7 +14,7 @@ namespace Dominio.Core.Entities
         [Display(Name = "Id Menu", Order = 1)]
         [Required]
         public int dm_int_idmenu { get; set; }
-        [Display(Name = "Id Menu", Order = 2)]
+        [Display(Name = "Id Alimento", Order = 2)]
         [Required]
         public int dm_int_idalim { get; set; }
         [Display(Name = "Cantidad", Order = 3)]

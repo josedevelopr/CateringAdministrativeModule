@@ -118,8 +118,8 @@ namespace Infraestructura.Data.MySql
             MySqlCommand cmd = new MySqlCommand("SP_DETAMENUCATE_LIST", cn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("x_id_detamenu", DbType.Int32).Value = 0;
-            cmd.Parameters.Add("x_id_men", DbType.Int32).Value = id_deta;
+            cmd.Parameters.Add("x_id_detamenu", DbType.Int32).Value = id_deta;
+            cmd.Parameters.Add("x_id_men", DbType.Int32).Value = 0;
             cmd.Parameters.Add("x_tipo", DbType.String).Value = "F";
 
             MySqlDataReader dr = cmd.ExecuteReader();
@@ -134,7 +134,7 @@ namespace Infraestructura.Data.MySql
                         dm_int_idmenu = dr.GetInt32(1),
                         dm_int_idalim = dr.GetInt32(2),
                         dm_int_cantmenu = dr.GetInt32(3),
-                        dm_dec_subto = dr.GetDouble(4),
+                        dm_dec_subto = Double.Parse(dr.GetDecimal(4).ToString()),
                         al_vchar_descr = dr.GetString(5)
 
                     };

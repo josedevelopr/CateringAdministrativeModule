@@ -125,7 +125,7 @@ namespace Infraestructura.Data.MySql
                         mc_int_idmenu = dr.GetInt32(0),
                         mc_int_idcater = dr.GetInt32(1),
                         mc_char_estado = dr.GetString(2),
-                        mc_dec_prectotalmenu = dr.GetDouble(3)
+                        mc_dec_prectotalmenu = Double.Parse(dr.GetDecimal(3).ToString())
                     };
                 }
             }

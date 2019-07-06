@@ -62,9 +62,26 @@ namespace CateringModuloAdministrativo.Controllers
         }
 
         // GET: Catering/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int idCatering)
         {
-            return View();
+            List<Trabajador> lstTrabajador = new List<Trabajador>();
+            lstTrabajador = objTrabajadorManager.listar_trabajador();
+            ViewBag.ListaTrabajador = lstTrabajador;
+
+            List<Cliente> lstCliente = new List<Cliente>();
+            lstCliente = objClienteManager.listar_cliente();
+            ViewBag.ListaCliente = lstCliente;
+
+            List<Alimento> lstAlimento = new List<Alimento>();
+            lstAlimento = objCateringManager.listar_alimento();
+            ViewBag.ListaAlimento = lstAlimento;
+
+            Catering objCatering = new Catering();
+            objCatering = objCateringManager.lista_x_id_catering(idCatering);
+            MenuCatering objMenuCatering = new MenuCatering();
+            objMenuCatering = objMenuCateringManager.lista_x_idcate_menucatering(objCatering.ca_int_idcater);
+            ViewBag.idMenuCatering = objMenuCatering.mc_int_idmenu;
+            return View(objCatering);
         }
 
         [HttpPost]

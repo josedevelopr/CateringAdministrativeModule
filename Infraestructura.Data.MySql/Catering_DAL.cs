@@ -105,7 +105,7 @@ namespace Infraestructura.Data.MySql
             cn = cnx.conectar();
             cn.Open();
 
-            MySqlCommand cmd = new MySqlCommand("SP_TRABAJ_LIST", cn);
+            MySqlCommand cmd = new MySqlCommand("SP_CATE_LIST", cn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("x_id", DbType.Int32).Value = id;
@@ -122,10 +122,11 @@ namespace Infraestructura.Data.MySql
                         ca_int_idcater = dr.GetInt32(0),
                         ca_date_fecha = dr.GetString(1),
                         ca_char_estado = dr.GetString(2),
-                        ca_char_dniclie = dr.GetString(3),
-                        ca_int_idtrab = dr.GetInt32(4),
-                        ca_vchar_encargadonom = dr.GetString(5),
-                        ca_char_nomclie = dr.GetString(6)
+                        ca_vchar_lugarcater = dr.GetString(3),
+                        ca_char_dniclie = dr.GetString(4),
+                        ca_int_idtrab = dr.GetInt32(5),
+                        ca_vchar_encargadonom = dr.GetString(6),
+                        ca_char_nomclie = dr.GetString(7)
                     };
                 }
             }

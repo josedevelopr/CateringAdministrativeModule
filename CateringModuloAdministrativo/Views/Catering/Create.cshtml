@@ -89,7 +89,7 @@
 
                         MenuCatering_Manager objMenuCateringManager = new MenuCatering_Manager();
 
-                        objMC = objMenuCateringManager.lista_ultimo_menucatering();                       
+                        objMC = objMenuCateringManager.lista_ultimo_menucatering();
 
                         if (objMC != null)
                         {
@@ -98,27 +98,29 @@
                             var idACtual = objMC.mc_int_idmenu + 1;
 
                             <p>Catering codigo: <span>@idACtual </span></p>
-                            <input id="dm_int_idmenu" name="dm_int_idmenu" type="text" hidden value="@objMenuCatering.mc_int_idcater"/>
+                            <input id="dm_int_idmenu" name="dm_int_idmenu" type="text" hidden value="@objMenuCatering.mc_int_idcater" />
                         }
                     }
 
                 </div>
                 <div class="col-1">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#UsuarioDetalleMenuCatering">+</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#UsuarioDetalleMenuCatering" id="btnNuevoMenuDetalle">+</button>
                 </div>
             </div>
             <br />
             <div id="detail-section">
-                
+
             </div>
+            <br />
+
+            <button class="btn btn-primary" id="btnGuardarCatering">Guardar</button>
         </div>
     </div>
 </div>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar al listado", "Index")
 </div>
-    </div>
 
 
 
@@ -190,7 +192,7 @@
                     </div>
                     <div class="form-group">
                         <label>Sub total</label>
-                        <h3 id="dec_subto">23.50</h3> NUEVOS SOLES
+                        <h3 id="dec_subto"></h3> NUEVOS SOLES
                         <input hidden type="text" name="precioComida" id="precioComida"/>
                         <input hidden type="text" name="dm_dec_subto" id="dm_dec_subto"/>
 
@@ -450,7 +452,7 @@
     }
 
     
-    function editarMenuDetalleCatering(id)
+    function verMenuDetalleCatering(id)
     {
         var url = '@Url.Action("obtenerMenuDetalleCatering","Catering")';
 
@@ -462,7 +464,8 @@
         $.post(url, data).done(function (data) {
             if (data)
             {
-                alert(data);
+                $("#btnNuevoMenuDetalle").click();
+                alert(data.al_vchar_descr);
             }
             else
             {

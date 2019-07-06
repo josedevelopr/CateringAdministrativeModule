@@ -511,6 +511,7 @@
     <Content Include="Views\Catering\listarCatering.cshtml" />
     <Content Include="Views\Catering\Create.cshtml" />
     <Content Include="Views\Catering\_DetalleMenuCatering.cshtml" />
+    <Content Include="Views\Catering\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

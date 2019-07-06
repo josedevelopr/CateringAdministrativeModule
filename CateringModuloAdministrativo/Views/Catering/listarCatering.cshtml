@@ -7,70 +7,110 @@
 
 <h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ca_int_idcater)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ca_date_fecha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ca_char_estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ca_vchar_lugarcater)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ca_char_dniclie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ca_char_nomclie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ca_int_idtrab)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ca_vchar_encargadonom)
-        </th>
-        <th></th>
-    </tr>
+<div class="table-data__tool">
+    <div class="table-data__tool-left">
+        <div class="rs-select2--light rs-select2--md d-none">
+            <select class="js-select2" name="property">
+                <option selected="selected">Tipo de insumos</option>
+                <option value="">Insumos 1</option>
+                <option value="">Insumos 1</option>
+            </select>
+            <div class="dropDownSelect2"></div>
+        </div>
+        <div class="rs-select2--light rs-select2--sm d-none">
+            <select class="js-select2" name="time">
+                <option selected="selected">Estado</option>
+                <option value="">Activos</option>
+                <option value="">Inactivo</option>
+            </select>
+            <div class="dropDownSelect2"></div>
+        </div>
+        <button class="au-btn-filter d-none">
+            <i class="zmdi zmdi-filter-list"></i>filtros
+        </button>
+    </div>
+    <div class="table-data__tool-right">
+        <a class="au-btn au-btn-icon au-btn--green au-btn--small" href="@Url.Action("Create", "Catering", new { /* id=item.PrimaryKey */ })">
+            <i class="zmdi zmdi-plus"></i>añadir elemento
+        </a>
+        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+            <select class="js-select2" name="type">
+                <option selected="selected">Exportar</option>
+                <option value="">Pdf</option>
+                <option value="">Excel</option>
+            </select>
+            <div class="dropDownSelect2"></div>
+        </div>
+    </div>
+</div>
+<table class="table table-data2 table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_int_idcater)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_date_fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_char_estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_vchar_lugarcater)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_char_dniclie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_char_nomclie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_int_idtrab)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_vchar_encargadonom)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ca_int_idcater)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ca_date_fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ca_char_estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ca_vchar_lugarcater)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ca_char_dniclie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ca_char_nomclie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ca_int_idtrab)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ca_vchar_encargadonom)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ca_int_idcater)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ca_date_fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ca_char_estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ca_vchar_lugarcater)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ca_char_dniclie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ca_char_nomclie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ca_int_idtrab)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ca_vchar_encargadonom)
+                </td>
+                <td>
+                    <div class="table-data-feature">
+                        <a class="item" data-toggle="tooltip" data-placement="top" title="Editar" href="@Url.Action("Edit","Catering", new {  idCatering=item.ca_int_idcater })">
+                            <i class="zmdi zmdi-edit"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            <tr class="spacer"></tr>
+        }
+    </tbody>
 </table>
