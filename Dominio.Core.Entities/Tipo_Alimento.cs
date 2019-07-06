@@ -11,11 +11,11 @@ namespace Dominio.Core.Entities
     public class Tipo_Alimento
     {
 
-        [Display(Name = "Codigo del pais", Order = 0)]
+        [Display(Name = "Codigo de Alimento", Order = 0)]
         public int ta_int_idtipoalim { get; set; }
-        [Display(Name = "Descripcion del pais", Order = 0)]
+        [Display(Name = "Descripción", Order = 0)]
         public string ta_vchar_descr { get; set; }
-        [Display(Name = "estado del pais", Order = 0)]
+        [Display(Name = "estado del Tipo de Alimento", Order = 0)]
         public int ta_int_est { get; set; }
 
     }

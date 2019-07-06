@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Dominio.Core.Entities.Tipo_Alimento>
+
+@{
+    ViewBag.Title = "verTipoAlimento";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+
+<h2> Tipo Alimentos</h2>
+
+<div>
+
+    <h4>Tipo Alimentos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ta_int_idtipoalim)
+
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.ta_int_idtipoalim)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ta_vchar_descr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.ta_vchar_descr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ta_int_est)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.ta_int_est)
+        </dd>
+
+
+        </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+</p>
+
+

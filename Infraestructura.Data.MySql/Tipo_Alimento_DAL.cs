@@ -16,7 +16,6 @@ namespace Infraestructura.Data.MySql
         private Conexioncs cnx = new Conexioncs();
         private MySqlConnection cn;
 
-        //0207201
 
 
         public List<Tipo_Alimento> lista_tipoalimento()
@@ -26,7 +25,7 @@ namespace Infraestructura.Data.MySql
             cn = cnx.conectar();
             cn.Open();
 
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM TB_TIPOALIMENTO", cn);
+            MySqlCommand cmd = new MySqlCommand("SP_TIPALIM_LIST", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataReader dr = cmd.ExecuteReader();
 
@@ -69,7 +68,7 @@ namespace Infraestructura.Data.MySql
             MySqlCommand cmd = new MySqlCommand("SP_TIPALIM_LISTID", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             /* ese id de donde sale -- no estoy segura ayudaa :v*/
-            cmd.Parameters.Add("ta_int_idtipoalim", DbType.Int32).Value = cod;
+            cmd.Parameters.Add("id", DbType.Int32).Value = cod;
 
             MySqlDataReader dr = cmd.ExecuteReader();
             try

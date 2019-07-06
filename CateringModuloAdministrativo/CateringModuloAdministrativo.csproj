@@ -150,6 +150,7 @@
     <Compile Include="Controllers\CateringController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ComidaController.cs" />
+    <Compile Include="Controllers\ComidaTipoController.cs" />
     <Compile Include="Controllers\GrupoTrabajoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InsumoController.cs" />
@@ -443,9 +444,13 @@
     <Content Include="Views\Proveedor\editarProveedor.cshtml" />
     <Content Include="Views\Comida\Index.cshtml" />
     <Content Include="Views\Comida\ListarAlimento.cshtml" />
-    <Content Include="Views\Comida\CrearAgregarAlimentos.cshtml" />
     <Content Include="Views\Comida\verAlimento.cshtml" />
     <Content Include="Views\Comida\Edit.cshtml" />
+    <Content Include="Views\Comida\AgregarAlimento.cshtml" />
+    <Content Include="Views\ComidaTipo\ListarTipoAlimento.cshtml" />
+    <Content Include="Views\ComidaTipo\EditarTipoAlimento.cshtml" />
+    <Content Include="Views\ComidaTipo\verTipoAlimento.cshtml" />
+    <Content Include="Views\ComidaTipo\AgregarTipoAlimento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -459,7 +464,6 @@
     <Folder Include="Views\Pago\" />
     <Folder Include="Views\Receta\" />
     <Folder Include="Views\Reporte\" />
-    <Folder Include="Views\TipoAlimento\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

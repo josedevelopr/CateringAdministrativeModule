@@ -14,7 +14,7 @@ namespace CateringModuloAdministrativo.Controllers
     {
 
         private Alimento_Manager objAlimentoManager = new Alimento_Manager();
-
+      
         // GET: Alimento
         public ActionResult Index()
         {
@@ -46,7 +46,7 @@ namespace CateringModuloAdministrativo.Controllers
 
         // POST: Alimento/Create
         [HttpPost]
-        public ActionResult CrearAgregarAlimentos(Alimento objAlimento)
+        public ActionResult AgregarAlimento(Alimento objAlimento)
 
         {
             if (!ModelState.IsValid)
@@ -103,6 +103,10 @@ namespace CateringModuloAdministrativo.Controllers
             }
             return RedirectToAction("ListarAlimento");
         }
+
+
+
+
 
 
     }

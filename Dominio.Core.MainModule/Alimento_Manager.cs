@@ -16,17 +16,17 @@ namespace Dominio.Core.MainModule
 
         public List<Alimento> lista_Alimento()
         {
-            return objAlimento_DAL.lista_Alimento();
+            return objAlimento_DAL.lista_alimento();
         }
 
         public Alimento ver_Alimento(int cod)
         {
-            return objAlimento_DAL.ver_Alimento(cod);
+            return objAlimento_DAL.ver_alimento(cod);
         }
 
         public int registrar_Alimento(Alimento objAlimento)
         {
-            return objAlimento_DAL.registrar_Alimento(objAlimento);
+            return objAlimento_DAL.registrar_alimento(objAlimento);
         }
 
         public int actualizar_Alimento(Alimento objAlimento)

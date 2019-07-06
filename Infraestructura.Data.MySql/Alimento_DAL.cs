@@ -20,13 +20,16 @@ namespace Infraestructura.Data.MySql
 
 
 
-        public List<Alimento> lista_Alimento()
+        public List<Alimento> lista_alimento()
         {
             List<Alimento> lstAlimento = new List<Alimento>();
 
             cn = cnx.conectar();
             cn.Open();
-            /*No me lee el sp..*/
+            
+            
+
+
             MySqlCommand cmd = new MySqlCommand("SP_ALIM_LIST", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataReader dr = cmd.ExecuteReader();
@@ -62,7 +65,7 @@ namespace Infraestructura.Data.MySql
 
 
 
-        public Alimento ver_Alimento(int cod)
+        public Alimento ver_alimento(int cod)
         {
             Alimento objAlimento = null;
             cn = cnx.conectar();
@@ -70,8 +73,8 @@ namespace Infraestructura.Data.MySql
 
             MySqlCommand cmd = new MySqlCommand("SP_ALIM_LISTID", cn);
             cmd.CommandType = CommandType.StoredProcedure;
-            /* ese id de donde sale -- no estoy segura ayudaa :v*/
-            cmd.Parameters.Add("al_int_idalim", DbType.Int32).Value = cod;
+            
+            cmd.Parameters.Add("id", DbType.Int32).Value = cod;
 
             MySqlDataReader dr = cmd.ExecuteReader();
             try
@@ -92,7 +95,7 @@ namespace Infraestructura.Data.MySql
             catch (Exception e)
             {
                 Console.WriteLine("Exception source", e.Source);
-                objAlimento = new Alimento();
+              
             }
             finally
             {
@@ -104,7 +107,7 @@ namespace Infraestructura.Data.MySql
         }
 
 
-        public int registrar_Alimento(Alimento objAlimento)
+        public int registrar_alimento(Alimento objAlimento)
         {
             int resultado = -1;
             cn = cnx.conectar();
@@ -176,6 +179,20 @@ namespace Infraestructura.Data.MySql
 
             return resultado;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     

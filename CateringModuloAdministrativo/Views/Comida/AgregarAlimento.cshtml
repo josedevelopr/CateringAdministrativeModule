@@ -1,0 +1,80 @@
+﻿@model Dominio.Core.Entities.Alimento
+
+@{
+    ViewBag.Title = "Agregar Alimento";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+<div class="card">
+
+    <div class="card-header">Comida</div>
+    <div class="card-body">
+        <div class="card-title">
+            <h3 class="text-center title-2">@ViewBag.Title</h3>
+        </div>
+
+
+
+        <div class="form-horizontal">
+
+            <div class="form-group d-none">
+                @Html.LabelFor(model => model.al_int_idalim, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.al_int_idalim, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.al_int_idalim, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.al_vchar_descr, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.al_vchar_descr, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.al_vchar_descr, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.al_int_idtipoalim, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.al_int_idtipoalim, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.al_int_idtipoalim, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group ">
+                @Html.LabelFor(model => model.al_dec_precalim, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.al_dec_precalim, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.al_dec_precalim, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group ">
+                @Html.LabelFor(model => model.al_int_est, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.al_int_est, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.al_int_est, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-12">
+                    <input type="submit" value="Crear Alimento" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+        }
+
+ <div>
+ @Html.ActionLink("Regresar al listado", "ListarAlimento")
+ </div>

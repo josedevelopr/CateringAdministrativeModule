@@ -1071,16 +1071,29 @@ ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ALIM_LISTID`(id int)
 BEGIN
-SELECT*FROM TB_ALIMENTO WHERE al_int_idalim = id;
+SELECT al_int_idalim,
+ al_vchar_descr,
+ al_int_idtipoalim,
+ al_dec_precalim,
+ al_int_est
+FROM TB_ALIMENTO WHERE al_int_idalim = id;
 END ;;
 DELIMITER ;
 
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ALIM_LIST`()
 BEGIN
-SELECT*FROM TB_ALIMENTO;
+SELECT 
+al_int_idalim,
+al_vchar_descr,
+al_int_idtipoalim,
+al_dec_precalim,
+al_int_est 
+FROM TB_ALIMENTO;
 END ;;
 DELIMITER ;
+
+SELECT * FROM TB_ALIMENTO;
 
 
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ALIM_UPDATE` */;
@@ -2456,9 +2469,25 @@ ALTER DATABASE `bd_catering` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPALIM_LISTID`(id int)
 BEGIN
-SELECT * FROM TB_TIPOALIMENTO WHERE ta_int_idtipoalim = id;
+SELECT  ta_int_idtipoalim,
+   ta_vchar_descr,
+   ta_int_est
+FROM tb_tipoalimento WHERE ta_int_idtipoalim = id;
 END ;;
 DELIMITER ;
+
+
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TIPALIM_LIST`()
+BEGIN
+SELECT  ta_int_idtipoalim,
+   ta_vchar_descr,
+   ta_int_est
+FROM tb_tipoalimento;
+END ;;
+DELIMITER ;
+
+
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
