@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Dominio.Core.Entities.Alimento>
+
+@{
+    ViewBag.Title = "verAlimento";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+
+<h2>Ver Alimento</h2>
+
+
+<div>
+    <h4>Insumos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.al_int_idalim)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.al_int_idalim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.al_vchar_descr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.al_vchar_descr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.al_int_idtipoalim)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.al_int_idtipoalim)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.al_dec_precalim)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.al_dec_precalim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.al_int_est)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.al_int_est)
+        </dd>
+
+
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Editar", "editarAlimento", new { idAlimento = Model.al_int_idalim }) |
+    @Html.ActionLink("Regresar a la lista", "ListarAlimento")
+</p>

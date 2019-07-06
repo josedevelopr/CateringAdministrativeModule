@@ -444,6 +444,8 @@
     <Content Include="Views\Comida\Index.cshtml" />
     <Content Include="Views\Comida\ListarAlimento.cshtml" />
     <Content Include="Views\Comida\CrearAgregarAlimentos.cshtml" />
+    <Content Include="Views\Comida\verAlimento.cshtml" />
+    <Content Include="Views\Comida\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

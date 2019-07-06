@@ -29,7 +29,7 @@ namespace Dominio.Core.MainModule
             return objAlimento_DAL.registrar_Alimento(objAlimento);
         }
 
-        public int actualizar_proveedor(Alimento objAlimento)
+        public int actualizar_Alimento(Alimento objAlimento)
         {
             return objAlimento_DAL.actualizar_alimento(objAlimento);
         }

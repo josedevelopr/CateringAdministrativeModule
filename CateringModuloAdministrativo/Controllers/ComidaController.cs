@@ -64,48 +64,46 @@ namespace CateringModuloAdministrativo.Controllers
             return RedirectToAction("ListarAlimento");
         }
 
-        // GET: Alimento/Edit/5
-        public ActionResult Edit(int id)
+
+        public ActionResult verAlimento(int idAlimento)
         {
-            return View();
+
+            Alimento objAlimento = new Alimento();
+            objAlimento = objAlimentoManager.ver_Alimento(idAlimento);
+            return View(objAlimento);
+
+
+        }
+
+
+
+        // GET: Alimento/Edit/5
+        public ActionResult Edit(int idAlimento)
+        {
+            Alimento objAlimento = new Alimento();
+            objAlimento = objAlimentoManager.ver_Alimento(idAlimento);
+            return View(objAlimento);
         }
 
         // POST: Alimento/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditarAlimento(Alimento objAlimento)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
+                return View(objAlimento);
+               }
+            else
             {
-                return View();
+                int respuesta = objAlimentoManager.actualizar_Alimento(objAlimento);
+                if (respuesta == 1)
+                {
+                    ViewBag.mensaje = "ALIMENTO ACTUALIZADO";
+                }
             }
+            return RedirectToAction("ListarAlimento");
         }
 
-        // GET: Alimento/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
-        // POST: Alimento/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

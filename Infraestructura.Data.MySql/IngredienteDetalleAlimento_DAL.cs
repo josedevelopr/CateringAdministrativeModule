@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 using Dominio.Core.Entities;
 using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace Infraestructura.Data.MySql
 {
-    public class Alimento_DAL
+    public class IngredienteDetalleAlimento_DAL
     {
-
 
         private Conexioncs cnx = new Conexioncs();
         private MySqlConnection cn;
@@ -20,30 +20,31 @@ namespace Infraestructura.Data.MySql
 
 
 
-        public List<Alimento> lista_Alimento()
+       /* public List<IngredienteDetalleAlimento> lista_DIngAlimento()
         {
-            List<Alimento> lstAlimento = new List<Alimento>();
+            List<IngredienteDetalleAlimento> lstIngreDeAlim = new List<IngredienteDetalleAlimento>();
 
             cn = cnx.conectar();
             cn.Open();
-            /*No me lee el sp..*/
-            MySqlCommand cmd = new MySqlCommand("SP_ALIM_LIST", cn);
+
+            MySqlCommand cmd = new MySqlCommand("", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataReader dr = cmd.ExecuteReader();
-            
+
             try
             {
                 while (dr.Read())
                 {
-                    Alimento objAlimento = new Alimento()
+                    IngredienteDetalleAlimento objDetalleIngA = new IngredienteDetalleAlimento()
                     {
-                        al_int_idalim = dr.GetInt32(0),
-                        al_vchar_descr = dr.GetString(1),
-                        al_int_idtipoalim = dr.GetInt32(2),
-                        al_dec_precalim = dr.GetDecimal(3),
-                        al_int_est = dr.GetInt32(4)
+                        is_int_idingralim = dr.GetInt32(0),
+                        is_int_idalim = dr.GetInt32(1),
+                        is_date_feccrea = dr.GetDateTime(2),
+                        dta_int_iddetingrealim = dr.GetInt32(3),
+                        dta_int_idinsum = dr.GetInt32(4),
+                        dta_int_cantidad=dr.GetInt32(5)
                     };
-                    lstAlimento.Add(objAlimento);
+                    lstIngreDeAlim.Add(objDetalleIngA);
                 }
             }
             catch (Exception e)
@@ -56,21 +57,21 @@ namespace Infraestructura.Data.MySql
                 cn.Close();
             }
 
-            return lstAlimento;
-            
+            return lstIngreDeAlim;
+
         }
 
 
 
-        public Alimento ver_Alimento(int cod)
+        public Alimento ver_InDetaAl(int cod)
         {
-            Alimento objAlimento = null;
+            IngredienteDetalleAlimento objDeIngAl = null;
             cn = cnx.conectar();
             cn.Open();
 
-            MySqlCommand cmd = new MySqlCommand("SP_ALIM_LISTID", cn);
+            MySqlCommand cmd = new MySqlCommand("", cn);
             cmd.CommandType = CommandType.StoredProcedure;
-            /* ese id de donde sale -- no estoy segura ayudaa :v*/
+      
             cmd.Parameters.Add("al_int_idalim", DbType.Int32).Value = cod;
 
             MySqlDataReader dr = cmd.ExecuteReader();
@@ -129,7 +130,7 @@ namespace Infraestructura.Data.MySql
                 cmd.Parameters.Add("al_int_est", DbType.Int32).
                     Value = objAlimento.al_int_est;
 
-            
+
                 resultado = cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -178,7 +179,10 @@ namespace Infraestructura.Data.MySql
         }
 
 
-    
+
+
+    */
+
 
     }
 }

@@ -1075,6 +1075,13 @@ SELECT*FROM TB_ALIMENTO WHERE al_int_idalim = id;
 END ;;
 DELIMITER ;
 
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ALIM_LIST`()
+BEGIN
+SELECT*FROM TB_ALIMENTO;
+END ;;
+DELIMITER ;
+
 
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ALIM_UPDATE` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
