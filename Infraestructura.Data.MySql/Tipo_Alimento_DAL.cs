@@ -25,8 +25,8 @@ namespace Infraestructura.Data.MySql
             cn = cnx.conectar();
             cn.Open();
 
-            MySqlCommand cmd = new MySqlCommand("SP_TIPALIM_LIST", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
+            MySqlCommand cmd = new MySqlCommand("SELECT*FROM TB_TPOALIMENTO", cn);
+            cmd.CommandType = CommandType.Text;
             MySqlDataReader dr = cmd.ExecuteReader();
 
             try

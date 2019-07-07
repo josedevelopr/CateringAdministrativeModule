@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using Dominio.Core.Entities;
-using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace Infraestructura.Data.MySql
@@ -23,17 +23,12 @@ namespace Infraestructura.Data.MySql
         public List<Alimento> lista_alimento()
         {
             List<Alimento> lstAlimento = new List<Alimento>();
-
             cn = cnx.conectar();
             cn.Open();
-            
-            
-
-
             MySqlCommand cmd = new MySqlCommand("SP_ALIM_LIST", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataReader dr = cmd.ExecuteReader();
-            
+
             try
             {
                 while (dr.Read())
@@ -45,22 +40,28 @@ namespace Infraestructura.Data.MySql
                         al_int_idtipoalim = dr.GetInt32(2),
                         al_dec_precalim = dr.GetDecimal(3),
                         al_int_est = dr.GetInt32(4)
+
                     };
                     lstAlimento.Add(objAlimento);
                 }
+
             }
             catch (Exception e)
             {
                 Console.WriteLine("Exception source", e.Source);
+
+
             }
-            finally
-            {
+            finally {
+
+
                 dr.Close();
                 cn.Close();
             }
 
+
+
             return lstAlimento;
-            
         }
 
 

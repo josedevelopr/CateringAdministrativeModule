@@ -16,6 +16,9 @@ namespace Infraestructura.Data.MySql
         private Conexioncs cnx = new Conexioncs();
         private MySqlConnection cn;
 
+
+
+
         public List<Proveedor> listar_proveedor()
         {
             List<Proveedor> lstProveedor = new List<Proveedor>();
