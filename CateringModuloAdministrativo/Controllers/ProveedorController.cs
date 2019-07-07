@@ -6,12 +6,24 @@ using System.Web.Mvc;
 
 using Dominio.Core.Entities;
 using Dominio.Core.MainModule;
+using Rotativa;
 
 namespace CateringModuloAdministrativo.Controllers
 {
     public class ProveedorController : Controller
     {
-        private Proveedor_Manager objProveedorManager = new Proveedor_Manager();        
+        private Proveedor_Manager objProveedorManager = new Proveedor_Manager();
+
+        public ActionResult Print()
+        {
+            return new ActionAsPdf("listaProveedor_print") { FileName = "ProveedoresECatering.pdf" };
+        }
+
+        public ActionResult listaProveedor_print()
+        {
+            return View(objProveedorManager.listar_proveedor());
+        }
+
         // GET: Proveedor
         public ActionResult Index()
         {

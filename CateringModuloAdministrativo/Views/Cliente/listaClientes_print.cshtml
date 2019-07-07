@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Dominio.Core.Entities.Cliente>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="https://bootswatch.com/4/lux/bootstrap.min.css" rel="stylesheet" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <p>
+        Listado de clientes
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cl_char_dniclie)
+            </th>           
+            <th>
+                @Html.DisplayNameFor(model => model.cl_vchar_nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cl_vchar_apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cl_char_sexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cl_char_ruc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cl_char_fono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cl_vchar_direc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cl_vchar_correo)
+            </th>            
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cl_char_dniclie)
+            </td>           
+            <td>
+                @Html.DisplayFor(modelItem => item.cl_vchar_nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cl_vchar_apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cl_char_sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cl_char_ruc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cl_char_fono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cl_vchar_direc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cl_vchar_correo)
+            </td>            
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

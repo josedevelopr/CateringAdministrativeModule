@@ -1,5 +1,6 @@
 ﻿using Dominio.Core.Entities;
 using Dominio.Core.MainModule;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,16 @@ namespace CateringModuloAdministrativo.Controllers
     {
         private Usuario_Manager objUsuarioManager = new Usuario_Manager();
         private TipoUsuario_Manager objTipoUsuarioManager = new TipoUsuario_Manager();
+
+        public ActionResult Print()
+        {
+            return new ActionAsPdf("listaPrueba") { FileName="UsuariosECatering.pdf"};
+        }
+
+        public ActionResult listaPrueba()
+        {
+            return View(objUsuarioManager.lista_usuario());
+        }
 
         public ActionResult Index()
         {

@@ -155,7 +155,7 @@ namespace Infraestructura.Data.MySql
                 MySqlCommand cmd = new MySqlCommand("SP_CATE_INSERT_UPDATE", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("x_int_idcater", DbType.Int32).Value = 0;
+                cmd.Parameters.Add("x_int_idcater", DbType.Int32).Value = objCatering.ca_int_idcater;
                 cmd.Parameters.Add("x_date_fecha", DbType.String).Value = objCatering.ca_date_fecha;
                 cmd.Parameters.Add("x_char_estado", DbType.String).Value = objCatering.ca_char_estado;
                 cmd.Parameters.Add("x_vchar_lugarcater", DbType.String).Value = objCatering.ca_vchar_lugarcater;

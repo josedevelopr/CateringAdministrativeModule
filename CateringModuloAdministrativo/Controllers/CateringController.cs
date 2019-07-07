@@ -1,5 +1,6 @@
 ﻿using Dominio.Core.Entities;
 using Dominio.Core.MainModule;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,17 @@ namespace CateringModuloAdministrativo.Controllers
         {
             return View();
         }
+
+        public ActionResult Print()
+        {
+            return new ActionAsPdf("listadoCatering_print") { FileName = "CateringECatering.pdf" };
+        }
+
+        public ActionResult listadoCatering_print()
+        {
+            return View(objCateringManager.listar_catering());
+        }
+
 
         // GET: Catering/Create
         public ActionResult Create()
@@ -107,6 +119,34 @@ namespace CateringModuloAdministrativo.Controllers
 
             return Json(resultado);
         }
+        [HttpPost]
+        public JsonResult GuardarActualizado_Catering(int idCatering,double total)
+        {
+            int resultado = -1;
+            try
+            {
+                Catering objCatering = new Catering();
+                MenuCatering objMenuCatering = new MenuCatering();
+
+                objCatering = objCateringManager.lista_x_id_catering(idCatering);
+                objMenuCatering = objMenuCateringManager.lista_x_idcate_menucatering(idCatering);
+
+                objCatering.ca_char_estado = "DIS";//Disponible
+                objMenuCatering.mc_dec_prectotalmenu = total;
+                objMenuCatering.mc_char_estado = "DIS";
+
+                resultado = objCateringManager.insertar_or_actualizar_catering(objCatering, "U");
+                resultado = objMenuCateringManager.insertar_or_actualizar_menucatering(objMenuCatering,"U");
+           
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception source", e.Source);
+            }
+
+            return Json(resultado);
+        }
 
         [HttpPost]
         public JsonResult Insertar_Detalle(DetalleMenuCatering objDetalleMenuCatering)
@@ -115,6 +155,23 @@ namespace CateringModuloAdministrativo.Controllers
             try
             {
                 resultado = objDetalleMenuCateringManager.insertar_or_actualizar_menucatering(objDetalleMenuCatering,"I");               
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception source", e.Source);
+            }
+
+
+            return Json(resultado);
+        }
+        
+        [HttpPost]
+        public JsonResult Actualizar_Detalle(DetalleMenuCatering objDetalleMenuCatering)
+        {
+            int resultado = -1;
+            try
+            {
+                resultado = objDetalleMenuCateringManager.insertar_or_actualizar_menucatering(objDetalleMenuCatering, "U");
             }
             catch (Exception e)
             {

@@ -64,6 +64,9 @@
     <Reference Include="OptimizedDataReader, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OptimizedDataReader.1.1.0\lib\net46\OptimizedDataReader.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="Savage.Data, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Savage.Data.5.4.2\lib\net46\Savage.Data.dll</HintPath>
     </Reference>
@@ -244,6 +247,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\bg-title-01.jpg" />
     <Content Include="images\bg-title-02.jpg" />
+    <Content Include="images\caterings.jpg" />
+    <Content Include="images\Customers.jpg" />
     <Content Include="images\guglieri-speciale.jpg" />
     <Content Include="images\icon\avatar-01.jpg" />
     <Content Include="images\icon\avatar-02.jpg" />
@@ -260,10 +265,17 @@
     <Content Include="images\icon\Untitled-1.jpg" />
     <Content Include="images\icon\user-icon.png" />
     <Content Include="images\img_tomatoes.jpg" />
+    <Content Include="images\providers.jpg" />
+    <Content Include="images\users.jpg" />
+    <Content Include="images\workers.jpg" />
     <Content Include="js\main.js" />
     <Content Include="js\vendor\jquery-1.9.1.min.js" />
     <Content Include="js\vendor\modernizr-2.6.2.min.js" />
     <Content Include="js\_main.js" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -344,6 +356,7 @@
     <Content Include="fonts\poppins\poppins-v5-latin-regular.ttf" />
     <Content Include="fonts\poppins\poppins-v5-latin-regular.woff" />
     <Content Include="fonts\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -512,6 +525,13 @@
     <Content Include="Views\Catering\Create.cshtml" />
     <Content Include="Views\Catering\_DetalleMenuCatering.cshtml" />
     <Content Include="Views\Catering\Edit.cshtml" />
+    <Content Include="Views\Usuario\listaPrueba.cshtml" />
+    <Content Include="Views\Catering\listadoCatering_print.cshtml" />
+    <Content Include="Views\Cliente\listaClientes_print.cshtml" />
+    <Content Include="Views\Insumo\listInsumo_print.cshtml" />
+    <Content Include="Views\Proveedor\listaProveedor_print.cshtml" />
+    <Content Include="Views\Trabajador\listaTrabajadores_print.cshtml" />
+    <Content Include="Views\Reporte\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -522,7 +542,6 @@
     <Folder Include="Views\MenuNaveacion\" />
     <Folder Include="Views\Pago\" />
     <Folder Include="Views\Receta\" />
-    <Folder Include="Views\Reporte\" />
     <Folder Include="Views\TipoUsuario\" />
   </ItemGroup>
   <ItemGroup>

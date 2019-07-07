@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Dominio.Core.Entities.Catering>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="https://bootswatch.com/4/lux/bootstrap.min.css" rel="stylesheet" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />   
+</head>
+<body>
+    <p>
+        Listado de Catering
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_int_idcater)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_date_fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_char_estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_vchar_lugarcater)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_char_dniclie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ca_char_nomclie)
+            </th>           
+            <th>
+                @Html.DisplayNameFor(model => model.ca_vchar_encargadonom)
+            </th>            
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ca_int_idcater)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ca_date_fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ca_char_estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ca_vchar_lugarcater)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ca_char_dniclie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ca_char_nomclie)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.ca_vchar_encargadonom)
+            </td>            
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

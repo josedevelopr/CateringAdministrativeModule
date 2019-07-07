@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Dominio.Core.Entities.Insumos>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="https://bootswatch.com/4/lux/bootstrap.min.css" rel="stylesheet" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <p>
+       Listado de Insumos
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.in_int_idinsum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.in_vchar_descr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.in_int_stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.in_int_minstock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.in_dec_precio)
+            </th>           
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.in_int_idinsum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.in_vchar_descr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.in_int_stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.in_int_minstock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.in_dec_precio)
+            </td>           
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

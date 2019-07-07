@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_principalSharedView.cshtml";
+}
+    <div class="container">
+
+        <div class="row">
+            <h2>Reportes de  E-Catering</h2>
+        </div>
+        <br />
+        <div class="row">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/images/caterings.jpg" alt="Card image cap" style="width:400px;">
+                <div class="card-body">
+                    <h5 class="card-title">Reporte de catering</h5>
+                    <p class="card-text">Obten una vista rapida de los Catering que estan ahora mismo.</p>
+                    <a href="@Url.Action("Print", "Catering", new { /* id=item.PrimaryKey */ })" class="btn btn-primary">Descargar</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; margin-left:20px;">
+                <img class="card-img-top" src="~/images/Customers.jpg" alt="Card image cap" style="width:400px;">
+                <div class="card-body">
+                    <h5 class="card-title">Reporte de cliente</h5>
+                    <p class="card-text">Obten una vista rapida de los clientes que estan ahora mismo.</p>
+                    <a href="@Url.Action("Print", "Cliente", new { /* id=item.PrimaryKey */ })" class="btn btn-primary">Descargar</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem ; margin-left:20px;">
+                <img class="card-img-top" src="~/images/img_tomatoes.jpg" alt="Card image cap" style="width:400px;">
+                <div class="card-body">
+                    <h5 class="card-title">Reporte de insumos</h5>
+                    <p class="card-text">Obten una vista rapida de los insumoa que estan ahora mismo.</p>
+                    <a href="@Url.Action("Print", "Insumo", new { /* id=item.PrimaryKey */ })" class="btn btn-primary">Descargar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/images/providers.jpg" alt="Card image cap" style="width:400px;">
+                <div class="card-body">
+                    <h5 class="card-title">Reporte de proveedores</h5>
+                    <p class="card-text">Obten una vista rapida de los Proveedores que estan ahora mismo.</p>
+                    <a href="@Url.Action("Print", "Proveedor", new { /* id=item.PrimaryKey */ })" class="btn btn-primary">Descargar</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; margin-left:20px;">
+                <img class="card-img-top" src="~/images/workers.jpg" alt="Card image cap" style="width:400px;">
+                <div class="card-body">
+                    <h5 class="card-title">Reporte de trabajadores</h5>
+                    <p class="card-text">Obten una vista rapida de los trabajadores que estan ahora mismo.</p>
+                    <a href="@Url.Action("Print", "Trabajador", new { /* id=item.PrimaryKey */ })" class="btn btn-primary">Descargar</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem ; margin-left:20px;">
+                <img class="card-img-top" src="~/images/users.jpg" alt="Card image cap" style="width:400px;">
+                <div class="card-body">
+                    <h5 class="card-title">Reporte de usuarios</h5>
+                    <p class="card-text">Obten una vista rapida de los usuarios que estan ahora mismo.</p>
+                    <a href="@Url.Action("Print", "Usuario", new { /* id=item.PrimaryKey */ })" class="btn btn-primary">Descargar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+

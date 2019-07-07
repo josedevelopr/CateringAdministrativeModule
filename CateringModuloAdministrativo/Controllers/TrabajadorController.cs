@@ -1,5 +1,6 @@
 ﻿using Dominio.Core.Entities;
 using Dominio.Core.MainModule;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,16 @@ namespace CateringModuloAdministrativo.Controllers
         private Trabajador_Manager objTrabajadorManager         = new Trabajador_Manager();
         private Usuario_Manager objUsuarioManager               = new Usuario_Manager();
         private TipoTrabajador_Manager objTipoTrabajadorManager = new TipoTrabajador_Manager();
+
+        public ActionResult Print()
+        {
+            return new ActionAsPdf("listaTrabajadores_print") { FileName = "TrabajadoresECatering.pdf" };
+        }
+
+        public ActionResult listaTrabajadores_print()
+        {
+            return View(objTrabajadorManager.listar_trabajador());
+        }
 
         // GET: Trabajador
         public ActionResult Index()

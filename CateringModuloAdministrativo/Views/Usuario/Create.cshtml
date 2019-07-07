@@ -1,5 +1,6 @@
 ﻿@model Dominio.Core.Entities.Usuario
 
+
 @{
     ViewBag.Title = "Agregar Usuario";
     Layout = "~/Views/Shared/_principalSharedView.cshtml";
@@ -131,12 +132,13 @@
                         <label for="exampleFormControlSelect2">Seleccione un Tipo Usuario</label>
                         <select multiple class="form-control" id="slctTipoUsuario">
                             @{ List<Dominio.Core.Entities.TipoUsuario> lstTipoUsuario = new List<Dominio.Core.Entities.TipoUsuario>();
-                                lstTipoUsuario= (List<Dominio.Core.Entities.TipoUsuario>)ViewBag.ListaTipoUsuario;}
-                            @foreach (var TipoUsuario in lstTipoUsuario)
-                            {
+                                lstTipoUsuario = (List<Dominio.Core.Entities.TipoUsuario>)ViewBag.ListaTipoUsuario;
+                                foreach (var TipoUsuario in lstTipoUsuario)
+                                {
                                 <option value="@TipoUsuario.tu_int_idtipousu">
                                     @TipoUsuario.tu_vchar_descr
                                 </option>
+                                }
                             }
 
                         </select>

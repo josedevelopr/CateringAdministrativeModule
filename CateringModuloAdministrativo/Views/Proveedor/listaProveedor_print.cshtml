@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Dominio.Core.Entities.Proveedor>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="https://bootswatch.com/4/lux/bootstrap.min.css" rel="stylesheet" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <p>
+       Lista de Proveedores
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.pr_int_idprove)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pr_vchar_nomprove)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pr_char_ruc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pr_int_estado)
+            </th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.pr_int_idprove)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pr_vchar_nomprove)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pr_char_ruc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pr_int_estado)
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

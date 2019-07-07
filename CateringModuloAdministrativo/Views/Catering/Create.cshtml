@@ -170,6 +170,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <input type="hidden" id="action" value="" />
             <div class="modal-body scrollable" style='overflow:auto;height:200px;'>
                 <div class="" style=" width:100%; height:auto;">
                     <div class="form-group">
@@ -193,8 +194,8 @@
                     <div class="form-group">
                         <label>Sub total</label>
                         <h3 id="dec_subto"></h3> NUEVOS SOLES
-                        <input hidden type="text" name="precioComida" id="precioComida"/>
-                        <input hidden type="text" name="dm_dec_subto" id="dm_dec_subto"/>
+                        <input hidden type="text" name="precioComida" id="precioComida" />
+                        <input hidden type="text" name="dm_dec_subto" id="dm_dec_subto" />
 
                     </div>
                 </div>
@@ -313,6 +314,11 @@
     var clienteSeleccionado = "";
     var trabajadorSeleccionado = "";
 
+    $("#btnCerrarAlimento").click(function (e) {
+
+         $("#action").val("");
+
+    });
 
     slctCliente.addEventListener("change", function (e) {
         var clienteSeleccionadoValue = this.value;
@@ -388,7 +394,15 @@
 
     $("#btnElegirAlimento").click(function() {        
 
-        var url = '@Url.Action("Insertar_Detalle","Catering")';
+        var url = '';
+        if ($("#action").val() == "U")
+        {
+            url = '@Url.Action("Actualizar_Detalle","Catering")';
+        }
+        else
+        {
+            url = '@Url.Action("Insertar_Detalle","Catering")';
+        }
 
         var dm_int_idmenu = $("#dm_int_idmenu").val();
         var dm_int_idalim = $("#slctAlimento").val();
@@ -464,8 +478,15 @@
         $.post(url, data).done(function (data) {
             if (data)
             {
+                $("#action").val("U");
                 $("#btnNuevoMenuDetalle").click();
-                alert(data.al_vchar_descr);
+                //alert(data.al_vchar_descr);
+                $("#dm_int_cantmenu").val(data.dm_int_cantmenu);
+                $('select#slctAlimento option').removeAttr("selected");
+                $('#slctAlimento option[value=' + data.dm_int_idalim + ']').attr('selected', 'selected');
+                $('#dec_subto').text(data.dm_dec_subto);
+                $("#dm_int_iddetmenucater").val(data.dm_int_iddetmenucater);
+                
             }
             else
             {

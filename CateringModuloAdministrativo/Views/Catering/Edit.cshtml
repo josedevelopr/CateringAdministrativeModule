@@ -20,8 +20,8 @@
             <div class="row">
                 <div class="col-11">
                     <p>Catering codigo: <span>@Model.ca_int_idcater </span></p>
-                    <p>Catering menu codigo: <span>@ViewBag.idMenuCatering </span></p>
-                    @*<input id="dm_int_idmenu" name="dm_int_idmenu" type="text" hidden value="@objMenuCatering.mc_int_idcater" />*@
+                    <input id="dm_int_idmenu" name="dm_int_idmenu" type="hidden" value="@ViewBag.idMenuCatering" />
+                    <input id="idMenuCatering" name="idMenuCatering" type="hidden" value="@Model.ca_int_idcater" />
                 </div>
                 <div class="col-1">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#UsuarioDetalleMenuCatering" id="btnNuevoMenuDetalle">+</button>
@@ -41,3 +41,461 @@
 <div>
     @Html.ActionLink("Regresar al listado", "Index")
 </div>
+
+
+<style>
+    .modal-backdrop {
+        z-index: 1040 !important;
+    }
+
+    .modal-backdrop {
+        /* bug fix - no overlay */
+        display: none;
+    }
+
+    .modal {
+        text-align: center;
+        padding: 0 !important;
+    }
+
+        .modal:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+        }
+
+    .modal-dialog {
+        width: 500px;
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .scrollable {
+        height: 100px;
+        overflow-y: scroll;
+    }
+</style>
+
+<!-- Modal Detalle Menu Catering-->
+<div class="modal fade" id="UsuarioDetalleMenuCatering" tabindex="-1" role="dialog" aria-labelledby="UsuarioDetalleMenuCatering" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalle Menu Catering</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scrollable" style='overflow:auto;height:200px;'>
+                <div class="" style=" width:100%; height:auto;">
+                    <input type="hidden" id="action" value="" />
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Seleccione un alimento</label>
+                        <select multiple class="form-control" id="slctAlimento" >
+                            @{ List<Dominio.Core.Entities.Alimento> lstAlimento = new List<Dominio.Core.Entities.Alimento>();
+                                lstAlimento = (List<Dominio.Core.Entities.Alimento>)ViewBag.ListaAlimento;}
+                            @foreach (var Alimento in lstAlimento)
+                            {
+                                <option value="@Alimento.al_int_idalim">
+                                    @Alimento.al_vchar_descr @Alimento.al_dec_precalim
+                                </option>
+                            }
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Cantidad</label>
+                        <input type="text" name="dm_int_cantmenu" id="dm_int_cantmenu" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Sub total</label>
+                        <h3 id="dec_subto"></h3> NUEVOS SOLES
+                        <input hidden type="text" name="precioComida" id="precioComida" />
+                        <input hidden type="text" name="dm_dec_subto" id="dm_dec_subto" />
+                        <input type="hidden" id="dm_int_iddetmenucater" name="dm_int_iddetmenucater"     value="" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarAlimento" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnElegirAlimento">Elegir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Cliente-->
+<div class="modal fade" id="ClienteModal" tabindex="-1" role="dialog" aria-labelledby="ClienteModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scrollable" style='overflow:auto;height:200px;'>
+                <div class="" style=" width:100%; height:auto;">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Seleccione un Cliente</label>
+                        <select multiple class="form-control" id="slctCliente">
+                            @{ List<Dominio.Core.Entities.Cliente> lstCliente = new List<Dominio.Core.Entities.Cliente>();
+                                lstCliente = (List<Dominio.Core.Entities.Cliente>)ViewBag.ListaCliente;}
+                            @foreach (var Cliente in lstCliente)
+                            {
+                                <option value="@Cliente.cl_char_dniclie">
+
+                                    @Cliente.cl_vchar_nombre @Cliente.cl_vchar_apellido
+                                </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarCliente" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnElegirCliente">Elegir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Trabajador-->
+<div class="modal fade" id="TrabajadorModal" tabindex="-1" role="dialog" aria-labelledby="TrabajadorModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Trabajador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scrollable" style='overflow:auto;height:200px;'>
+                <div class="" style=" width:100%; height:auto;">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Seleccione un Trabajador</label>
+                        <select multiple class="form-control" id="slctTrabajador">
+                            @{ List<Dominio.Core.Entities.Trabajador> lstTrabajador = new List<Dominio.Core.Entities.Trabajador>();
+                                lstTrabajador = (List<Dominio.Core.Entities.Trabajador>)ViewBag.ListaTrabajador;}
+                            @foreach (var Trabajador in lstTrabajador)
+                            {
+                                <option value="@Trabajador.tr_int_idtrab">
+
+                                    @Trabajador.tr_vchar_nombre @Trabajador.tr_vchar_apellido
+                                </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarTrabajador" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnElegirTrabajador">Elegir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        //var date_input = $('input[name="date"]'); //our date input has the name "date"
+        //var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        //var options = {
+        //    format: 'mm/dd/yyyy',
+        //    container: container,
+        //    todayHighlight: true,
+        //    autoclose: true,
+        //};
+        //date_input.datepicker(options);
+
+
+
+        //Cargado inicial del detalle del menu detalle catering
+        var url = '@Url.Action("MenuDetalleCatering","Catering")';
+
+        var dm_int_idmenu = $("#idMenuCatering").val();
+
+        var data =
+        {
+            idMenu       : dm_int_idmenu
+        };
+
+         $.post(url, data).done(function (data) {
+            if (data)
+            {
+                $("#detail-section").empty();
+                $("#detail-section").append(data);
+            }
+            else
+            {
+                alert("Error al mostrar Menu Detalle Catering");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
+
+    });
+
+    var slctCliente = document.getElementById("slctCliente");
+    var slctTrabajador = document.getElementById("slctTrabajador");
+
+    var txtidclien = document.getElementById("ca_char_dniclie");
+    var txtidtrab = document.getElementById("ca_int_idtrab");
+
+    var txtidclien_des = document.getElementById("ca_char_dniclie_des");
+    var txtidtrab_des = document.getElementById("ca_int_idtrab_des");
+
+    var btnElegirAlimento = document.getElementById("btnElegirAlimento");
+    var btnElegirCliente = document.getElementById("btnElegirCliente");
+    var btnElegirTrabajador = document.getElementById("btnElegirTrabajador");
+
+    var clienteSeleccionado = "";
+    var trabajadorSeleccionado = "";
+
+    $("#btnCerrarAlimento").click(function (e) {
+
+         $("#action").val("");
+
+    });
+
+    slctCliente.addEventListener("change", function (e) {
+        var clienteSeleccionadoValue = this.value;
+        clienteSeleccionado = this.options[this.selectedIndex].text;
+        txtidclien.value = clienteSeleccionadoValue;
+    });
+    btnElegirCliente.addEventListener("click", function (index) {
+        txtidclien_des.value = clienteSeleccionado;
+        document.getElementById("btnCerrarCliente").click();
+    });
+
+    slctTrabajador.addEventListener("change", function (e) {
+        var trabajadorSeleccionadoValue = this.value;
+        trabajadorSeleccionado = this.options[this.selectedIndex].text;
+        txtidtrab.value = trabajadorSeleccionadoValue;
+    });
+    btnElegirTrabajador.addEventListener("click", function (index) {
+        txtidtrab_des.value = trabajadorSeleccionado;
+        document.getElementById("btnCerrarTrabajador").click();
+    });
+
+    $("#slctAlimento").change(function() {
+        var codigoAlimento = this.value;
+        var precioAlimento = 0;
+
+
+        var url = '@Url.Action("obtenerAlimento","Catering")';
+
+        var data =
+        {
+            idAlimento    : codigoAlimento
+        };
+
+        $.post(url, data).done(function (data) {
+            $("#precioComida").val(data);
+        }).fail(function (e) {
+            alert("Error en la ejecucion");
+        });
+    });
+
+    $("#btnCrearCatering").click(function() {
+
+        var url = '@Url.Action("Insertar_Catering","Catering")';
+
+        var fecha = $("#ca_date_fecha").val();
+        var dnicli = $("#ca_char_dniclie").val();
+        var lugar = $("#ca_vchar_lugarcater").val();
+        var idtrab = $("#ca_int_idtrab").val();
+
+        var data =
+        {
+            ca_date_fecha       : fecha,
+            ca_vchar_lugarcater : lugar,
+            ca_char_dniclie     : dnicli,
+            ca_int_idtrab       : idtrab
+        };
+
+        $.post(url, data).done(function (data) {
+            if (data == 1) {
+                alert("Catering guardado");
+                $("#catering-section").addClass("d-none");
+                $("#menucatering-section").removeClass("d-none");
+            }
+            else
+            {
+                alert("Error al guardar catering");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
+
+    });
+
+    $("#btnElegirAlimento").click(function() {
+
+        var url = '';
+        if ($("#action").val() == "U")
+        {
+            url = '@Url.Action("Actualizar_Detalle","Catering")';
+        }
+        else
+        {
+            url = '@Url.Action("Insertar_Detalle","Catering")';
+        }
+        
+        var dm_int_iddetmenucater = $("#dm_int_iddetmenucater").val();
+        var dm_int_idmenu = $("#dm_int_idmenu").val();
+        var dm_int_idalim = $("#slctAlimento").val();
+        var dm_int_cantmenu = $("#dm_int_cantmenu").val();
+        var dm_dec_subto = $("#dm_dec_subto").val();
+
+        var data =
+        {
+            dm_int_iddetmenucater :dm_int_iddetmenucater,
+            dm_int_idmenu       : dm_int_idmenu,
+            dm_int_idalim       : dm_int_idalim,
+            dm_int_cantmenu     : dm_int_cantmenu,
+            dm_dec_subto        : dm_dec_subto
+        };
+
+        $.post(url, data).done(function (data) {
+            if (data == 1)
+            {
+                mostrarDetalleMenuCatering();
+                $("#btnCerrarAlimento").click();
+                $("#action").val("");
+            }
+            else
+            {
+                alert("Error al guardar el detalle del catering");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
+
+    });
+
+    
+    $("#btnGuardarCatering").click(function () {
+        //Actualizando el catering        
+        var url = '@Url.Action("GuardarActualizado_Catering","Catering")';
+
+        var idCatering = $("#idMenuCatering").val();
+        var total = $("#totalCatering").val();
+
+        var data =
+        {
+            idCatering: idCatering,
+            total :total
+        };
+
+        $.post(url, data).done(function (data) {
+            if (data == 1) {
+                alert("Catering guardado");               
+            }
+            else
+            {
+                alert("Error al guardar catering");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
+    });
+
+    $("#dm_int_cantmenu").change(function () {
+        var subtotal = $("#precioComida").val() * $("#dm_int_cantmenu").val();
+        $("#dm_dec_subto").val(subtotal);
+        $("#dec_subto").text(subtotal);
+
+    });
+
+
+    function eliminarMenuDetalleCatering(id)
+    {
+        var url = '@Url.Action("eliminarMenuDetalleCatering","Catering")';
+
+        var data =
+        {
+            idMenuDetalleCatering : id
+        };
+
+        $.post(url, data).done(function (data) {
+            if (data == 1)
+            {
+                alert("Eliminado el detalle");
+                mostrarDetalleMenuCatering();
+            }
+            else
+            {
+                alert("Error al eliminar el detalle");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
+    }
+
+
+    function verMenuDetalleCatering(id)
+    {
+        var url = '@Url.Action("obtenerMenuDetalleCatering","Catering")';
+
+        var data =
+        {
+            idMenuDetalleCatering : id
+        };
+
+        $.post(url, data).done(function (data) {
+            if (data)
+            {
+                $("#action").val("U");
+                $("#btnNuevoMenuDetalle").click();
+                //alert(data.al_vchar_descr);
+                $("#dm_int_cantmenu").val(data.dm_int_cantmenu);
+                $('select#slctAlimento option').removeAttr("selected");
+                $('#slctAlimento option[value=' + data.dm_int_idalim + ']').attr('selected', 'selected');
+                $('#dec_subto').text(data.dm_dec_subto);
+                $("#dm_int_iddetmenucater").val(data.dm_int_iddetmenucater);
+                
+            }
+            else
+            {
+                alert("Error al obtener el detalle");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
+    }
+
+    function mostrarDetalleMenuCatering()
+    {
+        var url = '@Url.Action("MenuDetalleCatering","Catering")';
+
+        var dm_int_idmenu = $("#dm_int_idmenu").val();
+
+        var data =
+        {
+            idMenu       : dm_int_idmenu
+        };
+
+         $.post(url, data).done(function (data) {
+            if (data)
+            {
+                $("#detail-section").empty();
+                $("#detail-section").append(data);
+            }
+            else
+            {
+                alert("Error al mostrar Menu Detalle Catering");
+            }
+        }).fail(function (e) {
+            alert("Error en la operacion");
+        });
+    }
+
+</script>

@@ -6,12 +6,24 @@ using System.Web.Mvc;
 
 using Dominio.Core.Entities;
 using Dominio.Core.MainModule;
+using Rotativa;
 
 namespace CateringModuloAdministrativo.Controllers
 {
     public class InsumoController : Controller
     {
         private Insumo_Manager objInsumoManager = new Insumo_Manager();
+
+        public ActionResult Print()
+        {
+            return new ActionAsPdf("listInsumo_print") { FileName = "InsumosECatering.pdf" };
+        }
+
+        public ActionResult listInsumo_print()
+        {
+            return View(objInsumoManager.listar_insumo());
+        }
+
         // GET: Insumo
         public ActionResult Index()
         {
